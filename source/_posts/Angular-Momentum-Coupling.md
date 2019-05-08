@@ -1,10 +1,12 @@
 ---
-title: 角动量耦合与 C-G 系数
+title: 角动量耦合与 CG 系数
 tags:
 	- Angular Momentum Coupling
 	- Wigner 3-j Symbol
 	- Clebsch-Gordan Coefficients
-ategories: Atomic Physics
+categories: Atomic Physics
+date: 2019–5-8 17:14:00
+
 ---
 
 
@@ -19,7 +21,7 @@ $$
 $$
 如下图所示
 
-![](Angular-Momentum-Coupling/Torque_animation.gif)
+![](Torque_animation.gif)
 
 其中 $\vec{L}$ 与转轴共线，它的方向可以由右手定则确定。
 
@@ -33,7 +35,7 @@ $$
 
 和一般矢量一样，经典图像里角动量的合成也遵循矢量合成法则，即[平行四边形定则](https://en.wikipedia.org/wiki/Parallelogram_law)（或三角形定则）
 
-![](./Angular-Momentum-Coupling/Parallelogram_law.svg)
+![](Parallelogram_law.svg)
 
 不妨设存在任意两个角动量 $\mathbf{L}_1$ 、 $\mathbf{L}_2$ ，所合成的到的矢量为 $\mathbf{L}_3$ ，它们对应的模长分别为 $L_1$ 、 $L_2$ 和 $L_3$ ，则有
 $$
@@ -56,10 +58,10 @@ $$
 
 1. 既然有角动量，那么角动量的方向在哪里？换言之，电子绕核旋转的轴是朝向哪里的？
 2. 如果电子仍然以经典的物理图像绕某轴旋转，那么根据角动量守恒，它应该在某个平面内运动，所以这个如何确定这个平面？
-3. 玻尔在使用「对应性原理」导出角动量的表达式时是在「当主量子数 $n​$ 很大时」才能「近似认为电子绕核的角动量等同于用经典方法计算出的角动量」，那么当 $n​$ 比较小时，这个近似也成立吗？
-4.  [Stern-Gerlach](https://en.wikipedia.org/wiki/Stern–Gerlach_experiment) 实验表明，电子角动量的**空间取向**是量子化的，即相对于观察者，电子的角动量只能取几个特定的角度，这也是玻尔模型所无法解释的。
+3. 玻尔在使用「对应性原理」导出角动量的表达式时是在「当主量子数 $n$ 很大时」才能「近似认为电子绕核的角动量等同于用经典方法计算出的角动量」，那么当 $n$ 比较小时，这个近似也成立吗？
+4. [Stern-Gerlach](https://en.wikipedia.org/wiki/Stern–Gerlach_experiment) 实验表明，电子角动量的**空间取向**是量子化的，即相对于观察者，电子的角动量只能取几个特定的角度，这也是玻尔模型所无法解释的。
 
-现在我们知道，描述一个电子的轨道角动量我们需要两个量子数 $l​$ 和 $m​$ ，它们分别影响电子轨道角动量的大小和角动量在 $z​$ 轴方向上的投影大小。这里说明一下，我们此时选取的坐标系是实验室坐标系，所讨论的量都是**观测**得到值。
+现在我们知道，描述一个电子的轨道角动量我们需要两个量子数 $l$ 和 $m$ ，它们分别影响电子轨道角动量的大小和角动量在 $z$ 轴方向上的投影大小。这里说明一下，我们此时选取的坐标系是实验室坐标系，所讨论的量都是**观测**得到值。
 
 电子的轨道角动量的值
 $$
@@ -67,7 +69,7 @@ L = \sqrt{l(l + 1)} \hbar
 $$
 电子轨道角动量的空间取向也是量子化的，即在 $z$ 轴方向上，轨道角动量只能取 $\hbar$ 的整数倍 $m\hbar$ 
 
-![](Angular-Momentum-Coupling/Vector_model_of_orbital_angular_momentum.svg)
+![](Vector_model_of_orbital_angular_momentum.svg)
 
 
 
@@ -78,25 +80,25 @@ $$
 - 处于 d 态的电子，角量子数 $l$ 为 2 ，轨道角动量的大小为 $\sqrt{6}\hbar$ ，轨道角动量在 $z$ 轴上的投影可以为 $-2\hbar$, $-\hbar$, $0$, $+\hbar$ , $+2\hbar$ ；
 - 由此类推……
 
-现在问题来了，在上面的图像中我们只确定了电子角动量的 **大小** 和其在 $z​$ 轴上的 **投影** ，根据经典图像，这样的条件并不能使我们在空间中 **确定** 一个轴。但是请注意，我们现在在讨论的是量子化效应明显的微观世界中的情形，在这种情况下，我们 **姑且** 认为电子是在绕着 $z​$ 轴做 **进动** ，即角动量 $\mathbf{L}​$ 扫过的轨迹是一个锥面，并且这个进动确实有着自己的角频率（具体数值限于本人水平，并不太确定），所以我们只需要两个自由度便可以描述一个电子的角动量。
+现在问题来了，在上面的图像中我们只确定了电子角动量的 **大小** 和其在 $z$ 轴上的 **投影** ，根据经典图像，这样的条件并不能使我们在空间中 **确定** 一个轴。但是请注意，我们现在在讨论的是量子化效应明显的微观世界中的情形，在这种情况下，我们 **姑且** 认为电子是在绕着 $z$ 轴做 **进动** ，即角动量 $\mathbf{L}$ 扫过的轨迹是一个锥面，并且这个进动确实有着自己的角频率（具体数值限于本人水平，并不太确定），所以我们只需要两个自由度便可以描述一个电子的角动量。
 
 ## 电子的自旋角动量
 
-我们使用 $S​$ 表示电子自旋的大小。
+我们使用 $S$ 表示电子自旋的大小。
 
-1920s， Stern-Gerlach 实验证明了电子自旋的存在，由自旋产生的自旋角动量也被测出，与轨道角动量不同的是，电子的自旋角动量大小只有一个值 $S = \sqrt{\frac{1}{2} (\frac{1}{2} + 1)} \hbar= \frac{\sqrt 3}{2} \hbar​$ ，并且它在 $z​$ 轴上的投影只能是 $+\frac{1}{2}\hbar​$ 或 $-\frac{1}{2} \hbar​$ 。
+1920s， Stern-Gerlach 实验证明了电子自旋的存在，由自旋产生的自旋角动量也被测出，与轨道角动量不同的是，电子的自旋角动量大小只有一个值 $S = \sqrt{\frac{1}{2} (\frac{1}{2} + 1)} \hbar= \frac{\sqrt 3}{2} \hbar$ ，并且它在 $z$ 轴上的投影只能是 $+\frac{1}{2}\hbar$ 或 $-\frac{1}{2} \hbar$ 。
 
 电子的自旋角动量也可以看成是在绕着 $z$ 轴做进动，进动的角频率被称为[拉莫频率](https://en.wikipedia.org/wiki/Gyroradius)，它的大小为
 $$
 \Omega_L = \frac{|E_{\uparrow} - E_{\downarrow}|}{\hbar}
 $$
-其中 $E_{\uparrow}​$ 与 $E_{\downarrow}​$ 分别是自旋为 $+\frac{1}{2}​$ 和 $-\frac{1}{2}​$ 时电子的能量（看起来和电子跃迁有关，事实确实如此，不过这个内容不在本文讨论范围之内）。
+其中 $E_{\uparrow}$ 与 $E_{\downarrow}$ 分别是自旋为 $+\frac{1}{2}$ 和 $-\frac{1}{2}$ 时电子的能量（看起来和电子跃迁有关，事实确实如此，不过这个内容不在本文讨论范围之内）。
 
 # 角动量的耦合
 
 本文中，角动量耦合特指在微观世界中两个角动量的耦合。这其中「耦合」即为合成之意。
 
-为了表达方便，后面我们将直接使用量子数来表示角动量，轨道角动量 $L$ 的量子数为 $l,\; l\in N$ ，自旋量子数为 $s,\; s\in \{-\frac{1}{2}, +\frac{1}{2}\}​$
+为了表达方便，后面我们将直接使用量子数来表示角动量，轨道角动量 $L$ 的量子数为 $l,\; l\in N$ ，自旋量子数为 $s,\; s\in \{-\frac{1}{2}, +\frac{1}{2}\}$
 
 ### $j$ 的确定
 
@@ -106,20 +108,20 @@ $$
 $$
 \mathbf{J} = \mathbf{L} + \mathbf{S}
 $$
-不妨取 $l = 2​$ ，那么得到的 $j​$ 值可以是多少呢？
+不妨取 $l = 2$ ，那么得到的 $j$ 值可以是多少呢？
 
 $j$ 、 $l$ 、 $s$ 要能构成一个三角形。
 
-显然 $j​$ 要满足
+显然 $j$ 要满足
 
--  $l-s \le j \le l + s$ ，即 $\frac{3}{2} \le j\le \frac{5}{2}$
+- $l-s \le j \le l + s$ ，即 $\frac{3}{2} \le j\le \frac{5}{2}$
 - $j$ 的取值是量子化的，即相邻两个取值的间隔为 $1$ 
 
 即 $j \in \{\frac{3}{2} ,\;\frac{5}{2} \}$ 。
 
 ### $m_j$ 的确定
 
-既然描述一个角动量需要两个量子数，并且我们已经知道了 $j​$ ，那么另一个量子数 $m_j​$ ，即 $\mathbf{J}​$ 在 $z​$ 轴上的投影应该如何确定呢？
+既然描述一个角动量需要两个量子数，并且我们已经知道了 $j$ ，那么另一个量子数 $m_j$ ，即 $\mathbf{J}$ 在 $z$ 轴上的投影应该如何确定呢？
 
 很简单，直接对 $m_{l}$ 和 $m_s$ 加和即可，因为 $m$ 是投影，同一个方向上的投影完全可以直接加和。
 
@@ -150,11 +152,11 @@ $$
 $$
 只要表达的意思一致就可以。
 
-显然， $\bigr | j_1, m_1 ; j_2, m_2 \bigr \rangle​$ 描述的是一个叠加态
+显然， $\bigr | j_1, m_1 ; j_2, m_2 \bigr \rangle$ 描述的是一个叠加态
 $$
 \bigr | j_1, m_1 ; j_2, m_2 \bigr \rangle = \sum_{j=|j_1 - j_2|}^{j_1 + j_2} c_j\bigr | j, m_1 + m_2 \bigr \rangle
 $$
-如果我们想知道它们中某个基的展开系数 $c_j​$ ，只需要
+如果我们想知道它们中某个基的展开系数 $c_j$ ，只需要
 $$
 c_j = \bigr \langle j,m  \bigr | j_1, m_1;\; j_2, m_2 \bigr \rangle
 $$
@@ -166,7 +168,7 @@ $$
 
 
 
-如果我们要交换 $\mathbf{J}_1​$ 和 $\mathbf{J}_2​$ ，C-G 系数有下面的性质
+如果我们要交换 $\mathbf{J}_1$ 和 $\mathbf{J}_2$ ，C-G 系数有下面的性质
 $$
 \bigr \langle j_1, m_1;\; j_2, m_2 \bigr | j,m \bigr > = (-1)^{j - j_1 - j_2} \bigr \langle j_2, m_2;\; j_1, m_1 \bigr | j,m \bigr >
 $$
@@ -233,12 +235,12 @@ $$
 限于知识水平，本人不打算讲如何算 C-G 系数和 3j symbol，如果需要用到，有很多办法可以得到这个值，比较方便的手段有
 
 - [查表](https://en.wikipedia.org/wiki/Table_of_Clebsch–Gordan_coefficients) ，很明显可以看出每个表的行和列都满足平方和为 1，这也是为满足归一性产生的结果；
-- 使用 [GNU Scientific Library](./gsl-ref.pdf) 提供的 Wiger-3j-Symbol 函数；
+- 使用 [GNU Scientific Library](gsl-ref.pdf) 提供的 Wiger-3j-Symbol 函数；
 - 使用 Mathematica 提供的 [Wiger-3j-Symbol 函数](http://functions.wolfram.com/HypergeometricFunctions/ThreeJSymbol/23/ShowAll.html)或 [ClebschGordan 函数](http://functions.wolfram.com/HypergeometricFunctions/ClebschGordan/06/01/)；
 - 使用各种 Home-made 的计算函数计算（请自行搜索 GitHub ，有 [MATLAB 版](https://github.com/polarch/Spherical-Harmonic-Transform)和 [Python 版](https://docs.sympy.org/latest/modules/physics/wigner.html)以及 [Cxx 版](https://github.com/joeydumont/wignerSymbols)等）；
 - ~~自己编程实现。~~
 
 # 扩展
 
-- 以上的讨论不仅限于电子的总角动量 $\mathbf{J}​$ ，如果考虑核的自旋 $\mathbf{I}​$ 与电子角动量耦合得到原子总角动量 $\mathbf{F}​$ ，这个耦合结果也可以用 C-G 系数来描述；
+- 以上的讨论不仅限于电子的总角动量 $\mathbf{J}$ ，如果考虑核的自旋 $\mathbf{I}$ 与电子角动量耦合得到原子总角动量 $\mathbf{F}$ ，这个耦合结果也可以用 C-G 系数来描述；
 - 如果我们有一个态 $\bigr | j, m_j \bigr \rangle$ 并且想知道它可以由哪些纯态构成，查 C-G 系数表不失为一种简单快捷的方法，这在算某些态上电子的激发率时很重要。
