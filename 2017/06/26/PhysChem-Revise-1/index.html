@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这是这个系列的第一篇，也是第一次写这种类型的札记，如果有纰漏，还请在评论区指出，谢谢各位！ 热力学量说明物理化学中，热力学主要研究7个热力学量，这7个量如下：  $U$，系统的热力学能，或称内能，属于状态函数，$U=f(T)$，无法求出$U$的值，但可以求出$\Delta U$的值，单位为J； $Q$，系统与环境交换的热量，当系统放热时，$Q$为负值；系统吸热，则$Q$为正值，单位为J； $W$，">
+<meta name="keywords" content="物理化学,化学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物理化学复习札记（一）：理想气体热力学量求解总结">
+<meta property="og:url" content="https://ionizing.page/2017/06/26/PhysChem-Revise-1/index.html">
+<meta property="og:site_name" content="Ionizing&#39;s Blog">
+<meta property="og:description" content="这是这个系列的第一篇，也是第一次写这种类型的札记，如果有纰漏，还请在评论区指出，谢谢各位！ 热力学量说明物理化学中，热力学主要研究7个热力学量，这7个量如下：  $U$，系统的热力学能，或称内能，属于状态函数，$U=f(T)$，无法求出$U$的值，但可以求出$\Delta U$的值，单位为J； $Q$，系统与环境交换的热量，当系统放热时，$Q$为负值；系统吸热，则$Q$为正值，单位为J； $W$，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-28T08:20:47.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物理化学复习札记（一）：理想气体热力学量求解总结">
+<meta name="twitter:description" content="这是这个系列的第一篇，也是第一次写这种类型的札记，如果有纰漏，还请在评论区指出，谢谢各位！ 热力学量说明物理化学中，热力学主要研究7个热力学量，这7个量如下：  $U$，系统的热力学能，或称内能，属于状态函数，$U=f(T)$，无法求出$U$的值，但可以求出$\Delta U$的值，单位为J； $Q$，系统与环境交换的热量，当系统放热时，$Q$为负值；系统吸热，则$Q$为正值，单位为J； $W$，">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ionizing.page/2017/06/26/PhysChem-Revise-1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>物理化学复习札记（一）：理想气体热力学量求解总结 | Ionizing's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ionizing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Challenge Everything</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ionizing.page/2017/06/26/PhysChem-Revise-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="伪化生的小窝">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ionizing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">物理化学复习札记（一）：理想气体热力学量求解总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2017-06-26 17:07:41" itemprop="dateCreated datePublished" datetime="2017-06-26T17:07:41+08:00">2017-06-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-08-28 16:20:47" itemprop="dateModified" datetime="2019-08-28T16:20:47+08:00">2019-08-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Physical-Chemistry/" itemprop="url" rel="index"><span itemprop="name">Physical Chemistry</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments：</span>
+                <a href="/2017/06/26/PhysChem-Revise-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/26/PhysChem-Revise-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2017/06/26/PhysChem-Revise-1/" class="leancloud_visitors" data-flag-title="物理化学复习札记（一）：理想气体热力学量求解总结">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>这是这个系列的第一篇，也是第一次写这种类型的札记，如果有纰漏，还请在评论区指出，谢谢各位！</strong></p>
+<h2 id="热力学量说明"><a href="#热力学量说明" class="headerlink" title="热力学量说明"></a>热力学量说明</h2><p>物理化学中，热力学主要研究7个热力学量，这7个量如下：</p>
+<ol>
+<li>$U$，系统的热力学能，或称内能，属于状态函数，$U=f(T)$，无法求出$U$的值，但可以求出$\Delta U$的值，单位为J；</li>
+<li>$Q$，系统与环境交换的热量，当系统放热时，$Q$为负值；系统吸热，则$Q$为正值，单位为J；</li>
+<li>$W$，环境对系统所做的功，分为体积功和非体积功，单位为J；</li>
+<li>$H$，焓，定义为 $H=U+pV$，无实际含义，仅为计算方便而产生，属于状态函数，$H=f(T)$，与$U$一样，无法求出$H$的值，但可以求出$\Delta H$的值，单位为J；</li>
+<li>$S$，大名鼎鼎的熵，定义为$S=\int_A^B (\dfrac{\delta Q}{T})_R$，属于状态函数，处于绝对零度时完美晶体的熵为0，单位J$\cdot $K$^{-1}$</li>
+<li>$A$，亥姆霍兹自由能，定义为$A=U-TS$，为状态函数，无法求出$A$的值，但可以求出$\Delta A$的值，单位为J；</li>
+<li>$G$，吉布斯自由能，定义为$G=H-TS$，为状态函数，无法求出$G$的值，但可以求出$\Delta G$的值，单位为J；</li>
+</ol>
+<p>以上说明中，状态函数是指当系统状态一定时，其值即确定，亦即在某个过程中其变化量$\Delta f$只与始末状态有关，与过程细节无关。这个性质<strong>非常重要</strong>，物理化学常见的设计过程求解热力学量的理论基础即在于此。</p>
+<h2 id="热力学四大定律"><a href="#热力学四大定律" class="headerlink" title="热力学四大定律"></a>热力学四大定律</h2><p>是的，热力学有四大定律，分别为热力学第零定律、热力学第一定律、热力学第二定律和热力学第三定律。</p>
+<h3 id="热力学第零定律"><a href="#热力学第零定律" class="headerlink" title="热力学第零定律"></a>热力学第零定律</h3><p><strong>如果两个系统分别与处于确定状态的第三个系统达到热平衡，则这两个系统彼此也将处于热平衡。</strong></p>
+<p>这个定律定义了温度的概念，当两个系统相互接触处于热平衡后，它们的性质不再变化，我们称之具有相同的温度。而定义中提到的第三系统为温度计的产生奠定了理论基础。</p>
+<h3 id="热力学第一定律"><a href="#热力学第一定律" class="headerlink" title="热力学第一定律"></a>热力学第一定律</h3><p><strong>在变化过程中，系统的热力学能变化量表示为系统和环境的热交换量与外界对系统所做功的总和。</strong><br>写成公式即为 $ \Delta U = Q + W $，<br>或者写成微分形式$ \mathrm{d}U = \delta Q + \delta W $</p>
+<h3 id="热力学第二定律"><a href="#热力学第二定律" class="headerlink" title="热力学第二定律"></a>热力学第二定律</h3><p>文字可表述为：</p>
+<blockquote>
+<p>克劳修斯表述：不可能把热从低温物体传到高温物体，而不引起其他变化；<br>开尔文表述：不可能从单一热源取出热使之完全变为功，而不发生其他变化。</p>
+</blockquote>
+<p>数学形式：</p>
+<ul>
+<li>克劳修斯不等式表述形式：$ \Delta S_{A\to B}-\sum_A^B \dfrac{\delta Q}{T} \geq 0 $</li>
+<li>常用表述形式：$ \mathrm{d}S - \dfrac{\delta Q}{T} \geq 0 $</li>
+</ul>
+<p>上式表明，在一个隔离系统中，熵永不减少。 隔离系统是绝热的，即$\delta Q=0$，因此$\mathrm{d}S_{\mathrm{iso}} \geq 0$。</p>
+<h3 id="热力学第三定律"><a href="#热力学第三定律" class="headerlink" title="热力学第三定律"></a>热力学第三定律</h3><p>可以表述为<strong>在温度趋于热力学温度0K的等温过程中，系统的熵值不变 </strong>，也可以表述为“<strong>在0K时，任何完美晶体的熵等于零</strong>”，还可以表述为”<strong>绝对零度不可能达到</strong>“。</p>
+<h2 id="特殊过程的热力学量求值"><a href="#特殊过程的热力学量求值" class="headerlink" title="特殊过程的热力学量求值"></a>特殊过程的热力学量求值</h2><p><strong>本节所有过程均为$p$,$V$,$T$过程，不考虑非体积功！</strong></p>
+<p>常见的变化过程（均为理想气体的变化过程）有：</p>
+<ol>
+<li>等温过程：系统由状态1变到状态2，变化过程中以及始态和终态的温度不变，<strong>且等于环境温度</strong>；</li>
+<li>等压过程：系统在变化过程中，始态和终态压力相等，且等于环境压力；</li>
+<li>等容过程：系统在变化过程中保持体积不变。在刚性容器中发生的变化一般是等容过程；</li>
+<li>绝热过程：系统在变化过程中与环境之间没有热的交换，或者是由于有绝热壁的存在，或者是因为变化太快而与环境来不及热交换，或者热交换量极少可近似看作是绝热过程；</li>
+<li>环状过程：系统从始态出发，经过一系列变化后又回到了原来状态。经此过程，所有状态函数的变化量都为零。</li>
+</ol>
+<p>另外，自由膨胀过程可以看为外压恒为0的等压膨胀过程；节流膨胀过程属于实际气体的不可逆过程，不在本札记讨论范围内。</p>
+<h3 id="自由膨胀过程"><a href="#自由膨胀过程" class="headerlink" title="自由膨胀过程"></a>自由膨胀过程</h3><p>此过程不可逆，可看作外压恒为零的等压过程。</p>
+<ul>
+<li>$\Delta U=0$，由<code>Gay-Lussac-Joule</code>实验得出，而$U=f(T)$，故此过程中气体$T$不变；</li>
+<li>$W=0$，显然，自由膨胀时外压恒为零，也无非体积功，故$W=0$；</li>
+<li>$Q=0$，由热力学第一定律，$\Delta U=Q+W$，式中$\Delta U=0$，$W=0$，因此$Q=0$；</li>
+<li>$\Delta H=0$，$H$是状态函数，由上文气体$T$不变可以推出$H$不变。 另外也可由公式$\Delta H=\Delta U + \Delta(pV)$，$pV=nRT$（n、T不变，所以$pV$不变）推出$\Delta H=0$；</li>
+<li>$\Delta S&gt;0$，显然该过程不可逆，其对应的可逆过程为等温可逆膨胀，计算得$\Delta S=\int\dfrac{\delta Q}{T} = \dfrac{Q}{T} = nR\ln\dfrac{V_2}{V_1} = -nR\ln\dfrac{p_2}{p_1}$；</li>
+<li>$\Delta G&lt;0​$，由公式$\Delta G=\Delta H-\Delta (TS)​$，并且$\Delta H=0​$、$T​$不变得出$\Delta G=-T\Delta S​$；</li>
+<li>$\Delta A&lt;0$，与计算$\Delta G$的过程类似，$\Delta A=-T\Delta S$。</li>
+</ul>
+<h3 id="等温可逆过程"><a href="#等温可逆过程" class="headerlink" title="等温可逆过程"></a>等温可逆过程</h3><p>此过程满足 $pV=nRT=\mathrm{Constant}$。</p>
+<ul>
+<li>$\Delta U=0$，$U$为状态函数，等温过程系统温度不变，因此$U$不变、$\Delta U=0$；</li>
+<li>$W$，由公式$W=-\int<em>{V_1}^{V_2}p</em>{\mathrm{e}}\mathrm{d}V$，且$p<em>e=p=\dfrac{nRT}{V}$（可逆过程中环境压力始终近似于系统压力），所以$W=-nRT\int</em>{V_1}^{V^2} \dfrac{1}{V} \mathrm{d}V=-nRT\ln\dfrac{V_2}{V_1}$；此外，若已知系统的始末压力，也可以将前式变换为$W=nRT\dfrac{p_1}{p_2}$</li>
+<li>$Q$，由热力学第一定律，$\Delta U=W+Q$，得$Q=-W=nRT\ln\dfrac{V_2}{V_1}$；</li>
+<li>$\Delta H$，与$U$类似，为状态函数，$\Delta H=0$；</li>
+<li>$\Delta S$，此过程已经为可逆过程，不必再设计可逆过程。因此$\Delta S=\int\dfrac{\delta Q}{T} = \dfrac{Q}{T} = nR\ln\dfrac{V_2}{V_1} = -nR\ln\dfrac{p_2}{p_1}$；</li>
+<li>$\Delta G$，直接代入公式$\Delta G=\Delta H-\Delta(TS)$，得$\Delta G=-nRT\ln\dfrac{V_2}{V_1}=nRT\ln\dfrac{p_2}{p_1}=W $；</li>
+<li>$\Delta A$，同$\Delta G$，得到$\Delta A=\Delta G=W=-nRT\ln\dfrac{V_2}{V_1}=nRT\ln\dfrac{p_2}{p_1} $。</li>
+</ul>
+<h3 id="等压过程"><a href="#等压过程" class="headerlink" title="等压过程"></a>等压过程</h3><p>此过程满足 $\dfrac{nRT}{V}=\text{Constant}$</p>
+<ul>
+<li>$\Delta U$，此时$\Delta U\neq 0$，应用公式$\Delta U=Q<em>{\mathrm{V}}=nC</em>{\mathrm{V,m}} (T<em>2 - T_1)=\dfrac{p}{R}C</em>{\mathrm{V,m}} (V<em>2-V_1)$计算。单原子分子理想气体的$C</em>\mathrm{V,m}=\dfrac{3}{2}R$。</li>
+<li>$W​$，显然 $W=-\int_{V_1}^{V_2}p_e\mathrm{d}V=p(V_2 - V_1)​$；</li>
+<li>$Q$，等压过程中的热交换量用$Q<em>\mathrm{p}$表示，并且$Q</em>\mathrm{p}=nC<em>\mathrm{p,m}\Delta T$或者使用$C</em>\mathrm{p,m}=C_\mathrm{V,m}+R$以及$Q=\Delta U-W$求解。</li>
+<li>$\Delta H$，直接使用公式$\Delta H = \Delta U + \Delta(pV) = nC_\mathrm{P,m}(T_2-T_1)$</li>
+<li>$\Delta S$，等压过程对应的可逆过程为物体的可逆加热或冷却，有$\delta Q<em>R=C\mathrm{d}T=nC</em>\mathrm{p,m}\mathrm{d}T$，因此，$\Delta S = \int<em>{T_A}^{T_B} \dfrac{nC</em>\mathrm{p,m}}{T}\mathrm{d}T=nC<em>\mathrm{p,m}\ln\dfrac{T</em>{B}}{T_{A}} $，根据公式$pV=nRT$可以求出$T$，这里不再对式子进行展开；</li>
+<li>$\Delta G$，直接代入式子$\Delta G=\Delta H-\Delta(TS)$即可（题目会给出气体的标准摩尔熵，结合上面的$\Delta S$可以使用$\Delta (TS)=T_2 n(S_m+\Delta S) - T_1 nS_m$求出$\Delta G$）；</li>
+<li>$\Delta A$，同$\Delta G$，直接代入$\Delta A=\Delta U-\Delta (TS)$求解。</li>
+</ul>
+<h3 id="等容过程"><a href="#等容过程" class="headerlink" title="等容过程"></a>等容过程</h3><p>此过程满足$\dfrac{nRT}{p}=\mathrm{Constant}$。</p>
+<ul>
+<li>$\Delta U$，与等压过程一样，直接使用公式$\Delta U=Q<em>\mathrm{V}=nC</em>\mathrm{V,m}\Delta T$。单原子分子理想气体的$C_\mathrm{V,m}=\dfrac{3}{2}R $；</li>
+<li>$W$，因为体积无变化，$\mathrm{d}V=0$，故$W=\int_{V_1}^{V_2} p\mathrm{d}V=0$；</li>
+<li>$Q$，等容过程的热交换量也成为恒容热$Q<em>\mathrm{V}$，$Q</em>\mathrm{V}=nC_\mathrm{V,m}\Delta T$；</li>
+<li>$\Delta H$，可以结合式子$pV=nRT$求出$\Delta (pV)=nR\Delta T$，最后代入$\Delta H=\Delta U-\Delta (PV)$求出$\Delta H$；</li>
+<li>$\Delta S$，等容过程对应的可逆过程为物体的可逆加热或冷却，有$\delta Q<em>R=C\mathrm{d}T=nC</em>\mathrm{V,m}\mathrm{d}T$，因此，$\Delta S = \int<em>{T_A}^{T_B} \dfrac{nC</em>\mathrm{V,m}}{T}\mathrm{d}T=\Delta S=nC<em>\mathrm{V,m}\ln\dfrac{T</em>{B}}{T_{A}} $，根据公式$pV=nRT$可以求出$T$，这里不再对式子进行展开；</li>
+<li>$\Delta G$，同等压过程，因为温度发生改变，必须知道$S$的初始值才能计算出$\Delta (TS)$，所以题目会给出或间接给出$S$，此时直接代入公式$\Delta  G=\Delta H-\Delta (TS)$即可求出吉布斯自由能的变化值；</li>
+<li>$\Delta A$，与$\Delta G$类似，仅将$\Delta H$替换为$\Delta U$其余不变，即可计算出亥姆霍兹自由能的变化值。</li>
+</ul>
+<h3 id="绝热可逆过程"><a href="#绝热可逆过程" class="headerlink" title="绝热可逆过程"></a>绝热可逆过程</h3><p>这是一个非常重要的过程，可逆，满足方程$pV^\gamma=K=\mathrm{Constant}$，式中$\gamma=\dfrac{C<em>\mathrm{p,m}}{C</em>\mathrm{V,m}}$，对于理想气体$\gamma=\dfrac{5}{3}$。</p>
+<ul>
+<li>$\Delta U$，由热力学第一定律，$\Delta U=Q+W$，$Q=0$，故$\Delta U=W=nC_\mathrm{V,m}\Delta T$；</li>
+<li>$Q$，绝热过程定义直接表明$Q=0$；</li>
+<li>$W​$，$W=-\int<em>{V_1}^{V_2}p\mathrm{d}V = -\int</em>{V<em>1}^{V_2}\dfrac{K}{V^\gamma}\mathrm{d}V = -\big[ \dfrac{K}{(1-\gamma)V^{\gamma-1}} \big]</em>{V_1}^{V_2} = -\dfrac{K}{1-\gamma} \big[ \dfrac{1}{V_2^{\gamma-1}} - \dfrac{1}{V_1^{\gamma-1}} \big] $<br> 因为$p_1 V_1^\gamma = p_2 V_2^\gamma = K$，上式写为$ W=\dfrac{p_2 V_2- p_1 V_1}{\gamma -1}=\dfrac{nR(T_2 - T_1)}{\gamma -1}  $，又因为$\dfrac{nR}{C_V}=\gamma-1$，所以$W=C_V(T_2 -T_1)$</li>
+<li>$\Delta H$，计算$\Delta H$必须知道$\Delta (pV)$，此时没有更加简单的办法，只能分别求出$p_1$，$V_1$，$p_2$，$V_2$然后计算出$p_2 V_2 - p_1 V_1$最后代入$\Delta H=\Delta U +p_2 V_2 - p_1 V_1$即可求出$\Delta H$；</li>
+<li>$\Delta S$，该过程为绝热可逆过程，$\delta Q_R=0$，故熵变为０，即$\Delta S=0$；</li>
+<li>$\Delta G$，该过程为变温过程，故题目会直接或间接给出$S$的初始值，然后利用$\Delta G=\Delta H-\Delta (TS)=\Delta H-S\Delta T$计算出$\Delta G$即可；</li>
+<li>$\Delta A$，与$\Delta G$类似，将$\Delta G$中的$\Delta H$换为$\Delta U$即可。</li>
+</ul>
+<h3 id="环状过程"><a href="#环状过程" class="headerlink" title="环状过程"></a>环状过程</h3><p>此过程没有具体的方程，但可以多个过程组成，系统最终状态与初始状态相同。</p>
+<ul>
+<li>由于系统初始状态与终末状态相同，故<strong>系统</strong>中所有状态函数的变化量为零，即$\Delta U=\Delta H=\Delta S=\Delta G=\Delta A=0$，<strong>注意，此式子描述的是系统的热力学量，而此系统与外界有能量交换，故为非孤立体系，熵变可以为０</strong>。</li>
+<li>$W$与$Q$，计算这两个热力学量时<strong>不能</strong>设计过程来求，只能按照过程的具体细节，分解成容易求出$W$和$Q$的过程分别计算出两者，然后求和。</li>
+</ul>
+<p>以上为本渣的总结，如有纰漏，还请大神指正。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/物理化学/" rel="tag"># 物理化学</a>
+          
+            <a href="/tags/化学/" rel="tag"># 化学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/22/PAT题解-B-1035/" rel="next" title="PAT题解 B 1035">
+                <i class="fa fa-chevron-left"></i> PAT题解 B 1035
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/30/Quantum-Physics-Learning-Log-1/" rel="prev" title="量子力学学习手记（一）">
+                量子力学学习手记（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <div class="site-description motion-element" itemprop="description">伪化生的小窝</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/IonizingRadiation" title="GitHub &rarr; https://github.com/IonizingRadiation" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:PeterSmith_9@outlook.com" title="E-Mail &rarr; mailto:PeterSmith_9@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#热力学量说明"><span class="nav-number">1.</span> <span class="nav-text">热力学量说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热力学四大定律"><span class="nav-number">2.</span> <span class="nav-text">热力学四大定律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#热力学第零定律"><span class="nav-number">2.1.</span> <span class="nav-text">热力学第零定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热力学第一定律"><span class="nav-number">2.2.</span> <span class="nav-text">热力学第一定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热力学第二定律"><span class="nav-number">2.3.</span> <span class="nav-text">热力学第二定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热力学第三定律"><span class="nav-number">2.4.</span> <span class="nav-text">热力学第三定律</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊过程的热力学量求值"><span class="nav-number">3.</span> <span class="nav-text">特殊过程的热力学量求值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自由膨胀过程"><span class="nav-number">3.1.</span> <span class="nav-text">自由膨胀过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等温可逆过程"><span class="nav-number">3.2.</span> <span class="nav-text">等温可逆过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等压过程"><span class="nav-number">3.3.</span> <span class="nav-text">等压过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等容过程"><span class="nav-number">3.4.</span> <span class="nav-text">等容过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绝热可逆过程"><span class="nav-number">3.5.</span> <span class="nav-text">绝热可逆过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环状过程"><span class="nav-number">3.6.</span> <span class="nav-text">环状过程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ionizing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://https-www-ionizing-science.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ionizing.page/2017/06/26/PhysChem-Revise-1/";
+    this.page.identifier = "2017/06/26/PhysChem-Revise-1/";
+    this.page.title = '物理化学复习札记（一）：理想气体热力学量求解总结';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-www-ionizing-science.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz',
+                'X-LC-Key': 'pORgRsmYGMgcnRO7MKPQFafu',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+        extensions: ['[mhchem]/mhchem.js'],
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("code").map(function(){
+    match = /^\$(.*)\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\$\$(.*)\$\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\\begin/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+  });
+});
+</script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<style>
+  .copy-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+    
+    user-select: none;
+    outline: 0;
+  }
+
+  .highlight-wrap .copy-btn {
+    transition: opacity .3s ease-in-out;
+    opacity: 0;
+    padding: 2px 6px;
+    position: absolute;
+    
+      right: 4px;
+      top: 8px;
+    
+  }
+
+  .highlight-wrap:hover .copy-btn,
+  .highlight-wrap .copy-btn:focus {
+    opacity: 1;
+  }
+
+  .highlight-wrap {
+    position: relative;
+  }
+</style>
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="微正则系综基本概念微正则系综是指参量为 $N​$ $V​$ $E​$ 的体系，对应于宏观的孤立体系，即「在宏观看来」，体系的粒子数、体积、和内能都不改变。$\newcommand{\dif}{\mathop{}\mathrm{d}}​$  上一篇博文中我们已经知道，统计力学中存在两个假设，其中一个假设是：微正则系综中各个状态出现的概率相等，用数学语言表达就是：  P_{\nu} = \frac{1">
+<meta name="keywords" content="Statistical Mechanics,Physical Chemistry,Negative Temperature">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微正则系综与负温度的导出">
+<meta property="og:url" content="https://ionizing.page/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/index.html">
+<meta property="og:site_name" content="Ionizing&#39;s Blog">
+<meta property="og:description" content="微正则系综基本概念微正则系综是指参量为 $N​$ $V​$ $E​$ 的体系，对应于宏观的孤立体系，即「在宏观看来」，体系的粒子数、体积、和内能都不改变。$\newcommand{\dif}{\mathop{}\mathrm{d}}​$  上一篇博文中我们已经知道，统计力学中存在两个假设，其中一个假设是：微正则系综中各个状态出现的概率相等，用数学语言表达就是：  P_{\nu} = \frac{1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ionizing.page/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/image-20190323153538645.png">
+<meta property="og:image" content="https://ionizing.page/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/image-20190323145956521.png">
+<meta property="og:updated_time" content="2019-08-28T08:20:47.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微正则系综与负温度的导出">
+<meta name="twitter:description" content="微正则系综基本概念微正则系综是指参量为 $N​$ $V​$ $E​$ 的体系，对应于宏观的孤立体系，即「在宏观看来」，体系的粒子数、体积、和内能都不改变。$\newcommand{\dif}{\mathop{}\mathrm{d}}​$  上一篇博文中我们已经知道，统计力学中存在两个假设，其中一个假设是：微正则系综中各个状态出现的概率相等，用数学语言表达就是：  P_{\nu} = \frac{1">
+<meta name="twitter:image" content="https://ionizing.page/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/image-20190323153538645.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ionizing.page/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>微正则系综与负温度的导出 | Ionizing's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ionizing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Challenge Everything</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ionizing.page/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="伪化生的小窝">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ionizing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微正则系综与负温度的导出
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-23 15:46:00" itemprop="dateCreated datePublished" datetime="2019-03-23T15:46:00+08:00">2019-03-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-08-28 16:20:47" itemprop="dateModified" datetime="2019-08-28T16:20:47+08:00">2019-08-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Physical-Chemistry/" itemprop="url" rel="index"><span itemprop="name">Physical Chemistry</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments：</span>
+                <a href="/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/" class="leancloud_visitors" data-flag-title="微正则系综与负温度的导出">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="微正则系综"><a href="#微正则系综" class="headerlink" title="微正则系综"></a>微正则系综</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>微正则系综是指参量为 $N​$ $V​$ $E​$ 的体系，对应于宏观的孤立体系，即「在宏观看来」，体系的粒子数、体积、和内能都不改变。$\newcommand{\dif}{\mathop{}\mathrm{d}}​$ </p>
+<p>上一篇博文中我们已经知道，统计力学中存在两个假设，其中一个假设是：微正则系综中各个状态出现的概率相等，用数学语言表达就是：</p>
+<script type="math/tex; mode=display">
+P_{\nu} = \frac{1}{\varOmega(N,V,E)}</script><p>其中 $\nu$ 表示某个状态， $\varOmega(N, V, E)$ 表示系统参量为 $N$ 、 $V$ 、 $E$ 时所拥有的状态数。</p>
+<p>由玻尔兹曼关系式，体系的熵可以表达为</p>
+<script type="math/tex; mode=display">
+S = k\ln \varOmega(N, V, E)</script><h2 id="三维势箱的例子"><a href="#三维势箱的例子" class="headerlink" title="三维势箱的例子"></a>三维势箱的例子</h2><p>假想我们把理想气体放在一个长宽高均为 $a$ 的密闭、绝热、体积不变的箱子中，这个箱子中的气体可以看作一个孤立体系，气体的粒子是自由粒子，它们之间的运动无关联。</p>
+<p>我们假设这个 $a$ 是 m 的量级，即箱子为宏观尺度上的箱子，体系的粒子数为 $N$ ，体积为 $V$ ，内能为 $E$ 。</p>
+<p>下面开始求这个体系的的状态数 $\varOmega(N, V, E)$。</p>
+<h3 id="当体系只有一个粒子时"><a href="#当体系只有一个粒子时" class="headerlink" title="当体系只有一个粒子时"></a>当体系只有一个粒子时</h3><p>如果体系只有一个粒子，那么粒子的能级为</p>
+<script type="math/tex; mode=display">
+\epsilon_{n_x, n_y, n_z} = \frac{h^2}{8ma^2}(n_x^2 + n_y^2 + n_z^2)</script><p>上面式子中</p>
+<ul>
+<li>$h$ —— 普朗克常量， $6.626\times 10^{-34}$ J*s ；</li>
+<li>$m​$ —— 粒子质量，g ；</li>
+<li>n<sub>x</sub>, n<sub>y</sub>, n<sub>z</sub> —— x, y, z 方向上的量子数， n<sub>x</sub>, n<sub>y</sub>, n<sub>z</sub> $\in N_+$ ，无量纲。（如果不明白这个公式如何推出来，可以参考<a href="https://en.wikipedia.org/wiki/Particle_in_a_box" target="_blank" rel="noopener">Particle in a box</a> ）</li>
+</ul>
+<p>假设给定一个能级 $\epsilon$ ，那么在 $0 \sim \epsilon$ 之间这个粒子存在多少个状态呢？</p>
+<p>显然这个数目应该等于所有所有满足</p>
+<script type="math/tex; mode=display">
+n_x^2 + n_y^2 + n_z^2 \le \frac{8ma^2\epsilon}{h^2} \label{eq:4}</script><p>的 [$n_x$, $n_y$, $n_z$] 组合的数量。</p>
+<p>如何计算这个数量？当然编程用回溯法不难穷举出所有可能的组合，但是我们不需要知道所有组合具体是什么样，我们只需知道些组合的数量！</p>
+<p>$n_x^2 + n_y^2 + n_z^2$ ，好熟悉的公式，这不就是三维空间中点 $(n_x, n_y, n_z)$ 到原点 $O$ 的距离平方吗？再次审视 $\eqref{eq:4}$ ，它表示的是一个球在第一卦限内的部分</p>
+<p><img src="./image-20190323153538645.png" width="500"></p>
+<p> $\eqref{eq:4}$ 取等号时所表示的面是八分之一个球面，球面半径为</p>
+<script type="math/tex; mode=display">
+R = \sqrt{\frac{8ma^2\epsilon}{h^2}}</script><p>我们的任务是求它们组合的个数，也就是求这八分之一球内部有多少个坐标全为正整数的点；当 $\epsilon$ 取值比较大时，球面部分的 aliasing 可以忽略，我们认为这八分之一球内坐标为整数的点的数量等于这八分之一球的体积。</p>
+<p>于是问题变得简单起来，在 $0 \sim \epsilon$ 之间</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\varPhi(\epsilon) &={} \frac{1}{8} \cdot \frac{4\pi}{3} R^3 \\
+    &={} \frac{1}{8} \cdot \frac{4\pi}{3} \left( \frac{8ma^2\epsilon}{h^2} \right)^{\frac{3}{2}}
+\end{aligned}</script><p>那么在 $\epsilon \sim \epsilon + \dif \epsilon​$ 之间</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \varOmega(\epsilon) &={} \overline{\varOmega}(\epsilon) \dif \epsilon \\
+        &={} \frac{\dif}{\dif \epsilon} \varOmega(\epsilon) \dif \epsilon \\
+        &={} \frac{\dif}{\dif \epsilon} \frac{\pi}{6} \left( \frac{8ma^2\epsilon}{h^2} \right)^{\frac{3}{2}} \dif \epsilon \\
+        &={} \frac{\pi}{6} \left( \frac{8ma^2}{h^2} \right)^{\frac{3}{2}} \cdot \frac{3}{2} \epsilon^{\frac{1}{2}} \dif \epsilon \\
+        &={} \frac{\pi}{4} \left( \frac{8ma^2}{h^2} \right)^{\frac{3}{2}} \cdot \epsilon^{\frac{1}{2}} \dif \epsilon
+\end{aligned}</script><p>当然我们也可以直接用球面面积公式计算 $\varOmega(\epsilon)$ ，得到的结果和上面的一样。</p>
+<h3 id="当体系有-N-个粒子时"><a href="#当体系有-N-个粒子时" class="headerlink" title="当体系有 $N$ 个粒子时"></a>当体系有 $N$ 个粒子时</h3><p>我们认为这 $N$ 个粒子是<a href="https://en.wikipedia.org/wiki/Identical_particles" target="_blank" rel="noopener">全同</a>，即不可分辨的，同时我们要描述这个系统的某个状态需要知道所有粒子的量子数，所以体系的总量子数 ${n}$ 就从 3 个变成了 3 $N$ 个，此时能级的计算公式将变成</p>
+<script type="math/tex; mode=display">
+E(\{n_j\}) = \frac{h^2}{8ma^2} \sum_{j=1}^{3N} n_j^2</script><p>${n_j}$ 所存在的空间不再是三维，而是 $3N$ 维，<a href="https://en.wikipedia.org/wiki/Volume_of_an_n-ball" target="_blank" rel="noopener">谷歌</a>告诉我们 $3N$ 维空间中球的体积公式为</p>
+<script type="math/tex; mode=display">
+V_{3N}(R) = \frac{\pi^{3N/2}}{\Gamma(\frac{3N}{2} + 1)} \cdot R^{3N}</script><p>其中 $\Gamma(\frac{3N}{2} + 1)$ 是一个 <a href="https://en.wikipedia.org/wiki/Gamma_function" target="_blank" rel="noopener">Gamma 函数</a> ， </p>
+<script type="math/tex; mode=display">
+\Gamma(x) = \int_{0}^{+\infty}t^{x-1} e^{-t} \dif t</script><p>它满足</p>
+<ul>
+<li>$\Gamma(0) = 0$ ；</li>
+<li>$\Gamma(\frac{1}{2}) = \sqrt{\pi}​$ ；</li>
+<li>$\Gamma(x+1) = x\cdot\Gamma(x)$ 。</li>
+</ul>
+<p>那么在这个球的”第一卦限”内的体积为这个球的 $\frac{1}{2^{3N}}$ ，于是在 $0 \sim E$ 之间</p>
+<script type="math/tex; mode=display">
+\varPhi(E) = \frac{1}{2^{3N} \cdot N!} V_{3N}(R)</script><p>上面式子分母中的 $N!$ 正体现了粒子的不可分辨性。而</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    R^2 &={} \sum_j n_j^2\\
+    E(\{n_j\}) &={} \frac{h^2}{8ma^2} R^2
+\end{aligned}</script><p>上面式子导出</p>
+<script type="math/tex; mode=display">
+R = \sqrt{\frac{8ma^2}{h^2}E}</script><p>那么在 $E \sim \dif E$ 之间，体系的状态数为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\varOmega(E) &={} \frac{\dif}{\dif E} \varPhi(E) \dif E \\
+    &={}  \frac{1}{2^{3N} \cdot N!} \cdot \frac{\pi^{3N/2}}{\Gamma(\frac{3N}{2} + 1)} \frac{\dif}{\dif E} \left( \frac{8ma^2}{h^2}E \right)^{\frac{3N}{2}} \dif E \\
+    &={} \frac{1}{2^{3N} \cdot N!} \cdot \frac{\pi^{3N/2}}{\Gamma(\frac{3N}{2} + 1)} \left( \frac{8ma^2}{h^2} \right)^{\frac{3N}{2}} \cdot \frac{3N}{2} \cdot E^{\frac{3N}{2}} \frac{\dif E}{E} \\
+    &={} \frac{1}{N!} \cdot \frac{1 }{ \Gamma(\frac{3N}{2})} \cdot \left( \frac{2 \pi ma^2}{h^2} \right)^{\frac{3N}{2}} E^{\frac{3N}{2}} \frac{\dif E}{E} \\
+    &={} \frac{1}{N!} \cdot \frac{a^{3N}}{\Gamma(\frac{3N}{2})} \cdot \left( \frac{2 \pi mE}{h^2} \right)^{\frac{3N}{2}} \frac{\dif E}{E} \\
+    &={} \frac{1}{N!} \cdot \frac{V^{N}}{\Gamma(\frac{3N}{2})} \cdot \left( \frac{2 \pi mE}{h^2} \right)^{\frac{3N}{2}} \frac{\dif E}{E}
+\end{aligned}</script><p>下面来解决 $\Gamma(\frac{3N}{2})​$ 值的问题。</p>
+<p>根据 $\Gamma(x+1) = x\Gamma(x)$ ，可以得到 $\Gamma(\frac{3N}{2}) = (\frac{3N}{2} - 1) \cdot \Gamma(\frac{3N}{2} - 1) =\cdots= (\frac{3N}{2} - 1)!$ </p>
+<p>于是 $\Omega(E)​$ 中 $N! \cdot \Gamma(\frac{3N}{2})​$ 可以使用<a href="https://en.wikipedia.org/wiki/Stirling%27s_approximation" target="_blank" rel="noopener">斯特灵近似</a>来计算</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \verb|let|\quad X &={} N!\cdot \left(\frac{3N}{2} - 1\right)! \\
+    \ln X &={}N\ln N - N + \left(\frac{3N}{2}-1\right) \ln \left(\frac{3N}{2}-1\right) - \left(\frac{3N}{2} - 1\right) \\
+    &\sim{} N\ln N + \frac{3N}{2}\ln\frac{3N}{2} \\
+    &\sim{} \frac{5N}{2}\ln N \\
+\end{aligned}</script><p>为了式子的简洁，我们把不需要关心的部分放到 $f(N)​$ 中，表示含 $N​$ 的系数， $\varOmega(E)​$ 可以化简为</p>
+<script type="math/tex; mode=display">
+\ln \varOmega(E) = f(N) + N\ln V + \frac{3N}{2}\ln E + \ln\frac{\dif E}{E}</script><p>此时使用热力学基本公式的变形</p>
+<script type="math/tex; mode=display">
+\dif \ln \varOmega = \beta \dif E + \beta p\dif V - \beta \mu\dif N</script><p>可以得到以下热力学量</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \beta &={} \frac{1}{kT} = \left(\frac{\partial \ln\varOmega}{\partial E}\right)_{N, V} = \frac{3N}{2} \cdot \frac{1}{E} \\
+    &\Longrightarrow {} E = \frac{3}{2} NkT ;\\
+    p\beta &={} \frac{p}{kT} = \left(\frac{\partial \ln\varOmega}{\partial V}\right)_{N, E} = \frac{N}{V} \\
+    &\Longrightarrow {} p = \frac{NkT}{V} \\
+    &\Longrightarrow {} pV = NkT = \frac{NRT}{N_A} = nRT . \\
+\end{aligned}</script><ul>
+<li><p>$E = \frac{3}{2} NkT$ 正是理想气体的平动动能表达式（事实上这个体系中的内能只包含粒子的平动动能）；</p>
+</li>
+<li><p>$pV=nRT$ 也恰好是理想气体状态方程。</p>
+</li>
+</ul>
+<p>于是我们从两个假设出发，对三维势箱内的无关联全同粒子系统使用微正则系综进行研究，得到了以前学过的理想气体的状态方程和理想气体的平动动能表达式，很神奇有木有？别急着惊讶，更神奇的东西在后面。</p>
+<h1 id="重新审视-beta"><a href="#重新审视-beta" class="headerlink" title="重新审视 $\beta$"></a>重新审视 $\beta$</h1><p>上一小节我们使用热力学基本关系式的变形得到了 $\beta$ 的表达式</p>
+<script type="math/tex; mode=display">
+\beta = \frac{1}{kT} = \left(\frac{\partial \ln\varOmega}{\partial E}\right)_{N, V}</script><p>很明显，如果 $\left(\frac{\partial \ln\varOmega}{\partial E}\right)_{N, V}$ 为正，即体系的 $\varOmega$ 随 $E$ 的增大而增大，那么 $\beta = \frac{1}{kT}$ 为正，换言之，当体系的状态数，或称混乱度随内能增大而增大，体系的温度为正；那么，反过来，如果体系的状态数随内能增大而减小，体系的温度也可以为负吗？</p>
+<h2 id="自旋系统的例外"><a href="#自旋系统的例外" class="headerlink" title="自旋系统的例外"></a>自旋系统的例外</h2><p>假想我们有一个纯自旋系统，系统中存在方向向下的磁场 $\vec{H}$，其中含有 $N$ 个粒子，它们各自拥有的磁矩 $\vec{\mu}$ 都只能与 $\vec{H}$ 共线，且磁矩的模长都是 $\mu$ ，于是对于每个粒子，它们所处的能级有</p>
+<script type="math/tex; mode=display">
+\epsilon = %
+\begin{cases}
+    \mu H & \mu \uparrow \\
+    -\mu H & \mu \downarrow
+\end{cases}</script><p>那么对于这个 $N$ 粒子的系统，当有 $n$ 个粒子磁矩 $\uparrow$ 时，它们的总能量为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    E &={} n\mu H + (N-n)(-\mu H) \\
+        &={} (2n - N)\mu H
+\end{aligned}</script><p>此时体系的状态数 $\varOmega$ 应为</p>
+<script type="math/tex; mode=display">
+\varOmega = C_N^n = \frac{N!}{n! \cdot(N-n)!}</script><p>作出图像可以看出</p>
+<p><img src="./image-20190323145956521.png" width="500"></p>
+<ul>
+<li>随着 $\ln \varOmega$ 的增大， $\frac{\dif \ln\varOmega}{\dif E}$ 在减小，也就是说 $\beta$ 在减小，而 $\beta = \frac{1}{kT}$ ，则温度在升高，但还是正值，到这里还没什么异常；</li>
+<li>当 $n = \frac{N}{2}$ 时， $\ln \varOmega$ 达到极大值，$\frac{\dif \ln\varOmega}{\dif E}$ 为 <span style="color:red"><strong>0</strong></span> ！换言之 $T \to \infty$ ；</li>
+<li>当 $n$ 继续增大， $\frac{\dif \ln\varOmega}{\dif E}$ 变成了<span style="color:red"><strong>负值</strong></span> ， $T &lt; 0$ ！</li>
+</ul>
+<p>我们从唯象地看待一下这个系统：如果这个系统的所有粒子磁矩方向全部相同，那么这个系统的有序度最高，这是毫无疑问的；那什么时候系统的有序度最呢？肯定是一半粒子磁矩朝上，另一半朝下的时候，此时系统的熵最大。所以当 $n$ 从 0 增长到 $\frac{N}{2}$ 的过程中，系统的熵一直在增大，体系的内能也在增大；但是当 $n$ 增长到 $\frac{N}{2}$ 时，体系的熵达到了<span style="color:red"><strong>最大</strong></span>，之后熵就开始<span style="color:red"><strong>变小</strong></span>，但体系的能量却在一直增加，这显然是不合理的。</p>
+<p>哪里出了问题呢？</p>
+<h2 id="负温度的成因"><a href="#负温度的成因" class="headerlink" title="负温度的成因"></a>负温度的成因</h2><p>上面的自旋系统是一个<span style="color:red"><strong>受限</strong></span>系统，所谓受限是指：</p>
+<ul>
+<li>能级数量受限；</li>
+<li>状态数量受限；</li>
+<li>总能量受限；</li>
+<li>熵受限。</li>
+</ul>
+<p><span style="color:red"><strong>但现实不存在这样的系统</strong></span>，就连本文前半部分讲到的理想气体系统，它的能级数量也是无限的，因此在那个系统中得到的热力学量不会出现负温度这种奇怪的结果。</p>
+<p>负温度的结果虽然奇怪，但不妨碍我们再次讨论一下由它衍生出的一些有意思的东西：</p>
+<ul>
+<li>当 $n \to \frac{N^-}{2}$ ， $\beta \to 0^+$ ， $T \to +\infty$ ；</li>
+<li>当 $n \to \frac{N^+}{2}$ ，$\beta \to 0 ^-$  ， $T \to -\infty$ ；</li>
+<li>当 $n = \frac{N}{2}$ ， $\beta = 0$ ， $T \to \infty$ 。</li>
+</ul>
+<p>我们比较关心当 $n$ 跨越 $\frac{N}{2}$ 那一点时， $T$ 为什么可以从正无穷一下子跳到了正无穷。其实我们换一个思路，让 $T$ 处在一个复平面上，而复平面上的无穷全都是<a href="https://en.wikipedia.org/wiki/Complex_plane#Stereographic_projections" target="_blank" rel="noopener">连在一起的</a> ，于是 $T$ 可以很自然地跨过那个奇点，表现出从负无穷到正无穷的跨越。</p>
+<h1 id="参考-amp-致谢"><a href="#参考-amp-致谢" class="headerlink" title="参考 &amp; 致谢"></a>参考 &amp; 致谢</h1><p>Wikipedia 已在超链接中给出；</p>
+<p>《李政道讲义：统计力学》；</p>
+<p>《现代统计力学导论》 David Chandler；</p>
+<p>徐老师、侯老师。</p>
+<p>顺便强烈吐槽 Hexo 的渲染功能，迭代了这么多版本，还没解决 MathJax 行内公式与下划线强调的冲突问题，强烈差评。 </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Statistical-Mechanics/" rel="tag"># Statistical Mechanics</a>
+          
+            <a href="/tags/Physical-Chemistry/" rel="tag"># Physical Chemistry</a>
+          
+            <a href="/tags/Negative-Temperature/" rel="tag"># Negative Temperature</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/22/2019-3-22-Ensembles/" rel="next" title="统计力学笔记——系综的概念">
+                <i class="fa fa-chevron-left"></i> 统计力学笔记——系综的概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/26/2019-3-26-Rethink-about-Bohr-Hydrogen-Model/" rel="prev" title="重新思考玻尔氢原子模型">
+                重新思考玻尔氢原子模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <div class="site-description motion-element" itemprop="description">伪化生的小窝</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/IonizingRadiation" title="GitHub &rarr; https://github.com/IonizingRadiation" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:PeterSmith_9@outlook.com" title="E-Mail &rarr; mailto:PeterSmith_9@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微正则系综"><span class="nav-number">1.</span> <span class="nav-text">微正则系综</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维势箱的例子"><span class="nav-number">1.2.</span> <span class="nav-text">三维势箱的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当体系只有一个粒子时"><span class="nav-number">1.2.1.</span> <span class="nav-text">当体系只有一个粒子时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当体系有-N-个粒子时"><span class="nav-number">1.2.2.</span> <span class="nav-text">当体系有 $N$ 个粒子时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重新审视-beta"><span class="nav-number">2.</span> <span class="nav-text">重新审视 $\beta$</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自旋系统的例外"><span class="nav-number">2.1.</span> <span class="nav-text">自旋系统的例外</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负温度的成因"><span class="nav-number">2.2.</span> <span class="nav-text">负温度的成因</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考-amp-致谢"><span class="nav-number">3.</span> <span class="nav-text">参考 &amp; 致谢</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ionizing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://https-www-ionizing-science.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ionizing.page/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/";
+    this.page.identifier = "2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/";
+    this.page.title = '微正则系综与负温度的导出';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-www-ionizing-science.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz',
+                'X-LC-Key': 'pORgRsmYGMgcnRO7MKPQFafu',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+        extensions: ['[mhchem]/mhchem.js'],
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("code").map(function(){
+    match = /^\$(.*)\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\$\$(.*)\$\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\\begin/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+  });
+});
+</script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<style>
+  .copy-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+    
+    user-select: none;
+    outline: 0;
+  }
+
+  .highlight-wrap .copy-btn {
+    transition: opacity .3s ease-in-out;
+    opacity: 0;
+    padding: 2px 6px;
+    position: absolute;
+    
+      right: 4px;
+      top: 8px;
+    
+  }
+
+  .highlight-wrap:hover .copy-btn,
+  .highlight-wrap .copy-btn:focus {
+    opacity: 1;
+  }
+
+  .highlight-wrap {
+    position: relative;
+  }
+</style>
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

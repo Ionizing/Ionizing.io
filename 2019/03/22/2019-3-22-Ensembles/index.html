@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="何为「系综」？简单来说 系综 (Ensemble) 就是一个宏观态对应所有可能微观态的集合。 $\newcommand{\dif}{\mathop{}\mathrm{d}}$  对于宏观态，我们研究对象所含有的粒子的数量级在 1023 左右（即 1 mol 物质所含粒子的数量），而这个宏观态的宏观量（如压力 $p​$ ，温度 $T​$ ，体积 $V​$ ，粒子数目 $N​$ ，以及内能 $E​$">
+<meta name="keywords" content="Statistical Mechanics,Physical Chemistry">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计力学笔记——系综的概念">
+<meta property="og:url" content="https://ionizing.page/2019/03/22/2019-3-22-Ensembles/index.html">
+<meta property="og:site_name" content="Ionizing&#39;s Blog">
+<meta property="og:description" content="何为「系综」？简单来说 系综 (Ensemble) 就是一个宏观态对应所有可能微观态的集合。 $\newcommand{\dif}{\mathop{}\mathrm{d}}$  对于宏观态，我们研究对象所含有的粒子的数量级在 1023 左右（即 1 mol 物质所含粒子的数量），而这个宏观态的宏观量（如压力 $p​$ ，温度 $T​$ ，体积 $V​$ ，粒子数目 $N​$ ，以及内能 $E​$">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ionizing.page/2019/03/22/2019-3-22-Ensembles/boltzmann_tombstone.jpg">
+<meta property="og:updated_time" content="2019-08-28T08:20:47.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="统计力学笔记——系综的概念">
+<meta name="twitter:description" content="何为「系综」？简单来说 系综 (Ensemble) 就是一个宏观态对应所有可能微观态的集合。 $\newcommand{\dif}{\mathop{}\mathrm{d}}$  对于宏观态，我们研究对象所含有的粒子的数量级在 1023 左右（即 1 mol 物质所含粒子的数量），而这个宏观态的宏观量（如压力 $p​$ ，温度 $T​$ ，体积 $V​$ ，粒子数目 $N​$ ，以及内能 $E​$">
+<meta name="twitter:image" content="https://ionizing.page/2019/03/22/2019-3-22-Ensembles/boltzmann_tombstone.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ionizing.page/2019/03/22/2019-3-22-Ensembles/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>统计力学笔记——系综的概念 | Ionizing's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ionizing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Challenge Everything</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ionizing.page/2019/03/22/2019-3-22-Ensembles/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="伪化生的小窝">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ionizing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">统计力学笔记——系综的概念
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-22 21:50:44" itemprop="dateCreated datePublished" datetime="2019-03-22T21:50:44+08:00">2019-03-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-08-28 16:20:47" itemprop="dateModified" datetime="2019-08-28T16:20:47+08:00">2019-08-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments：</span>
+                <a href="/2019/03/22/2019-3-22-Ensembles/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/22/2019-3-22-Ensembles/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/22/2019-3-22-Ensembles/" class="leancloud_visitors" data-flag-title="统计力学笔记——系综的概念">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="何为「系综」？"><a href="#何为「系综」？" class="headerlink" title="何为「系综」？"></a>何为「系综」？</h1><p>简单来说 <a href="https://en.wikipedia.org/wiki/Statistical_ensemble_(mathematical_physics)" target="_blank" rel="noopener">系综</a> (Ensemble) 就是一个宏观态对应所有可能微观态的集合。 $\newcommand{\dif}{\mathop{}\mathrm{d}}$ </p>
+<p>对于宏观态，我们研究对象所含有的粒子的数量级在 10<sup>23</sup> 左右（即 1 mol 物质所含粒子的数量），而这个宏观态的宏观量（如压力 $p​$ ，温度 $T​$ ，体积 $V​$ ，粒子数目 $N​$ ，以及内能 $E​$ 等）可以保持不变，但是给定一个宏观态，固定其中某些宏观量后，却可能有极大量微观态与之对应。为了研究方便，我们给这些对应于同一个宏观态的微观态的集合起名字叫做「系综」。</p>
+<p>为了简化模型，我们使用理想气体分子作为研究的粒子，通常研究的系综体系有：</p>
+<ul>
+<li>微正则系综（<a href="https://en.wikipedia.org/wiki/Microcanonical_ensemble" target="_blank" rel="noopener">Microcanonical Ensemble</a>） $\Longrightarrow$ 等粒子数、等容、等能量的体系，即孤立体系（与外界完全隔离，与环境没有物质交换、没有做功、甚至没有能量交换的体系）所对应的系综，热力学参量为 $N$ 、 $V$ 、 $E$ ；</li>
+<li>正则系综（<a href="https://en.wikipedia.org/wiki/Canonical_ensemble" target="_blank" rel="noopener">Canonical Ensemble</a>） $\Longrightarrow$  等粒子数、等容、等温的体系，即封闭体系（容器体积封闭固定无法对外界做功，与外界没有粒子交换，但是容器壁可以传热，体系与外界仅有能量交换，<strong>且体系温度保持恒定</strong>）所对应的系综，热力学参量为 $N$ ，$V$ ， $T$ ；</li>
+<li>巨正则系综（<a href="https://en.wikipedia.org/wiki/Grand_canonical_ensemble" target="_blank" rel="noopener">Grand Canonical Ensemble</a>） $\Longrightarrow$ 等化学势、等容、等温的体系，即开放体系（容器体积固定，但并不封闭，体系内外有物质交换和能量交换，但体系的化学势与温度始终保持恒定）所对应的系综，热力学参量为 $\mu$ ， $V$ ， $T$ ；</li>
+<li>等温等压系综（<a href="https://en.wikipedia.org/wiki/Isothermal–isobaric_ensemble" target="_blank" rel="noopener">Isothermal-Isobaric Ensemble</a>） $\Longrightarrow$ 等粒子数、等温、等压的体系（如一个自由的密闭活塞）所对应的系综，热力学参量为 $N$ ， $T$ ， $p$ 。</li>
+</ul>
+<p>PS. </p>
+<ol>
+<li>个人认为带「正则」的名字翻译得……很让人摸不着头脑，无法从名字知道系综的参量情况，可能是这个术语本身在命名时就比较随意吧。不过命名不是重点，其内在的逻辑才是应该关心的；</li>
+<li>其中的热力学「参量」表示我们给定体系的热力学量。类似于程序设计中「函数」的「输入参数」；</li>
+<li>给定上面的这些热力学「参量」并<span style="color:red"><strong>不代表体系在任意时刻保持这些热力学量恒定</strong></span>。给定它们表示体系在宏观上保持这些热力学量不变，但在微观角度看，这些热力学量是在<strong>时刻不停地涨落</strong>，但是它们整体表现出的<strong>平均值</strong>是恒定不变的，这才是给定热力学参量的真正含义；</li>
+<li>为什么要定义系综？其实刚开始时人们研究宏观态时是只研究其对应的某一个微观态在一段时间内的演化过程，但是研究一个态需要知道这个态的初始参数（所有粒子的初速度、位置信息等），每次研究都要设置这个参数，很麻烦，并且很多时候人们并不知道这些参数；而且在很短时间内这个态经过演化已经经历过了所有可能的等价态，使得结果与初始参数的关系并不大。于是人们将<span style="color:red"><strong>研究一个体系在一段时间的演化</strong></span>转化成<span style="color:red"><strong>研究多个等价体系在同一时间内的统计分布</strong></span>，这样并不需要定义其中某个微观态的初始参数，而是给出这些微观态平均表现出的热力学性质，然后研究这些态的热力学量在统计上的分布就能达到想要的效果，系综的概念应运而生。</li>
+</ol>
+<h1 id="热力学基本关系式"><a href="#热力学基本关系式" class="headerlink" title="热力学基本关系式"></a><a href="https://en.wikipedia.org/wiki/Fundamental_thermodynamic_relation" target="_blank" rel="noopener">热力学基本关系式</a></h1><p>只有一个公式：</p>
+<script type="math/tex; mode=display">
+\dif E = T\dif S - p\dif V + \mu\dif N
+\label{eq:thermal_relation}</script><p>式 $\eqref{eq:thermal_relation}​$ 中：</p>
+<ul>
+<li>$E$ ——内能，J；</li>
+<li>$T​$ ——温度，K；</li>
+<li>$S​$ ——熵，J/K；</li>
+<li>$p$ ——压力，Pa；</li>
+<li>$V$ ——体积，m<sup>3</sup>；</li>
+<li>$\mu$ ——化学势，J；</li>
+<li>$N$ ——粒子数目。</li>
+</ul>
+<p>仔细观察这个公式，可以发现公式每一项的量纲都是能量： $E$ ， $TS$ ， $pV$ ， $\mu N$ 单位都是 J 。</p>
+<p>并且，等式右边微分符号左边都是<a href="https://en.wikipedia.org/wiki/Intensive_and_extensive_properties#Intensive_properties" target="_blank" rel="noopener">强度量</a>—— $T$ ， $p$ ， $\mu$ ；被微分的量都是<a href="https://en.wikipedia.org/wiki/Intensive_and_extensive_properties#Extensive_properties" target="_blank" rel="noopener">广延量</a> ——$S$ ， $V$ ， $N$ 。</p>
+<p>强度量不随物质的多少或系统的大小而改变，比如两份温度同样是 300 K 的气体混合在一块，并不意味着它们总体的温度是各自温度的加和，这样的相加是没有意义的，所以温度是强度量；但如果是两份体积为 1 L 的气体混合在一块，它们的总体积就可以是 2 L，那么体积就是广延量；</p>
+<p>再次审视这个公式，我们发现等号右边的每一项的两个量都是一对共轭量，这一点在后面的公式推导中很重要。</p>
+<h2 id="beta-的定义及对热力学基本关系式的变形"><a href="#beta-的定义及对热力学基本关系式的变形" class="headerlink" title="$\beta$ 的定义及对热力学基本关系式的变形"></a>$\beta$ 的定义及对热力学基本关系式的变形</h2><p>为了后面研究的方便，我们定义温度与玻尔兹曼常数乘积的倒数为 $\beta$ ：</p>
+<script type="math/tex; mode=display">
+\beta = \frac{1}{kT}</script><p>其中 $k$ 是<a href="https://en.wikipedia.org/wiki/Boltzmann_constant" target="_blank" rel="noopener">玻尔兹曼常数</a>， $k = \frac{R}{N_A} = \frac{8.314}{6.02\times 10^{23}} = 1.38064852\times 10^{−23}$ 单位是 J/K。</p>
+<p>接着我们对式 $\eqref{eq:thermal_relation}$ 进行变形：</p>
+<script type="math/tex; mode=display">
+\begin{align}\notag
+    \dif E &={} T\dif S - p\dif V + \mu\dif N \\ \notag
+    \frac{1}{T} \dif E &={} \dif S - \frac{p}{T} \dif V + \frac{\mu}{T}\dif N \\ \notag
+    \frac{1}{kT} \dif E &={} \frac{1}{k}\dif S - \frac{p}{kT} \dif V + \frac{\mu}{kT}\dif N \\ \notag
+    \beta \dif E &={} \frac{1}{k}\dif S -\beta p\dif V + \beta\mu \dif N\\ \notag
+    \frac{1}{k}\dif S &={} \beta \dif E +\beta p\dif V - \beta\mu \dif N\\
+       \label{eq:thermal_relation_derivative}
+\end{align}</script><p>这时要请出一位热力学历史上的一位重要人物——玻尔兹曼，在他的墓碑上写着一个著名的公式</p>
+<p><img src="boltzmann_tombstone.jpg" alt="玻尔兹曼的墓碑"></p>
+<script type="math/tex; mode=display">
+S = k\ln \Omega \label{eq:boltzmann}</script><p>式 $\eqref{eq:boltzmann}$ 中，$k$ 为玻尔兹曼常数， $\Omega$ 是体系的状态数并且无量纲， $S$ 就是体系的熵，将式 $\eqref{eq:boltzmann}$ 代入 $\eqref{eq:thermal_relation_derivative}$ 中</p>
+<script type="math/tex; mode=display">
+\begin{align} \notag
+\frac{1}{k}\dif k\ln \Omega &={} \beta \dif E + \beta p\dif V - \beta \mu\dif N \\
+\dif \ln \Omega &={} \beta \dif E + \beta p\dif V - \beta \mu\dif N \label{eq:eq5}
+\end{align}</script><p>式  $\eqref{eq:eq5}$ 在后面的推导中会<strong>非常有用</strong>。</p>
+<h1 id="两个假设"><a href="#两个假设" class="headerlink" title="两个假设"></a>两个假设</h1><p>和量子力学存在五个假设类似，统计力学也是在几个假设的前提下延伸的，当然这里的假设数量比量子力学要少很多——只有两个，它们分别是：</p>
+<ol>
+<li><p><a href="https://en.wikipedia.org/wiki/Ergodic_hypothesis" target="_blank" rel="noopener">遍历性假设</a><br>当时间足够长，所有的粒子都能遍历整个体系，体系不存在对于所有状态 $\nu$ ，都使得 $P_{\nu} = 0$ 的区域。 </p>
+<p>$P_{\nu}$ 是体系某区域出现粒子的概率， $\nu$ 表示体系所处的状态。</p>
+</li>
+<li><p><a href="https://en.wikipedia.org/wiki/A_priori_probability" target="_blank" rel="noopener">等几率假设</a></p>
+<p>对于微正则系综（孤立体系，$N$ $V$ $E$ 为给定参数），每个状态出现的概率相等。这里我们使用 $\varOmega(N, V, E)$ 表示体系的总状态数，则每个状态出现的概率</p>
+<script type="math/tex; mode=display">
+P_{\nu} = \frac{1}{\varOmega(N, V, E)}</script></li>
+</ol>
+<h1 id="态密度与简并度"><a href="#态密度与简并度" class="headerlink" title="态密度与简并度"></a>态密度与简并度</h1><ol>
+<li><p>态密度 （Density of States, DOS）</p>
+<p>态密度被定义为体系能量在 $E \sim E + \delta E$ 之间的状态数：</p>
+<script type="math/tex; mode=display">
+\bar{\varOmega}(N, V, E) := \frac{\Delta \varOmega(N, V, E)}{\delta E}</script></li>
+<li><p>简并度 （Degree of degeneracy）</p>
+<p>当 $\delta E \to 0$ 时，态密度即为简并度：</p>
+<script type="math/tex; mode=display">
+g := \frac{\dif \varOmega(N, V, E)}{\dif E}</script></li>
+</ol>
+<p><strong>个人认为</strong>：简并度与态密度的区别是简并度是对于一个能级而言，态密度是对一段能级而言。</p>
+<p>​    如果一个体系的能级是连续分布的，那么求其某一个点上的简并度，是不合适的，就像在一个二维图形上取一条线求这条线的面积一样，求出来的值是零；而如果一个体系的能级是量子化的，此时再求简并度就很合理，因为在两个分立能级之间没有态，态全部「确切」地分布在各个能级上，因此数/计算某个能级上有多少个态是可行的。</p>
+<h1 id="参考资料-amp-致谢"><a href="#参考资料-amp-致谢" class="headerlink" title="参考资料 &amp; 致谢"></a>参考资料 &amp; 致谢</h1><p>Wikipedia: 已在超链接中给出；</p>
+<p>Roommate: Li Shihao；</p>
+<p>《李政道讲义：统计力学》；</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Statistical-Mechanics/" rel="tag"># Statistical Mechanics</a>
+          
+            <a href="/tags/Physical-Chemistry/" rel="tag"># Physical Chemistry</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/25/how-to-solve-matrix-B-in-A-times-B-equals-C/" rel="next" title="如何求解 A * B = C 中的矩阵 B ？">
+                <i class="fa fa-chevron-left"></i> 如何求解 A * B = C 中的矩阵 B ？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/23/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/" rel="prev" title="微正则系综与负温度的导出">
+                微正则系综与负温度的导出 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <div class="site-description motion-element" itemprop="description">伪化生的小窝</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/IonizingRadiation" title="GitHub &rarr; https://github.com/IonizingRadiation" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:PeterSmith_9@outlook.com" title="E-Mail &rarr; mailto:PeterSmith_9@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#何为「系综」？"><span class="nav-number">1.</span> <span class="nav-text">何为「系综」？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#热力学基本关系式"><span class="nav-number">2.</span> <span class="nav-text">热力学基本关系式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#beta-的定义及对热力学基本关系式的变形"><span class="nav-number">2.1.</span> <span class="nav-text">$\beta$ 的定义及对热力学基本关系式的变形</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两个假设"><span class="nav-number">3.</span> <span class="nav-text">两个假设</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#态密度与简并度"><span class="nav-number">4.</span> <span class="nav-text">态密度与简并度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料-amp-致谢"><span class="nav-number">5.</span> <span class="nav-text">参考资料 &amp; 致谢</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ionizing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://https-www-ionizing-science.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ionizing.page/2019/03/22/2019-3-22-Ensembles/";
+    this.page.identifier = "2019/03/22/2019-3-22-Ensembles/";
+    this.page.title = '统计力学笔记——系综的概念';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-www-ionizing-science.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz',
+                'X-LC-Key': 'pORgRsmYGMgcnRO7MKPQFafu',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+        extensions: ['[mhchem]/mhchem.js'],
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("code").map(function(){
+    match = /^\$(.*)\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\$\$(.*)\$\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\\begin/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+  });
+});
+</script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<style>
+  .copy-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+    
+    user-select: none;
+    outline: 0;
+  }
+
+  .highlight-wrap .copy-btn {
+    transition: opacity .3s ease-in-out;
+    opacity: 0;
+    padding: 2px 6px;
+    position: absolute;
+    
+      right: 4px;
+      top: 8px;
+    
+  }
+
+  .highlight-wrap:hover .copy-btn,
+  .highlight-wrap .copy-btn:focus {
+    opacity: 1;
+  }
+
+  .highlight-wrap {
+    position: relative;
+  }
+</style>
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
