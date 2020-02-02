@@ -17,7 +17,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Ionizing"  # (translatable)
-BLOG_TITLE = "伪化生的搬砖工地"  # (translatable)
+BLOG_TITLE = "Viva La Madoka"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://ionizing.page/"
@@ -155,7 +155,7 @@ NAVIGATION_ALT_LINKS = {
 }
 
 # Name of the theme to use.
-THEME = "bootblog4"
+THEME = "oldfashioned"
 
 # Primary color of your theme. This will be used to customize your theme.
 # Must be a HEX value.

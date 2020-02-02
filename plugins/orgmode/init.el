@@ -3,6 +3,9 @@
 ;; Load org-mode
 ;; Requires org-mode v8.x
 
+
+(add-to-list 'load-path "/Users/ionizing/Documents/github/blog/source/plugins/orgmode")
+(require 'htmlize)
 (require 'package)
 (setq package-load-list '((htmlize t)))
 (package-initialize)
