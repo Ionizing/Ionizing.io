@@ -142,8 +142,8 @@ NAVIGATION_LINKS = {
         ("/archive.html", "文章归档"),
         ("/categories/", "标签"),
         ("/rss.xml", "RSS 源"),
-        ("/pages/notes.html", "札记"),
-        ("/pages/about.html", "关于"),
+        ("/pages/notes/", "札记"),
+        ("/pages/about/", "关于"),
     ),
 }
 
