@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="警告：本渣刚学 VASP 不久，对 VASP 的算法、参数不甚了解，如果有大触偶遇此文，并发现有错误，请在评论区指出或邮箱联系本渣。  前言本文是本渣从 3 月初以来刚接触 VASP 所学技能与遇到坑的总结，以纪念我为文献中一副图而逝去的最近一星期。何为 VASP 以及VASP 能做什么？本渣只是一个刚学的菜鸡，恕不能回答，请自行 Google 解决。 VASP 的输入文件想要执行一次最简单的计">
+<meta name="keywords" content="VASP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 VASP(PBE) 计算中如何优雅地踩坑？">
+<meta property="og:url" content="https://ionizing.page/2018/03/28/how-to-struggle-with-vasp/index.html">
+<meta property="og:site_name" content="Ionizing&#39;s Blog">
+<meta property="og:description" content="警告：本渣刚学 VASP 不久，对 VASP 的算法、参数不甚了解，如果有大触偶遇此文，并发现有错误，请在评论区指出或邮箱联系本渣。  前言本文是本渣从 3 月初以来刚接触 VASP 所学技能与遇到坑的总结，以纪念我为文献中一副图而逝去的最近一星期。何为 VASP 以及VASP 能做什么？本渣只是一个刚学的菜鸡，恕不能回答，请自行 Google 解决。 VASP 的输入文件想要执行一次最简单的计">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://owucpthrj.bkt.clouddn.com/FpGVI905Z66B8ksQjiULb3cLahCV">
+<meta property="og:image" content="http://owucpthrj.bkt.clouddn.com/FiQMZt8-XbO9iXes05rkDhfFjHls">
+<meta property="og:image" content="http://owucpthrj.bkt.clouddn.com/FpmnmrDYGQOgi2NLIPUvy31t0c4p">
+<meta property="og:image" content="http://owucpthrj.bkt.clouddn.com/Fodl8Omy6tyxekWIF6pAxHI_lPkN">
+<meta property="og:image" content="http://owucpthrj.bkt.clouddn.com/Fp0bJ1vUyw-dm2uxoVXt61hm6ka_">
+<meta property="og:updated_time" content="2019-08-28T08:20:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 VASP(PBE) 计算中如何优雅地踩坑？">
+<meta name="twitter:description" content="警告：本渣刚学 VASP 不久，对 VASP 的算法、参数不甚了解，如果有大触偶遇此文，并发现有错误，请在评论区指出或邮箱联系本渣。  前言本文是本渣从 3 月初以来刚接触 VASP 所学技能与遇到坑的总结，以纪念我为文献中一副图而逝去的最近一星期。何为 VASP 以及VASP 能做什么？本渣只是一个刚学的菜鸡，恕不能回答，请自行 Google 解决。 VASP 的输入文件想要执行一次最简单的计">
+<meta name="twitter:image" content="http://owucpthrj.bkt.clouddn.com/FpGVI905Z66B8ksQjiULb3cLahCV">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ionizing.page/2018/03/28/how-to-struggle-with-vasp/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>在 VASP(PBE) 计算中如何优雅地踩坑？ | Ionizing's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ionizing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Challenge Everything</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ionizing.page/2018/03/28/how-to-struggle-with-vasp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="伪化生的小窝">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ionizing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在 VASP(PBE) 计算中如何优雅地踩坑？
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-03-28 17:28:20" itemprop="dateCreated datePublished" datetime="2018-03-28T17:28:20+08:00">2018-03-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-08-28 16:20:47" itemprop="dateModified" datetime="2019-08-28T16:20:47+08:00">2019-08-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/First-Principle-Calculation/" itemprop="url" rel="index"><span itemprop="name">First Principle Calculation</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments：</span>
+                <a href="/2018/03/28/how-to-struggle-with-vasp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/28/how-to-struggle-with-vasp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2018/03/28/how-to-struggle-with-vasp/" class="leancloud_visitors" data-flag-title="在 VASP(PBE) 计算中如何优雅地踩坑？">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>警告</strong>：本渣刚学 <code>VASP</code> 不久，对 <code>VASP</code> 的算法、参数不甚了解，如果有大触偶遇此文，并发现有错误，请在评论区指出或邮箱联系本渣。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是本渣从 3 月初以来刚接触 <code>VASP</code> 所学技能与遇到坑的总结，以纪念我为文献中一副图而逝去的最近一星期。何为 <code>VASP</code> 以及<code>VASP</code> 能做什么？本渣只是一个刚学的菜鸡，恕不能回答，请自行 Google 解决。</p>
+<h2 id="VASP-的输入文件"><a href="#VASP-的输入文件" class="headerlink" title="VASP 的输入文件"></a>VASP 的输入文件</h2><p>想要执行一次最简单的计算，<code>VASP</code> 需要至少4个文件，它们分别是：</p>
+<ul>
+<li><code>INCAR</code>：<code>VASP</code> 计算的<strong>核心</strong>文件，基本等同于本次计算的司令部。它包含了“<strong>算什么</strong>”、“<strong>怎么算</strong>”、和“<strong>输入、输出那些</strong>”这三个方面的内容，它的几项常用（PBE计算中）参数在后面我们会较为详细地了解到；</li>
+<li><code>POSCAR</code>：决定元胞结构的文件。它包含了元胞的格子类型、格子大小、以和格子内所有原子的种类及坐标，在弛豫时，它还可以指定哪些原子可以在哪些方向上进行<a href="https://en.wikipedia.org/wiki/Relaxation_(physics" target="_blank" rel="noopener">弛豫</a>)，在 <code>VASP</code> 中我们无需给出原子间的成键情况，仅给出原子的坐标即可；</li>
+<li><code>KPOINTS</code>：描述 <code>VASP</code> 计算中对元胞格子的 mesh 精细度，或指定格子中哪些点的信息需要计算（？这里留个问号，本渣也不是很懂这里）；</li>
+<li><code>POTCAR</code>：赝势库，按 <code>POSCAR</code> 中元素列出顺序给出了对应元素的赝势库。</li>
+</ul>
+<p><strong>以上四个文件全为文本文件</strong>。当然我们还可以命令 <code>VASP</code> 读取上一次的计算结果，比如 <code>WAVECAR</code> ，比如 <code>CHGCAR</code> ，用以更快地收敛或者执行某些特殊的计算。</p>
+<h2 id="我们需要-VASP-的哪些输出文件？（目前为止）"><a href="#我们需要-VASP-的哪些输出文件？（目前为止）" class="headerlink" title="我们需要 VASP 的哪些输出文件？（目前为止）"></a>我们需要 VASP 的哪些输出文件？（目前为止）</h2><ul>
+<li><code>OUTCAR</code>：<code>VASP</code> 的计算日志，里面包含了几乎所有我们需要的结果，明文存储，随计算过程实时更新；</li>
+<li><del><code>WAVECAR</code>：<strong>二进制</strong>文件，经常很大，计算结束时会将内存中的波函数平面波系数写入该文件。（我对这个文件所了解的仅有这些；</del></li>
+<li><code>OSZICAR</code>：<code>VASP</code> 计算过程中能量收敛日志，每个电子步结束时写入；</li>
+<li><del><code>EIGENVAL</code>：<code>VASP</code> 计算出的能带信息保存在这个文件中，计算结束时被写入（可以使用 <code>Python</code> 等工具以它为输入绘制能带图，但本渣太菜，目前还没写这个小程序；</del></li>
+<li><code>CONTCAR</code>：在<a href="https://en.wikipedia.org/wiki/Relaxation_(physics" target="_blank" rel="noopener">弛豫</a>)中，这个文件包含了<code>VASP</code>每个离子步结束时系统优化得到的元胞原子的坐标，每个离子步结束时写入；如果希望从还未收敛的弛豫结果继续计算，应直接将这个文件复制并重命名为 <code>POSCAR</code> 继续计算即可；</li>
+<li><del><code>CHG</code> &amp; <code>CHGCAR</code>：这个两个文件都包含了元胞中原子的位置信息，以及电荷密度信息，但 <code>CHG</code> 比 <code>CHGCAR</code> 小一些，因其不包含 <code>PAW one centre</code>；</del></li>
+<li><code>vasprun.xml</code>：XML 格式存储的 <code>VASP</code> 计算过程日志。</li>
+<li><code>PROCAR</code>：</li>
+</ul>
+<h2 id="用-PBE-方法跑出能带图的总体步骤"><a href="#用-PBE-方法跑出能带图的总体步骤" class="headerlink" title="用 PBE 方法跑出能带图的总体步骤"></a>用 PBE 方法跑出能带图的总体步骤</h2><ol>
+<li>阅读文献，列出文献所给参数（如果有的话），比如 <code>SIGMA</code> ，<code>ISMEAR</code> ，<code>ENCUT</code> ，晶格常数 $a$ 等等信息；</li>
+<li>查阅资料，<strong>实现文献所给结构</strong>，关注文献的结构是否经过超胞，是否有真空层，是否考虑 vdW ；</li>
+<li>按顺序测出适合该体系的 <code>SIGMA</code> 、<code>ENCUT</code> 、kpts 、<code>a</code> ；（如果文献中给出了这些参数可跳过这一步</li>
+<li>对结构进行弛豫，优化出最稳定结构；</li>
+<li>对体系进行高精度的电子自洽计算；</li>
+<li>跑出能带图、DOS 图以及直接获得所需的能量值等。</li>
+</ol>
+<h1 id="正文开始"><a href="#正文开始" class="headerlink" title="正文开始"></a>正文开始</h1><p>下面以单层 C3B 结构为例，走一遍上面的流程，看看有哪些坑。</p>
+<h2 id="获取参数"><a href="#获取参数" class="headerlink" title="获取参数"></a>获取参数</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5.17</span> 		<span class="comment">! 晶格常数</span></span><br><span class="line">EDIFF = <span class="number">1.0E-6</span>	<span class="comment">! 弛豫收敛条件</span></span><br><span class="line">EDIFFG = -<span class="number">0.001</span>	<span class="comment">! </span></span><br><span class="line"></span><br><span class="line">kpts: Monkhorst	<span class="comment">! KPOINTS 取法</span></span><br></pre></td></tr></table></figure>
+<p>文献给出单层 C3B 的结构为 $D_{6h}$ ，长这样（从上往下看：</p>
+<p><img src="http://owucpthrj.bkt.clouddn.com/FpGVI905Z66B8ksQjiULb3cLahCV" alt></p>
+<h2 id="实现结构"><a href="#实现结构" class="headerlink" title="实现结构"></a>实现结构</h2><p>建立元胞的格子基矢（D6h 的晶型都可以这样建系，使用 Direct 模式，可以手写所有原子的坐标），并表示出各个原子的坐标</p>
+<p><img src="http://owucpthrj.bkt.clouddn.com/FiQMZt8-XbO9iXes05rkDhfFjHls" alt></p>
+<p>所以它对应的 <code>POSCAR</code> 应为：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">C3B graphene like structure, a = <span class="number">5.17</span>               <span class="comment">! 注释</span></span><br><span class="line">   <span class="number">5.17</span>                                             <span class="comment">! 晶格放大系数</span></span><br><span class="line">    <span class="number">0.8660254037</span>   -<span class="number">0.5000000000</span>     <span class="number">0.0000000000</span>   <span class="comment">! 下面三行为实空间中定义元胞的三个格矢 a1, a2, a3</span></span><br><span class="line">    <span class="number">0.8660254037</span>    <span class="number">0.5000000000</span>   	 <span class="number">0.0000000000</span></span><br><span class="line">    <span class="number">0.0000000000</span>    <span class="number">0.0000000000</span>     <span class="number">4.0000000000</span>   <span class="comment">! 真空层厚度为 4.0*5.17 = 20.68A</span></span><br><span class="line">   B    C                                           <span class="comment">! 元素种类，这一行是给人看的，而不是给VASP看的</span></span><br><span class="line">   <span class="number">2</span>    <span class="number">6</span>                                           <span class="comment">! 对应元素的原子数目</span></span><br><span class="line"><span class="keyword">Direct</span>                                              <span class="comment">! 以定义的格矢为基底</span></span><br><span class="line">    <span class="number">0.0000000000</span>    <span class="number">0.0000000000</span>    <span class="number">0.0000000000</span>    <span class="comment">! B 下面皆为原子坐标，顺序与第六行指定的元素种类相同</span></span><br><span class="line">    <span class="number">0.6666666666</span>    <span class="number">0.6666666666</span>    <span class="number">0.0000000000</span>    <span class="comment">! 要注意，仅靠POSCAR，并vasp不知道元素的具体种类，而只知道元素种类的个数。</span></span><br><span class="line">    <span class="number">0.5000000000</span>    <span class="number">0.0000000000</span>    <span class="number">0.0000000000</span>    <span class="comment">! C</span></span><br><span class="line">    <span class="number">0.1666666666</span>    <span class="number">0.1666666666</span>    <span class="number">0.0000000000</span></span><br><span class="line">    <span class="number">0.0000000000</span>    <span class="number">0.5000000000</span>    <span class="number">0.0000000000</span></span><br><span class="line">    <span class="number">0.5000000000</span>    <span class="number">0.5000000000</span>    <span class="number">0.0000000000</span></span><br><span class="line">    <span class="number">0.6666666666</span>    <span class="number">0.1666666666</span>    <span class="number">0.0000000000</span></span><br><span class="line">    <span class="number">0.1666666666</span>    <span class="number">0.6666666666</span>    <span class="number">0.0000000000</span></span><br></pre></td></tr></table></figure>
+<p><strong>第一个坑</strong>：文献中的晶格常数应该怎样对应 <code>POSCAR</code> 中的晶格参数？</p>
+<p>这取决于我们取的基底。上文中我们以相邻两个元胞的 B 原子间模长最短的矢量为基矢，因此这个这个元胞的实际晶格常数应为 $a = |\vec{a}<em>i| \times a</em>{POSCAR}$ ， $a$ 即为文中给出的晶格常数，可见，<code>POSCAR</code> 中的晶格参数可以理解为缩放系数，所以写完结构时应与文献对照或放入 VESTA 等软件测出原子键长看与文献是否一致。有的文献作者基底的取法特殊，所给的晶格常数也很“魔性”，但不变的是格子的实际大小、原子间距离等，以这些信息为准才能写出与文献中真正等价的结构。此外，二维结构的实现时需要层间有 20 A 左右的真空层，以避免层间不必要的相互作用，但真空层不可取太厚，否则计算量的增加不仅仅是线性的。</p>
+<p><strong>闲话</strong>：如何建系是个见仁见智的问题，有人喜欢直接沿着六边形的边建系，有人喜欢像上文那样建系，但不管怎样，只要实现的结构是等价的那么建系就是没有问题的</p>
+<h2 id="测出必要的参数"><a href="#测出必要的参数" class="headerlink" title="测出必要的参数"></a>测出必要的参数</h2><h3 id="INCAR-Template"><a href="#INCAR-Template" class="headerlink" title="INCAR Template"></a><code>INCAR</code> Template</h3><p>在测各项参数之前，先给出一个<code>INCAR</code> 模板，具体参数的含义见注释或<code>VASP</code>手册。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">C3B Mono Layer  strcut_optim</span><br><span class="line">  SYSTEM = <span class="string">"C3B Mono Layer"</span> # 系统注释</span><br><span class="line"></span><br><span class="line">Electronic minimization</span><br><span class="line">  ISMEAR =                  # 使用Gaussian smearing，取 <span class="number">0</span> 用于导体、绝缘体的计算</span><br><span class="line">  SIGMA =                   # Smearring 的宽度，在精度允许范围内应尽量大以减小计算量</span><br><span class="line">  EDIFF =                   # 收敛判据的能量判据</span><br><span class="line">  EDIFFG =                  # 收敛判据，若值为负，则为力判据；若值为正，则为能量判据</span><br><span class="line">  PREC =                    # 精确度</span><br><span class="line">  IBRION =                  # 离子移动方法，跑MD、弛豫抑或静态计算时设置不同</span><br><span class="line">  ISIF =                    # 结构优化类型</span><br><span class="line"></span><br><span class="line">Ionic minimization</span><br><span class="line">  NSW =                     # 离子步数上限</span><br><span class="line">  NELMIN = 					# 电子步收敛下限</span><br><span class="line">  ENCUT =                   # 截断能，在保证收敛良好的情况下应尽量小</span><br><span class="line">  LWAVE =                   # 是否输出 WAVECAR；该值为 .FALSE. 时也会有 WAVECAR 输出，但其长度为 <span class="number">0</span></span><br><span class="line">  LCHARG =                  # 是否输出 CHGCAR</span><br><span class="line"></span><br><span class="line">Band Calcs</span><br><span class="line">  ISTART =                  # 是否从当前目录读取 WAVECAR</span><br><span class="line">  ICHARG =                  #  <span class="number">1</span>: 读取 CHGCAR</span><br><span class="line">                            # <span class="number">10</span>: 不改变当前目录下的 CHGCAR</span><br></pre></td></tr></table></figure>
+<p>同时 <code>POTCAR</code> 这样获得：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat path/to/PPs/B/POTCAR &gt;&gt; ./POTCAR</span><br><span class="line">cat path/to/PPs/C/POTCAR &gt;&gt; ./POTCAR</span><br></pre></td></tr></table></figure>
+<p>这里注意 <code>POTCAR</code> 中元素赝势的顺序应与 <code>POSCAR</code> 元素出现的顺序一致。</p>
+<h3 id="测出-SIGMA"><a href="#测出-SIGMA" class="headerlink" title="测出 SIGMA"></a>测出 <code>SIGMA</code></h3><p>固定<code>ENCUT</code>和kpts为较大的值<code>ENCUT = 600</code>、<code>kpts = 21</code>，固定晶格常数为“合适”值，取一系列<code>SIGMA</code>值做静态计算，当<code>OSZICAR</code>中<code>dE</code>绝对值小于 1.0 meV/atom 时取最大的 <code>SIGMA</code> 值。</p>
+<p>使用脚本如下（参考候柱锋老师的入门指南）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">rm WAVECAR          <span class="comment"># 删除目录中的 WAVECAR 以免影响收敛</span></span><br><span class="line"><span class="comment"># in 后面 0.20 0.10 0.05 即为 sigma 所取的值，一般从大到小取，取值越小计算量越大当发现 dE 满足要求后可以及时终止计算</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 0.20 0.10 0.05	</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    cat &gt; INCAR &lt;&lt;! <span class="comment"># 在 INCAR 中覆盖以下内容, ! 表示cat内容终止标志，可以自定义，如用 EOF</span></span><br><span class="line">SYSTEM = Na adsorbed on site 1</span><br><span class="line">ENCUT = 600         <span class="comment"># 截断能取较大值</span></span><br><span class="line">ISMEAR = 0          <span class="comment"># Gaussian Smearing</span></span><br><span class="line">SIGMA = <span class="variable">$i</span>          <span class="comment"># 每次循环 SIGMA 取 $i 的值</span></span><br><span class="line">NSW = 0             <span class="comment"># 静态计算，离子步数为 1</span></span><br><span class="line">IBRION = -1	        <span class="comment"># 静态计算</span></span><br><span class="line">LWAVE = .FALSE.     <span class="comment"># 不输出 WAVECAR，不使用上次计算所得平面波系数作为初始值</span></span><br><span class="line">!</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">" SIGMA = <span class="variable">$i</span> eV "</span></span><br><span class="line">    time vasp &gt;&gt; vasp.log   <span class="comment"># 执行 vasp 计算，重定向输出到 vasp.log ，并对该过程计时，结果输出到 stdout</span></span><br><span class="line">    <span class="comment"># OUTCAR 中 EENTRO 等于 OSZICAR 中的 dE，这里取出 dE</span></span><br><span class="line">    TS=`grep <span class="string">"EENTRO"</span> OUTCAR | tail -1 | awk <span class="string">'&#123;printf "%12.6f", $5&#125;'</span>`</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$i</span>   <span class="variable">$TS</span>"</span> &gt;&gt; sigma.txt     <span class="comment"># 输出 SIGMA 和 dE 到sigma.txt</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"\n\n"</span>   <span class="comment"># 换行 3 次</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>所得 sigma.txt 内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0.20   -0.00519083</span><br><span class="line">0.10   -0.00009427</span><br><span class="line">0.05   0.00000000</span><br></pre></td></tr></table></figure>
+<p>显然，这里<code>SIGMA</code>取 0.10 即可，当然还可以在 (0.10, 0.20) 之间再取几个点，逼近使 dE &lt; 1meV/atom 的最大 SIGMA。</p>
+<h3 id="测出-ENCUT"><a href="#测出-ENCUT" class="headerlink" title="测出 ENCUT"></a>测出 <code>ENCUT</code></h3><p>将上面测出的 <code>SIGMA = 0.10</code> 固定，<code>ENCUT</code> 取不同值，过程与上面类似，只是判断 <code>ENCUT</code> 取值的依据变成了两次计算结果的<code>TOTEN</code>之差绝对值小于 1 meV/atom。</p>
+<p>使用脚本如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">rm WAVECAR</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 300 350 400 450 500 550 600 <span class="comment"># 每次循环 ENCUT 的取值</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    cat &gt; INCAR &lt;&lt;!</span><br><span class="line">SYSTEM = Na adsorbed on site 1</span><br><span class="line">ENCUT = <span class="variable">$i</span></span><br><span class="line">ISMEAR = 0</span><br><span class="line">SIGMA = 0.10		<span class="comment"># SIGMA 取上面测得的值</span></span><br><span class="line">NSW = 0</span><br><span class="line">IBRION = -1</span><br><span class="line">!</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">" ENCUT = <span class="variable">$i</span> eV "</span></span><br><span class="line">    time vasp &gt;&gt; vasp.log</span><br><span class="line">    E=`grep <span class="string">"TOTEN"</span> OUTCAR | tail -1 | awk <span class="string">'&#123;printf "%12.6f", $5&#125;'</span>`	<span class="comment"># 取出 OUTCAR 中的 TOTEN</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$i</span>   <span class="variable">$E</span>"</span> &gt;&gt; encut.txt</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"E = <span class="variable">$E</span>\n\n"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>测得 <code>ENCUT</code> 取值为 450。这里 <code>ENCUT</code> 如果取值过小，后面在弛豫时很可能能量不会收敛。</p>
+<h3 id="测出-kpts"><a href="#测出-kpts" class="headerlink" title="测出 kpts"></a>测出 kpts</h3><p>kpts 指的是 <code>KPOINTS</code> 里 meshgrid 的取样点数，取样越多，计算结果收敛越好，同时计算量也变大。取值条件与上面相同，即两次计算的 <code>TOTEN</code> 相差小于 1meV/atom 。</p>
+<p><strong>注意，不要忘了把测好的 <code>SIGMA</code> 和 <code>ENCUT</code> 写入 <code>INCAR</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">rm WAVECAR</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 9 13 17 21	<span class="comment"># kpts 取 9 13 17 21</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    cat &gt; KPOINTS &lt;&lt;!</span><br><span class="line">Na adsorbed on site1 -- det_kp</span><br><span class="line">0</span><br><span class="line">Monkhorst-Pack		<span class="comment"># 只要第一个字母为 M 即可</span></span><br><span class="line">    <span class="variable">$i</span>  <span class="variable">$i</span>  1		<span class="comment"># 有真空层存在，z方向采样点数为 1</span></span><br><span class="line">    0   0   0</span><br><span class="line">!</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"k mesh = <span class="variable">$i</span>\t<span class="variable">$i</span>\t1"</span>; time vasp &gt;&gt; vasp.log</span><br><span class="line">    E=`grep <span class="string">"TOTEN"</span> OUTCAR | tail -1 | awk <span class="string">'&#123;printf "%18.10f", $5&#125;'</span>`</span><br><span class="line">    KP=`grep <span class="string">"irreducible"</span> OUTCAR | tail -1 | awk <span class="string">'&#123;printf "%5i", $2&#125;'</span>`</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$i</span> <span class="variable">$KP</span> <span class="variable">$E</span> &gt;&gt; det_kp.txt</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>测得 kpts 取15。</p>
+<p><strong>第二个坑</strong>：<code>KPOINTS</code> 文件名一定要写对，本渣使用的 <code>VASP</code> 版本为 5.3.5，计算中如果没检测到 <code>KPOINTS</code> 文件存在，则<strong>默认</strong> kpts 取值为 <strong>3</strong> ，导致结果错误。本渣某次计算中误将 <code>KPOINTS</code> 写成了 <code>KPOINS</code> ，导致后面无论如何修改参数，结果与文献值始终相差很大。（这个东西不仅坑了我，还坑了<strong>比那名居腿娘</strong>(来自WHU的EE大佬)大神熬夜到 3 点多，说来惭愧……</p>
+<h3 id="测出-a"><a href="#测出-a" class="headerlink" title="测出 a"></a>测出 <code>a</code></h3><p>这里的<code>a</code>确切地指 <code>POSCAR</code> 中第二行的那个数值，即元胞的放大系数。因为本例中的晶格基矢模长 $|\vec{a_1}| = |\vec{a_2}| = 1$ ，故其放大系等于文献中的晶格常数 $a$。这里 <code>a</code> 的取值条件与上面相同。给出测试脚本如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">rm WAVECAR</span><br><span class="line"><span class="comment"># 晶格参数的取值应在文献值附近取点</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 4.97 5.02 5.07 5.12 5.17 5.22 5.27 5.32 5.37</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    cat &gt; POSCAR &lt;&lt;!</span><br><span class="line">C3B graphene like structure, a = 5.17</span><br><span class="line">   <span class="variable">$i</span></span><br><span class="line">    0.8660254037   -0.5000000000    0.0000000000</span><br><span class="line">    0.8660254037    0.5000000000    0.0000000000</span><br><span class="line">    0.0000000000    0.0000000000    3.0000000000</span><br><span class="line">   B    C</span><br><span class="line">   2    6</span><br><span class="line">Direct</span><br><span class="line">    0.0000000000    0.0000000000    0.0000000000    ! B1</span><br><span class="line">    0.6666666666    0.6666666666    0.0000000000    ! B2</span><br><span class="line">    0.5000000000    0.0000000000    0.0000000000    ! C1</span><br><span class="line">    0.1666666666    0.1666666666    0.0000000000    ! C2</span><br><span class="line">    0.0000000000    0.5000000000    0.0000000000    ! C3</span><br><span class="line">    0.5000000000    0.5000000000    0.0000000000    ! C4</span><br><span class="line">    0.6666666666    0.1666666666    0.0000000000    ! C5</span><br><span class="line">    0.1666666666    0.6666666666    0.0000000000    ! C6</span><br><span class="line">!</span><br><span class="line">	<span class="built_in">echo</span> -e <span class="string">"a = <span class="variable">$i</span> angstrom"</span>; time vasp &gt;&gt; vasp.log</span><br><span class="line">	E=`grep <span class="string">"TOTEN"</span> OUTCAR | tail -1 | awk <span class="string">'&#123;printf "%12.6f", $5 &#125;'</span>`</span><br><span class="line">	V=`grep <span class="string">"volume"</span> OUTCAR | tail -1 | awk <span class="string">'&#123;printf "%12.4f", $5&#125;'</span>`</span><br><span class="line">	<span class="built_in">printf</span> <span class="string">"%6.3f %10.4f %18.10f\n"</span> <span class="variable">$i</span> <span class="variable">$V</span> <span class="variable">$E</span> &gt;&gt; a.txt</span><br><span class="line">	tail -1 a.txt</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>测得 <code>a</code> 与文献值相同，5.17。这里的 <code>a</code> 还可以取得更精细一些，甚至可以到小数点后三位，这里取值越接近“真实值”，后面弛豫的过程将会越短。</p>
+<h2 id="弛豫（结构优化，relaxation）"><a href="#弛豫（结构优化，relaxation）" class="headerlink" title="弛豫（结构优化，relaxation）"></a>弛豫（结构优化，relaxation）</h2><p>弛豫中需要用到的 <code>INCAR</code> 参数有</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ISMEAR = <span class="number">0</span>       <span class="comment">! 继承自上面的计算结果</span></span><br><span class="line">SIGMA = <span class="number">0.1</span></span><br><span class="line">ENCUT = <span class="number">450</span></span><br><span class="line"></span><br><span class="line">PREC = Accurate</span><br><span class="line">EDIFF = <span class="number">1.0E-6</span></span><br><span class="line">EDIFFG = -<span class="number">0.01</span></span><br><span class="line">IBRION = <span class="number">1</span>       <span class="comment">! 准牛顿法</span></span><br><span class="line">ISIF = <span class="number">3</span>         <span class="comment">! 计算 force、stress tensor，对离子、晶格进行弛豫 </span></span><br><span class="line"></span><br><span class="line">NELMIN = <span class="number">6</span>       <span class="comment">! (optional) 强制每个离子步跑至少 6 电子步，提高收敛效果</span></span><br><span class="line">NSW = <span class="number">200</span>        <span class="comment">! 离子步上限为 200 步，目前本渣所算的体系中离子步数没有超过这个值的，也许是我太年轻了吧</span></span><br></pre></td></tr></table></figure>
+<p>这个步骤耗时最长，尤其是加上 <code>PREC</code> 后，每个电子步计算量上升很多，而为了结构的优化，离子步数的增多也使这个过程耗时不少，本例中 8 个原子的体系优化需要数个小时；本渣另外的一个体系中有 12 个原子，优化就需要 12h+ 。</p>
+<p><strong>第三个坑</strong>：<code>EDIFFG</code>有正负之分，<strong>负数</strong>表示收敛的力判据。如果<code>EDIFFG</code>误写为正，则<code>EDIFF</code>会被覆盖，<code>VASP</code>按照<code>EDIFFG</code>进行收敛判断，结果就是收敛可能会变得很快（快上几个数量级），但是所得结构不是我们想要的结构。</p>
+<p><strong>第四个坑</strong>：如果 <code>EDIFF</code>和<code>EDIFFG</code>设置过小，则计算时收敛可能会变得非常漫长，有时甚至会将结构跑散——原子间距离越来越大，这时候有三种选择：1. 提高精度，重新测出晶格常数，晶格常数可以精确到 0.001；2. 放宽收敛判据； 3. <code>IBRION</code> 取 2 （如果你对这个结构是否稳定没有信心的话。</p>
+<h2 id="高精度的电子自洽计算（SCF）"><a href="#高精度的电子自洽计算（SCF）" class="headerlink" title="高精度的电子自洽计算（SCF）"></a>高精度的电子自洽计算（SCF）</h2><p>进行高精度的电子自洽计算是为了得到体系的电荷分布，同时也为后面计算能带提供数据。</p>
+<p>这一步需要<strong>将 relaxation 得到的 CONTCAR 复制到 SCF 计算目录下，并重命名为 POSCAR</strong> ，<code>INCAR</code> 内容相似，仅将弛豫相关参数修改即可，<code>INCAR</code> 如下</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">C3B Mono Layer  strcut_optim</span><br><span class="line">  SYSTEM = <span class="string">"C3B Mono Layer"</span> # System <span class="keyword">Name</span></span><br><span class="line"></span><br><span class="line">Electronic minimization</span><br><span class="line">  ISMEAR = <span class="number">0</span>                # Toggle Gaussian Method, complete later</span><br><span class="line">  SIGMA = <span class="number">0.1</span>               # Broadening <span class="keyword">in</span> eV -<span class="number">4</span>-tet-<span class="number">1</span>-fermi <span class="number">0</span>-gaus</span><br><span class="line">  EDIFF = <span class="number">1.E-6</span>             # Energy tolerance eV/atom</span><br><span class="line">#  EDIFFG = -<span class="number">0.01</span>            # Force tolerance</span><br><span class="line">  PREC = Accurate           # Accuracy</span><br><span class="line">  IBRION = -<span class="number">1</span>               # quasi-Newton algorithm</span><br><span class="line">#  ISIF = <span class="number">3</span>                  # optim totally: volume, stress, force, ion, <span class="built_in">shape</span></span><br><span class="line"></span><br><span class="line">Ionic minimization</span><br><span class="line">  NSW = <span class="number">0</span>                   # Converge steps, must set</span><br><span class="line">  ENCUT = <span class="number">450</span>               # components beyond ENCUT are <span class="string">'removed'</span> from the projection</span><br><span class="line">                            # operators</span><br><span class="line">  LWAVE = .TRUE.            # Output WAVECAR</span><br><span class="line">  LCHARG = .TRUE.           # Output density of charge to CHG and CHGCAR</span><br><span class="line">  NCORE = <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>由于默认输出 <code>CHGCAR</code> ， <code>INCAR</code> 中的 <code>LCHARG</code> 可以不写。</p>
+<h2 id="计算能带（band）"><a href="#计算能带（band）" class="headerlink" title="计算能带（band）"></a>计算能带（band）</h2><p><strong>复制 SCF 计算所得 CHGCAR 到 band 计算目录下。</strong></p>
+<p>我们需要重写 <code>KPOINTS</code> ，之前的 <code>KPOINTS</code> 一直是系统帮助我们在布里渊区采样，现在我们想要得到布里渊区某一路径上能带的能量变化，则需要在 <code>KPOINTS</code> 指定出路径。</p>
+<p>根据 <a href="https://arxiv.org/abs/1004.2974" target="_blank" rel="noopener">DOI:10.1016/j.commatsci.2010.05.010</a> 后面所给资料提示选择对应的布里渊区 K 点路径（注意文中基矢的取法是否与自己一致，否则需要重新画出布里渊区，找出对应的 K 点。这里在寻找 K 点时可以借助 <a href="http://www.xcrysden.org/" target="_blank" rel="noopener">XCrysDen</a> ，选择 K-Point path 即可</p>
+<p><img src="http://owucpthrj.bkt.clouddn.com/FpmnmrDYGQOgi2NLIPUvy31t0c4p" alt="这里取 Gamma -&gt; K -&gt; M -&gt; Gamma"></p>
+<p>写出 <code>KPOINTS</code> 如下：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">K-POINTS    C3B Mono Layer Bands	<span class="comment">! 注释行</span></span><br><span class="line">    <span class="number">40</span>								<span class="comment">! 每两个K点之间取样点数</span></span><br><span class="line">Line-mode							<span class="comment">! Line-mode，区别于自动取样模式，跑能带专用</span></span><br><span class="line"><span class="keyword">Rec</span>									<span class="comment">! 在倒空间内取点</span></span><br><span class="line">    <span class="number">0</span>       <span class="number">0</span>       <span class="number">0</span>   			<span class="comment">! Gamma</span></span><br><span class="line">    <span class="number">0.33333</span> <span class="number">0.66666</span> <span class="number">0</span>   			<span class="comment">! K</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.33333</span> <span class="number">0.66666</span> <span class="number">0</span>   			<span class="comment">! K</span></span><br><span class="line">    <span class="number">0.5</span>     <span class="number">0.5</span>     <span class="number">0</span>   			<span class="comment">! M</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.5</span>     <span class="number">0.5</span>     <span class="number">0</span>   			<span class="comment">! M</span></span><br><span class="line">    <span class="number">0</span>       <span class="number">0</span>       <span class="number">0</span>   			<span class="comment">! Gamma</span></span><br></pre></td></tr></table></figure>
+<p>同时在 <code>INCAR</code> 中加上 <code>ICHARG = 11</code> 以读取 SCF 所得 <code>CHGCAR</code> 进行能带计算。</p>
+<p>最后，取所得 <code>vasprun.xml</code> 导入 <code>p4vasp</code> 进行绘制能带图。如果读者有兴趣可以以 <code>EIGENVAL</code>  文件为输入自己实现绘制band的程序（不会很难）。</p>
+<blockquote>
+<p>跑能带的感觉就和抽卡/开箱是一样的，你永远也不知道下一个体系的 band 会是什么鸟样。</p>
+</blockquote>
+<p>跑出的能带是这个样子</p>
+<p><img src="http://owucpthrj.bkt.clouddn.com/Fodl8Omy6tyxekWIF6pAxHI_lPkN" alt></p>
+<p>文献中的截图是这个样子的</p>
+<p><img src="http://owucpthrj.bkt.clouddn.com/Fp0bJ1vUyw-dm2uxoVXt61hm6ka_" alt></p>
+<p>这里解释一下，本渣最初在跑 band 时 K 点取的路径和文献不同，所以两幅图基本等于对方水平翻转所得，但本文中所给 <code>KPOINTS</code> 里 K 点路径与文献是相符的。细心的大神已经看出两幅图中上图似乎向下平移了一部分，这可能是费米能级的取值差异所致，由于本渣水平太低，姑且只能这样理解了。</p>
+<h2 id="计算态密度（DOS）"><a href="#计算态密度（DOS）" class="headerlink" title="计算态密度（DOS）"></a>计算态密度（DOS）</h2><p>如果阅读过文献的话，我们会发现文献中经常和能带图一起出现的还有 <em>态密度</em> 图。何为态密度？<a href="https://zh.wikipedia.org/zh-hans/%E7%8A%B6%E6%80%81%E5%AF%86%E5%BA%A6" target="_blank" rel="noopener">Wikipedia</a> 上的解释为某一能量周围单位区间内的微观状态数量。具体到本文，上面的微观状态便是指占据某能级的电子态。</p>
+<h1 id="论检查输入文件正确性的重要性"><a href="#论检查输入文件正确性的重要性" class="headerlink" title="论检查输入文件正确性的重要性"></a>论检查输入文件正确性的重要性</h1><p>这里的输入文件指 <code>VASP</code> 计算时需要用到的文件，如<code>INCAR</code>、<code>POSCAR</code>、<code>POTCAR</code>、<code>KPOINTS</code>、<code>CHGCAR</code>等。</p>
+<ol>
+<li>文件名是否正确。我知道很多人在 <code>bash</code> 中喜欢用 Tab 补全，这对提高命令输入效率非常有效，但同时也降低了我们检查文件名正确性的机会，上文中提到的 <code>KPOINS</code> 错误就是因为一直使用 Tab 补全而使它一直被继承到跑出 band ，还不止坑了自己，多么可笑；</li>
+<li>脚本中重定向输出的文件名是否与需求一致。当使用上一次计算的脚本进行修改时本渣很容易忘了修改输出重定向的目标，从而导致 <code>POSCAR</code> 的内容被输出到 <code>KPOINTS</code> 里，这时 <code>VASP</code> 会报错，遇到这种情况及时修改脚本重新提交任务即可，无非是重新排队的问题；</li>
+<li><code>POTCAR</code> 是否与体系相对应。有的论文并不明确说出自己使用哪个 <code>POTCAR</code> ，而是这样说：”We treated 4p, 5s, 4d orbitals of xx, and x orbitals of xxx as valence electrons…”，这就表明我们需要考虑使用带 <code>_pv</code> 、 <code>_sv</code> 的 <code>POTCAR</code> 。<strong>这大概是本人近期踩过的最大的坑了吧</strong>，可以想象，如果从一开始的 <code>POTCAR</code> 就出了问题，那么后面所有的计算就都是徒劳的，而在排错时无论如何也很难将目光投向 <code>POTCAR</code> 。这里要特别感谢 <strong>比那名居腿娘</strong> 同学的帮助；</li>
+<li><code>POSCAR</code> 中的晶胞是否需要超胞。有的文献中给出一个 band 图但未给出其对应的结构，本渣按照前文所给结构计算，始终无法得到与文献相符的 band 图，直到本渣使用 2x2 超胞后的结构进行计算，终于重复出和文献很接近的结果；</li>
+<li>有时在弛豫后进行 SCF 计算时会提示对称性错误，这时需要在 <code>INCAR</code> 中指定 <code>SYMPREC</code> 的值，这个值默认为<code>SYMPREC = 1.0E-5</code>，指定时可以使用更小的值。</li>
+</ol>
+<p>除了上面说到的 <code>INCAR</code>、<code>POSCAR</code>、<code>POTCAR</code>、<code>KPOINTS</code>、<code>CHGCAR</code>等，有时还会用到 <code>WAVECAR</code> ，<code>WAVECAR</code> 是二进制文件，在使用 FileZilla 传送时，如果没有勾选 <code>binary</code> 选项，则传送时会按照 ASCII 编码进行传送，后果就是 <code>WAVECAR</code> 文件损坏。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>VASP软件包的使用入门指南——候柱锋</li>
+<li>VASP the GUIDE(April 20, 2016)——Kresse, Martijn Marsman , Jurgen Furthmuller</li>
+<li><a href="https://arxiv.org/abs/1004.2974" target="_blank" rel="noopener">High-throughput electronic band structure calculations: challenges and tools</a> ——<a href="https://arxiv.org/find/cond-mat/1/au:+Setyawan_W/0/1/0/all/0/1" target="_blank" rel="noopener">Wahyu Setyawan</a>, <a href="https://arxiv.org/find/cond-mat/1/au:+Curtarolo_S/0/1/0/all/0/1" target="_blank" rel="noopener">Stefano Curtarolo</a></li>
+</ol>
+<p>这次 blog 就写到这里吧，反正也是为自己写的。（当然如果有大佬愿意在评论区指出其中的错误，本渣感激不尽！</p>
+<p>最后祝愿各位读到这里的菊苣，提前（</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/VASP/" rel="tag"># VASP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/30/how-to-solve-viberation-1/" rel="next" title="简谐振动系统浅析（一）">
+                <i class="fa fa-chevron-left"></i> 简谐振动系统浅析（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/31/2018-12-31_WAVECAR-parsing/" rel="prev" title="WAVECAR 数据结构的解析">
+                WAVECAR 数据结构的解析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <div class="site-description motion-element" itemprop="description">伪化生的小窝</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/IonizingRadiation" title="GitHub &rarr; https://github.com/IonizingRadiation" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:PeterSmith_9@outlook.com" title="E-Mail &rarr; mailto:PeterSmith_9@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VASP-的输入文件"><span class="nav-number">1.1.</span> <span class="nav-text">VASP 的输入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我们需要-VASP-的哪些输出文件？（目前为止）"><span class="nav-number">1.2.</span> <span class="nav-text">我们需要 VASP 的哪些输出文件？（目前为止）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用-PBE-方法跑出能带图的总体步骤"><span class="nav-number">1.3.</span> <span class="nav-text">用 PBE 方法跑出能带图的总体步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文开始"><span class="nav-number">2.</span> <span class="nav-text">正文开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取参数"><span class="nav-number">2.1.</span> <span class="nav-text">获取参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现结构"><span class="nav-number">2.2.</span> <span class="nav-text">实现结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测出必要的参数"><span class="nav-number">2.3.</span> <span class="nav-text">测出必要的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#INCAR-Template"><span class="nav-number">2.3.1.</span> <span class="nav-text">INCAR Template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测出-SIGMA"><span class="nav-number">2.3.2.</span> <span class="nav-text">测出 SIGMA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测出-ENCUT"><span class="nav-number">2.3.3.</span> <span class="nav-text">测出 ENCUT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测出-kpts"><span class="nav-number">2.3.4.</span> <span class="nav-text">测出 kpts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测出-a"><span class="nav-number">2.3.5.</span> <span class="nav-text">测出 a</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弛豫（结构优化，relaxation）"><span class="nav-number">2.4.</span> <span class="nav-text">弛豫（结构优化，relaxation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高精度的电子自洽计算（SCF）"><span class="nav-number">2.5.</span> <span class="nav-text">高精度的电子自洽计算（SCF）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算能带（band）"><span class="nav-number">2.6.</span> <span class="nav-text">计算能带（band）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算态密度（DOS）"><span class="nav-number">2.7.</span> <span class="nav-text">计算态密度（DOS）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#论检查输入文件正确性的重要性"><span class="nav-number">3.</span> <span class="nav-text">论检查输入文件正确性的重要性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ionizing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://https-www-ionizing-science.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ionizing.page/2018/03/28/how-to-struggle-with-vasp/";
+    this.page.identifier = "2018/03/28/how-to-struggle-with-vasp/";
+    this.page.title = '在 VASP(PBE) 计算中如何优雅地踩坑？';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-www-ionizing-science.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz',
+                'X-LC-Key': 'pORgRsmYGMgcnRO7MKPQFafu',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+        extensions: ['[mhchem]/mhchem.js'],
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("code").map(function(){
+    match = /^\$(.*)\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\$\$(.*)\$\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\\begin/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+  });
+});
+</script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<style>
+  .copy-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+    
+    user-select: none;
+    outline: 0;
+  }
+
+  .highlight-wrap .copy-btn {
+    transition: opacity .3s ease-in-out;
+    opacity: 0;
+    padding: 2px 6px;
+    position: absolute;
+    
+      right: 4px;
+      top: 8px;
+    
+  }
+
+  .highlight-wrap:hover .copy-btn,
+  .highlight-wrap .copy-btn:focus {
+    opacity: 1;
+  }
+
+  .highlight-wrap {
+    position: relative;
+  }
+</style>
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

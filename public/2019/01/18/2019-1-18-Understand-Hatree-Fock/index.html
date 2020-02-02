@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="多原子分子体系S-方程的描述Hamiltonian 算符在非相对论近似下，分子体系满足多体 Schrodinger 方程：  \hat { H } \Phi = \varepsilon \Phi其中 $\hat{H}$ 是分子体系的 Hamiltonian 算符，$\Phi$ 是分子体系的波函数。 设一个分子体系含 $M$ 个核，$N$ 个电子，则它的 Hamiltonian 可以写成  \beg">
+<meta name="keywords" content="First Principle Calculation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单理解 Hatree-Fock 方法">
+<meta property="og:url" content="https://ionizing.page/2019/01/18/2019-1-18-Understand-Hatree-Fock/index.html">
+<meta property="og:site_name" content="Ionizing&#39;s Blog">
+<meta property="og:description" content="多原子分子体系S-方程的描述Hamiltonian 算符在非相对论近似下，分子体系满足多体 Schrodinger 方程：  \hat { H } \Phi = \varepsilon \Phi其中 $\hat{H}$ 是分子体系的 Hamiltonian 算符，$\Phi$ 是分子体系的波函数。 设一个分子体系含 $M$ 个核，$N$ 个电子，则它的 Hamiltonian 可以写成  \beg">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-28T08:20:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单理解 Hatree-Fock 方法">
+<meta name="twitter:description" content="多原子分子体系S-方程的描述Hamiltonian 算符在非相对论近似下，分子体系满足多体 Schrodinger 方程：  \hat { H } \Phi = \varepsilon \Phi其中 $\hat{H}$ 是分子体系的 Hamiltonian 算符，$\Phi$ 是分子体系的波函数。 设一个分子体系含 $M$ 个核，$N$ 个电子，则它的 Hamiltonian 可以写成  \beg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://ionizing.page/2019/01/18/2019-1-18-Understand-Hatree-Fock/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>简单理解 Hatree-Fock 方法 | Ionizing's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ionizing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Challenge Everything</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ionizing.page/2019/01/18/2019-1-18-Understand-Hatree-Fock/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="伪化生的小窝">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ionizing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">简单理解 Hatree-Fock 方法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-01-18 23:11:20" itemprop="dateCreated datePublished" datetime="2019-01-18T23:11:20+08:00">2019-01-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-08-28 16:20:47" itemprop="dateModified" datetime="2019-08-28T16:20:47+08:00">2019-08-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments：</span>
+                <a href="/2019/01/18/2019-1-18-Understand-Hatree-Fock/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/18/2019-1-18-Understand-Hatree-Fock/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/01/18/2019-1-18-Understand-Hatree-Fock/" class="leancloud_visitors" data-flag-title="简单理解 Hatree-Fock 方法">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="多原子分子体系S-方程的描述"><a href="#多原子分子体系S-方程的描述" class="headerlink" title="多原子分子体系S-方程的描述"></a>多原子分子体系S-方程的描述</h1><h2 id="Hamiltonian-算符"><a href="#Hamiltonian-算符" class="headerlink" title="Hamiltonian 算符"></a>Hamiltonian 算符</h2><p>在非相对论近似下，分子体系满足多体 Schrodinger 方程：</p>
+<script type="math/tex; mode=display">
+\hat { H } \Phi = \varepsilon \Phi</script><p>其中 $\hat{H}$ 是分子体系的 Hamiltonian 算符，$\Phi$ 是分子体系的波函数。</p>
+<p>设一个分子体系含 $M$ 个核，$N$ 个电子，则它的 Hamiltonian 可以写成</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\hat { H } ={}& \hat { T } _ { e } + \hat { T } _ { N } + \hat { V } _ { N e } + \hat { V } _ { e e } + \hat { V } _ { N N } \\
+={}& - \sum _ { i = 1 } ^ { N } \frac { 1 } { 2 } \nabla _ { i } ^ { 2 } - \sum _ { \alpha = 1 } ^ { M } \frac { 1 } { 2 M _ { \alpha } } \nabla _ { \alpha } ^ { 2 } - \sum _ { i = 1 } ^ { N } \sum _ { \alpha = 1 } ^ { M } \frac { Z _ { \alpha } } { r _ { i \alpha } } + \sum _ { i = 1 } ^ { N } \sum _ { j > i } ^ { N } \frac { 1 } { r _ { i j } } + \sum _ { \alpha = 1 } ^ { M } \sum _ { \beta > \alpha } ^ { M } \frac { Z _ { \alpha } Z _ { \beta } } { R _ { \alpha \beta } }
+\end{align*} \tag{2}</script><p>式子中 $\alpha, \beta$ 表示原子核的标号，$Z<em>{\alpha}$ 表示核电荷数，$M</em>{\alpha}$ 表示原子核的质量（原子单位制）， $i,j$ 表示电子的标号。</p>
+<h3 id="Born-Oppenheimer-近似"><a href="#Born-Oppenheimer-近似" class="headerlink" title="Born-Oppenheimer 近似"></a>Born-Oppenheimer 近似</h3><p>Born-Oppenheimer 近似：电子的质量远远小于核的质量，故核的运动相对于电子是相当缓慢的，因此研究电子的运动行为时认为核是不动的，就好比放牛时牛和它周围的牛蝇运动一样。</p>
+<p>经过 Born-Oppenheimer 近似，电子与核的运动被解耦，它们被分开处理，分子的波函数可以写成电子波函数和核波函数乘积的形式，即</p>
+<script type="math/tex; mode=display">
+\Phi = \Psi _ { e l } \Psi _ { N } \notag</script><p>于是电子运动和核的运动分别描述为</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\left( \hat { T } _ { e } + \hat { V } _ { N e } + \hat { V } _ { e e } \right) \Psi _ { e l } = E _ { e l } \Psi _ { e l }\\
+\left(\hat { T } _ { N } + \hat { V } _ { N N }\right) \Psi _ { N } = \left( \varepsilon - E _ { e l } \right) \Psi _ { N }
+\end{cases} \label{eq:oppenheimer}</script><p>$\eqref{eq:oppenheimer}$ 式中第一个方程即为电子的运动方程，也是量子化学主要研究的问题。</p>
+<h3 id="平均场近似"><a href="#平均场近似" class="headerlink" title="平均场近似"></a>平均场近似</h3><p>忽略电子之间的瞬时运动关联，每个电子视为在核与其他电子建立的平均势场中运动。每个电子的状态用一个分子轨道（分子波函数）描述，即</p>
+<script type="math/tex; mode=display">
+\hat { h } ( 1 ) \psi _ { i } ( 1 ) = \varepsilon _ { i } \psi _ { i } ( 1 ) \label{eq:mo}</script><p>其中 ${ \psi_i }$ 为分子轨道（MO）； ${ \epsilon_i }$ 为轨道能 。</p>
+<p>其中单电子算符 $ \hat { h } ( 1 ) = - \frac { 1 } { 2 } \nabla <em> { 1 } ^ { 2 } + \sum </em> { a } - \frac { Z <em> { a } } { r </em> { 1 a } } + \hat { v } <em> { e f f } ( 1 ) $ ， $\hat { v } </em> { e f f } ( 1 )$ 是等效单电子势，即其他电子对该电子相互作用的等效作用势。</p>
+<p>总电子的波函数用行列式波函数（Slater 行列式）描述，总电子能量为</p>
+<script type="math/tex; mode=display">
+E _ { e l } = \left\langle \Psi \left| H _ { e l } \right| \Psi \right\rangle</script><h3 id="LCAO-近似"><a href="#LCAO-近似" class="headerlink" title="LCAO 近似"></a>LCAO 近似</h3><p>分子轨道取为某些合理的原子轨道线性组合：</p>
+<script type="math/tex; mode=display">
+\psi _ { i } = \sum _ { v } c _ { v i } \varphi _ { v } \label{eq:lcao}</script><p>$\eqref{eq:lcao}$ 中$c_{vi}$ 表示原子轨道的系数， $\varphi_v$ 表示原子轨道。</p>
+<p>注：这里的分子轨道指自旋轨道，区别于空间轨道。（自旋轨道 = 空间轨道 * 自旋， $\psi_i = \varphi_i \eta_i$）</p>
+<h2 id="行列式波函数"><a href="#行列式波函数" class="headerlink" title="行列式波函数"></a>行列式波函数</h2><p>由于电子具有交换反对称性，简单乘积波函数</p>
+<script type="math/tex; mode=display">
+\Phi = \prod_i \psi_i</script><p>不能描述这个性质，故必须使用 Slater 行列式描述体系的波函数，即：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\Psi \left( q _ { 1 } , \cdots , q _ { N } \right) ={}& \frac { 1 } { \sqrt { N ! } } \nonumber
+\begin{vmatrix} \begin{array} { c c c } { \psi _ { 1 } \left( q _ { 1 } \right) } & { \cdots } & { \psi _ { 1 } \left( q _ { N } \right) } \\ { \psi _ { 2 } \left( q _ { 1 } \right) }& \cdots & { \psi _ { 2 } \left( q _ { N } \right) } \\ { \vdots }& \ddots & { \vdots } \\ { \psi _ { N } \left( q _ { 1 } \right) }& \cdots & { \psi _ { N } \left( q _ { N } \right) } \end{array} \end{vmatrix} \\ \nonumber
+={}& | \psi _ { 1 } \psi _ { 2 } \cdots \psi _ { N } \rangle \\
+={}&  \frac { 1 } { \sqrt { N ! } } \sum _ { n = 1 } ^ { N ! } ( - 1 ) ^ { P _ { n } } \hat { P } _ { n } \left\{ \psi _ { 1 } \left( q _ { 1 } \right) \psi _ { 2 } \left( q _ { 2 } \right) \cdots \psi _ { N } \left( q _ { N } \right) \right\}  \label{eq:slater}
+\end{align}</script><ul>
+<li>$\hat{P}$ 算符是交换算符， $\hat{P}_{12}$ 表示将 1, 2 号轨道上的电子互换；</li>
+<li>$\eqref{eq:slater}$ 中的每个电子的分子轨道都满足正交归一性： $ \left\langle \psi <em> { i } | \psi </em> { j } \right\rangle = \int \psi <em> { i } ^ { * } ( 1 ) \psi </em> { j } ( 1 ) d q <em> { 1 } = \delta </em> { i j } $ （即每个电子只能占据一个轨道）；</li>
+<li>如果两个行列式波函数的自旋轨道不完全相同，则它们正交。</li>
+</ul>
+<h2 id="库仑作用与交换作用"><a href="#库仑作用与交换作用" class="headerlink" title="库仑作用与交换作用"></a>库仑作用与交换作用</h2><h3 id="库仑作用"><a href="#库仑作用" class="headerlink" title="库仑作用"></a>库仑作用</h3><p>库仑作用是指两个电子（无论自旋是否相同）之间存在的静电相互作用：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} J _ { 1 s 2 s } & = \int \frac { \left| \psi _ { 1 } ( 1 ) \right| ^ { 2 } \cdot \left| \psi _ { 2 } ( 2 ) \right| ^ { 2 } } { r _ { 12 } } d q _ { 1 } d q _ { 2 } \\ & = \int \frac { \left| \varphi _ { 1 s } ( 1 ) \right| ^ { 2 } \cdot \varphi _ { 2 s } \left. ( 2 ) \right| ^ { 2 } } { r _ { 12 } } d \vec { r } _ { 1 } d \vec { r } _ { 2 } \int \left| \eta _ { 1 } ( 1 ) \right| ^ { 2 } d \omega _ { 1 } \int \left| \eta _ { 2 } ( 2 ) \right| ^ { 2 } d \omega _ { 2 } \end{aligned}</script><h3 id="交换作用"><a href="#交换作用" class="headerlink" title="交换作用"></a>交换作用</h3><p>以 He​ 体系为例：</p>
+<script type="math/tex; mode=display">
+\Psi ( 1,2 ) = \frac { 1 } { \sqrt { 2 } } \left| \begin{array} { l l } { \psi _ { 1 } ( 1 ) } & { \psi _ { 1 } ( 2 ) } \\ { \psi _ { 2 } ( 1 ) } & { \psi _ { 2 } ( 2 ) } \end{array} \right|</script><p>则它的能量期待值为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E ={}& \frac { 1 } { 2 } \left\langle \psi _ { 1 } ( 1 ) \psi _ { 2 } ( 2 ) - \psi _ { 2 } ( 1 ) \psi _ { 1 } ( 2 ) \left| \hat { h } ( 1 ) + \hat { h } ( 2 ) + \frac { 1 } { r _ { 12 } } \right| \psi _ { 1 } ( 1 ) \psi _ { 2 } ( 2 ) - \psi _ { 2 } ( 1 ) \psi _ { 1 } ( 2 ) \right\rangle \\
+={}& \frac { 1 } { 2 } \left\{ 2 \times \left( \varepsilon _ { 1 s } ^ { 0 } + \varepsilon _ { 2 s } ^ { 0 } + J _ { 1 s 2 s } \right) - 2 \times \left[ \left\langle \psi _ { 1 } ( 1 ) | \hat { h } ( 1 ) | \psi _ { 2 } ( 1 ) \right\rangle \left\langle \psi _ { 2 } ( 2 ) | \psi _ { 1 } ( 2 ) \right\rangle +\right. \right. \\
+& \left. \left. \left\langle \psi _ { 1 } ( 1 ) | \psi _ { 2 } ( 1 ) \right\rangle \left\langle \psi _ { 2 } ( 2 ) | \hat { h } ( 2 ) | \psi _ { 1 } ( 2 ) \right\rangle + \left\langle \psi _ { 1 } ( 1 ) \psi _ { 2 } ( 2 ) \left| \frac { 1 } { r _ { 12 } } \right| \psi _ { 2 } ( 1 ) \psi _ { 1 } ( 2 ) \right\rangle \right]  \right\}\\
+={}& \frac { 1 } { 2 } \left\{ 2 \times \left( \varepsilon _ { 1 s } ^ { 0 } + \varepsilon _ { 2 s } ^ { 0 } + J _ { 1 s 2 s } \right) - 2 \times \left[ 0 + 0 + \left\langle \psi _ { 1 } ( 1 ) \psi _ { 2 } ( 2 ) \left| \frac { 1 } { r _ { 12 } } \right| \psi _ { 2 } ( 1 ) \psi _ { 1 } ( 2 ) \right\rangle \right] \right\} \\
+={}& \varepsilon _ { 1 s } ^ { 0 } + \varepsilon _ { 2 s } ^ { 0 } + J _ { 1 s 2 s } - K _ { 1 s 2 s }
+\end{aligned}</script><p>上式中的 $K<em>{1s 2s} = \left\langle \psi </em> { 1 } ( 1 ) \psi <em> { 2 } ( 2 ) \left| \frac { 1 } { r </em> { 12 } } \right| \psi <em> { 2 } ( 1 ) \psi </em> { 1 } ( 2 ) \right\rangle$ 即为交换能。</p>
+<p>交换作用是指<strong>同自旋</strong>的两个电子之间存在的相互作用：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+K _ { 1s 2s } ={}& \int \frac { \psi_ { 1 } ( 1 ) ^* \psi _ { 2 } ( 2 ) ^* \psi _ { 2 } ( 1 ) \psi _ { 1 } ( 2 ) } { r _ { 12 } } d q _ { 1 } d q _ { 2 } \\
+={} & \int \frac { \varphi _ { 1 s } ( 1 ) ^ { * } \varphi _ { 2 s } ( 2 ) ^* \varphi _ { 2 s } ( 1 ) \varphi _ { 1 s } ( 2 ) } { r _ { 12 } } d \vec { r _ { 1 } } d \vec { r _ { 2 } } \int \eta _ { 1 } ( 1 ) ^ { * } \eta _ { 2 } ( 1 ) d \omega _ { 1 } \int \eta _ { 2 } ( 2 ) ^ { * } \eta _ { 1 } ( 2 ) d \omega _ { 2 }
+\end{aligned}</script><ul>
+<li><p>当 $\psi_1, \psi_2$ 同自旋， $\eta_1 = \eta_2$ ，$K \neq 0$ ($K&gt;0$)；</p>
+</li>
+<li><p>当 $\psi_1, \psi_2$ 反自旋， $\eta_1 \neq \eta_2$ ，$K = 0$ 。</p>
+<p>这一项可以通过求 Slater 行列式的能量期待值得到。</p>
+</li>
+</ul>
+<p><strong>注</strong>：$J<em>{11} - K</em>{11} = 0$ ，电子不存在自相关作用。</p>
+<h3 id="行列式波函数的-Pros"><a href="#行列式波函数的-Pros" class="headerlink" title="行列式波函数的 Pros"></a>行列式波函数的 Pros</h3><ol>
+<li>行列式波函数部分地考虑了同自旋电子间的运动关联（不允许电子占据同一个自旋轨道）；</li>
+<li>同自旋电子间存在交换作用，它使总能量降低；</li>
+<li>多电子原子中，$n, l$ 相同的简并轨道上的电子，将分占磁量子数 $m$ 不同的轨道，并使其自旋平行（Hund 规则）</li>
+</ol>
+<h2 id="Slater-Condon-规则"><a href="#Slater-Condon-规则" class="headerlink" title="Slater-Condon 规则"></a>Slater-Condon 规则</h2><p>Slater-Condon 规则即为 Slater 行列式矩阵元的计算规则，</p>
+<script type="math/tex; mode=display">
+\left\langle \Psi ^ { \prime } | \hat { O } | \Psi \right\rangle = \int \left[ \left( \Psi ^ { \prime } \right) ^* \hat { O } \Psi \right] d q _ { 1 } \cdots d q _ { N } = ?</script><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ol>
+<li><p>算符：</p>
+<ol>
+<li>单电子算符：$ \hat { O } <em> { 1 } = \sum </em> { n } \hat { h } ( n ) $ ；</li>
+<li>双电子算符： $ \hat { O } <em> { 2 } = \sum </em> { n &lt; m } \frac { 1 } { r _ { n m } } $ 。</li>
+</ol>
+</li>
+<li><p>行列式：</p>
+<ol>
+<li><p>对角矩阵元：</p>
+<script type="math/tex; mode=display">
+| \Psi ^ { \prime } \rangle = | \Psi \rangle \nonumber</script></li>
+<li><p>非对角矩阵元 1:</p>
+<script type="math/tex; mode=display">
+\begin{aligned} 
+| \Psi \rangle & = | \psi _ { 1 } \cdots \psi _ { k } \cdots \psi _ { N } \rangle \\ 
+| \Psi ^ { \prime } \rangle & = | \psi _ { 1 } \cdots \psi _ { a } \cdots \psi _ { N } \rangle \quad \text{单激发组态} \end{aligned}</script></li>
+<li><p>非对角矩阵元 2:</p>
+<script type="math/tex; mode=display">
+\begin{array} { l } { | \Psi \rangle = | \cdots \psi _ { k } \cdots \psi _ { l } \cdots \rangle } \\ { | \Psi ^ { \prime \prime } \rangle = | \dots \psi _ { a } \cdots \psi _ { b } \cdots \rangle } \quad \text{双激发组态} \end{array} \nonumber</script></li>
+</ol>
+</li>
+</ol>
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><ol>
+<li><p>重叠：</p>
+<ol>
+<li><p>对角矩阵元：</p>
+<script type="math/tex; mode=display">
+\langle \Psi | \Psi \rangle = 1</script></li>
+<li><p>单激发态&amp;双激发态：</p>
+<script type="math/tex; mode=display">
+\left\langle \Psi ^ { \prime } | \Psi \right\rangle = 0</script></li>
+</ol>
+</li>
+<li><p>单电子算符：</p>
+<ol>
+<li><p>对角矩阵元：</p>
+<script type="math/tex; mode=display">
+\left\langle \Psi \left| \hat { O } _ { 1 } \right| \Psi \right\rangle = \sum _ { i } \left\langle \psi _ { i } | \hat { h } | \psi _ { i } \right\rangle = \sum _ { i } \langle i | \hat { h } | i \rangle</script></li>
+<li><p>单激发态：</p>
+<script type="math/tex; mode=display">
+\left\langle \Psi ^ { \prime } \left| \hat { O } _ { 1 } \right| \Psi \right\rangle = \left\langle \psi _ { a } | \hat { h } | \psi _ { k } \right\rangle = \langle a | \hat { h } | k \rangle</script></li>
+<li><p>双激发态：</p>
+<script type="math/tex; mode=display">
+\left\langle \Psi ^ { \prime } \left| \hat { O } _ { 1 } \right| \Psi \right\rangle = 0</script></li>
+</ol>
+</li>
+<li><p>双电子算符：</p>
+<ol>
+<li><p>对角矩阵元：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \left\langle \Psi \left| \hat { O } _ { 2 } \right| \Psi \right\rangle & = \frac { 1 } { 2 } \sum _ { i = 1 } ^ { N } \sum _ { j = 1 } ^ { N } \left\langle \psi _ { i } \psi _ { j } | \psi _ { i } \psi _ { j } \right\rangle - \left\langle \psi _ { i } \psi _ { j } | \psi _ { j } \psi _ { i } \right\rangle \\ & = \frac { 1 } { 2 } \sum _ { i = 1 } ^ { N } \sum _ { j = 1 } ^ { N } \langle i j | i j \rangle - \langle i j | j i \rangle \end{aligned}</script></li>
+<li><p>单激发态：</p>
+<script type="math/tex; mode=display">
+\left\langle \Psi ^ { \prime } \left| \hat { O } _ { 2 } \right| \Psi \right\rangle = \sum _ { i = 1 } ^ { N } \langle i a | i k \rangle - \langle i a | k i \rangle</script></li>
+<li><p>双激发态：</p>
+<script type="math/tex; mode=display">
+\left\langle \Psi ^ { \prime } \left| \hat { O } _ { 2 } \right| \Psi \right\rangle = \langle a b | k l \rangle - \langle a b | l k \rangle</script></li>
+</ol>
+</li>
+</ol>
+<h1 id="Hatree-Fock-方程"><a href="#Hatree-Fock-方程" class="headerlink" title="Hatree-Fock 方程"></a>Hatree-Fock 方程</h1><p>Hatree-Fock 方程（非正则形式）：</p>
+<script type="math/tex; mode=display">
+\left[ \hat { h } ( 1 ) + \sum _ { j = 1 } ^ { N } \left( \hat { J } _ { j } ( 1 ) - \hat { K } _ { j } ( 1 ) \right) \right] \psi _ { i } ( 1 ) = \sum _ { j = 1 } ^ { N } \varepsilon _ { i j } \psi _ { j } ( 1 ) \label{eq:hf_ununitary}</script><p>其中，库伦算符和交换算符：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat { J } _ { j } ( 1 ) \psi _ { i } ( 1 ) = \left[ \int \psi _ { j } ^ { * } ( 2 ) \frac { 1 } { r _ { 12 } } \psi _ { j } ( 2 ) d q _ { 2 } \right] \psi _ { i } ( 1 ) \\
+ \hat { K } _ { j } ( 1 ) \psi _ { i } ( 1 ) = \left[ \int \psi _ { j } ^ { * } ( 2 ) \frac { 1 } { r _ { 12 } } \psi _ { i } ( 2 ) d q _ { 2 } \right] \psi _ { j } ( 1 )
+ \end{align}</script><p>$\eqref{eq:hf<em>ununitary}$ 中 $\hat { h } ( 1 ) + \sum </em> { j = 1 } ^ { N } \left( \hat { J } <em> { j } ( 1 ) - \hat { K } </em> { j } ( 1 ) \right)$ 可用 Fock 算符 $\hat{f}(1)$ 简写代替。</p>
+<p>经过 Unitary 变换， $\eqref{eq:hf_ununitary}$ 可以变换为正则形式，即：</p>
+<script type="math/tex; mode=display">
+\hat { f } ( 1 ) \psi _ { i } ( 1 ) = \varepsilon _ { i } \psi _ { i } ( 1 )</script><p><strong>注：$\eqref{eq:fock}$ 中的 $\hat { h } ( 1 ) = - \frac { 1 } { 2 } \nabla <em> { 1 } ^ { 2 } - \sum </em> { \alpha } \frac { Z <em> { \alpha } } { r </em> { 1 \alpha } } $ 表示核 Hamiltonian 项，是单电子算符，与 $\eqref{eq:mo}$ 中 $\hat{h}(1)$ 的含义有所区别，请注意区分。</strong></p>
+<h2 id="Fock-算符的性质"><a href="#Fock-算符的性质" class="headerlink" title="Fock 算符的性质"></a>Fock 算符的性质</h2><p>Fock 算符：</p>
+<script type="math/tex; mode=display">
+\hat{f}(1) = \hat { h } ( 1 ) + \sum _ { j = 1 } ^ { N } \left( \hat { J } _ { j } ( 1 ) - \hat { K } _ { j } ( 1 ) \right) \label{eq:fock}</script><ul>
+<li>Fock 算符是等效单电子的哈密顿算符，它的本征函数式分子轨道，本征值为轨道能；</li>
+<li>Fock 算符是 Hermitian 算符（因为交换算符和库仑算符都是 Hermitian 算符，动能项以及核势能项也都是 Hermitian 算符）；</li>
+<li>Fock 算符是分子点群的对称算符，分子轨道属于分子点群的不可约表示；</li>
+<li>Fock 算符之和 $\sum <em> { n = 1 } ^ { N } \hat { f } ( n ) = \hat { H } ^ { H F } \neq \hat { H } </em> { e l }$ ，它将电子间的作用重复计入。</li>
+</ul>
+<h2 id="轨道能与电子总能量"><a href="#轨道能与电子总能量" class="headerlink" title="轨道能与电子总能量"></a>轨道能与电子总能量</h2><h3 id="轨道能"><a href="#轨道能" class="headerlink" title="轨道能"></a>轨道能</h3><script type="math/tex; mode=display">
+\varepsilon _ { i } = \left\langle \psi _ { i } | \hat { f } | \psi _ { i } \right\rangle
+= \varepsilon _ { i } ^ { 0 } + \sum _ { j } ^ { N } \left( J _ { i j } - K _ { i j } \right) \label{eq:orb_en}</script><p>$\eqref{eq:orb_en}$ 中：</p>
+<ul>
+<li>$\varepsilon_i^0$ 为 $\hat{h}(1)$ 的本征值， $\varepsilon_i$ 为第 $i$ 个轨道的轨道能；</li>
+<li>$J<em>{ij}=\langle ij|ij\rangle = \int dq</em>{1}dq<em>{2}\psi </em>{i}^{\star}(1)\psi <em>{j}^{\star}(2)\frac {1}{r</em>{12}}\psi <em>{i}(1)\psi </em>{j}(2)$ ；</li>
+<li>$K<em>{ij} = \langle ij|ji \rangle = \int dq</em>{1}dq<em>{2} \psi </em> { i } ^ { \star } ( 1 ) \psi <em> { j } ^ { \star } ( 2 ) \frac { 1 } { r </em> { 12 } } \psi <em> { j } ( 1 ) \psi </em> { i } ( 2 )$ 。</li>
+</ul>
+<h3 id="电子总能量"><a href="#电子总能量" class="headerlink" title="电子总能量"></a>电子总能量</h3><script type="math/tex; mode=display">
+E _ { 0 } = \sum _ { i } ^ { N } \varepsilon _ { i } ^ { 0 } + \frac { 1 } { 2 } \sum _ { i } ^ { N } \sum _ { j } ^ { N } \left[ J _ { i j } - K _ { i j } \right] \label{eq:ele_en}</script><p>$\eqref{eq:ele_en}$ 中第二项的 $\frac{1}{2}$ 表示去除因双重求和重复计入的交换能和库仑能 。</p>
+<p><strong>注：分子轨道能之和不等于电子总能</strong></p>
+<script type="math/tex; mode=display">
+\sum _ { i } ^ { N } \varepsilon _ { i } = \sum _ { i } ^ { N } \varepsilon _ { i } ^ { 0 } + \sum _ { i } ^ { N } \sum _ { j } ^ { N } \left[ J _ { i j } - K _ { i j } \right] \neq E _ { 0 }</script><h2 id="Koopmans-定理"><a href="#Koopmans-定理" class="headerlink" title="Koopmans 定理"></a>Koopmans 定理</h2><p>假如从占据轨道 $\psi_k$ 上电离一个电子而其他轨道不变，则分子的电离势为 $-\varepsilon_k$ 。假定在空轨道 $\psi_r$ 上亲和一个电子而其他轨道不变，则分子的电子亲和势为 $\varepsilon_r$ ，简言之：当不考虑轨道弛豫时电离能/亲和能近似等于被电离/亲和电子的轨道能。</p>
+<h3 id="电离能"><a href="#电离能" class="headerlink" title="电离能"></a>电离能</h3><p>电离前：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&| \Psi _ { 0 } ^ { N } \rangle = | \psi _ { 1 } \cdots \psi _ { k } \cdots \psi _ { N } \rangle \nonumber \\
+&E _ { 0 } = \left\langle \Psi _ { 0 } ^ { N } | \hat { H } | \Psi _ { 0 } ^ { N } \right\rangle = \sum _ { i } ^ { N } \varepsilon _ { i } ^ { 0 } + \frac { 1 } { 2 } \sum _ { i } \sum _ { j } \left( J _ { i j } - K _ { i j } \right) \nonumber
+\end{align}</script><p>电离后：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+ | \Psi _ { k } ^ { N - 1 } \rangle ={}& | \psi _ { 1 } \cdots \psi _ { k - 1 } \psi _ { k + 1 } \cdots \psi _ { N } \rangle  \nonumber \\
+ E _ { k } ^ { + } ={}& \left\langle \Psi _ { k } ^ { N - 1 } | \hat { H } | \Psi _ { k } ^ { N - 1 } \right\rangle = \sum _ { i \neq k } \varepsilon _ { i } ^ { 0 } + \frac { 1 } { 2 } \sum _ { i \neq k } \sum _ { j \neq k } \left( J _ { i j } - K _ { i j } \right) \nonumber
+\end{align}</script><p>则电离能：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+I.P. ={}& E _ { k } ^ { + } - E _ { 0 } \\
+={}& - \varepsilon _ { k } ^ { 0 } - \frac { 1 } { 2 } \left[ \sum _ { j } \left( J _ { k j } - K _ { k j } \right) + \sum _ { i } \left( J _ { i k } - K _ { i k } \right) \right] \\
+={}& - \varepsilon _ { k } ^ { 0 } - \sum _ { j } \left( J _ { k j } - K _ { k j } \right) = - \varepsilon _ { k }
+\end{align}</script><h3 id="亲和能"><a href="#亲和能" class="headerlink" title="亲和能"></a>亲和能</h3><p>与电离能同理， </p>
+<script type="math/tex; mode=display">
+E . A . = E _ { 0 } - E _ { r } ^ { N + 1 } = - \varepsilon _ { r } ^ { 0 } - \sum _ { j } \left( J _ { r j } - K _ { j r } \right) = - \varepsilon _ { r }</script><p>Koopmans 定理提供了一种近似求解 $I.P$ 与 $E.A.$ 的方法，但它不考虑电离/亲和后的轨道弛豫和电子的相关效应（事实上整个 Hatree-Fock 近似也没有考虑相关效应），这样求得的电离能与亲和能有误差。</p>
+<h1 id="Roothan-方程"><a href="#Roothan-方程" class="headerlink" title="Roothan 方程"></a>Roothan 方程</h1><p>Roothan 方程的本质是将 Hatree-Fock 方程的分子轨道用一系列基函数展开得到的方程。</p>
+<h2 id="限制性与非限制性自旋轨道"><a href="#限制性与非限制性自旋轨道" class="headerlink" title="限制性与非限制性自旋轨道"></a>限制性与非限制性自旋轨道</h2><p>限制性自旋轨道：假设同一个分子轨道分为两个自旋相反的自旋轨道，它们的空间轨道部分完全相同。限制性自旋轨道一般用于描述闭壳层的电子行为。</p>
+<script type="math/tex; mode=display">
+\psi _ { a } \left( q _ { 1 } \right) \longrightarrow \left\{ \begin{array} { l } { \varphi _ { i } \left( \vec { r } _ { 1 } \right) \alpha \left( \omega _ { 1 } \right) } \\ { \varphi _ { i } \left( \vec { r } _ { 1 } \right) \beta \left( \omega _ { 1 } \right) } \end{array} \right.</script><p>非限制性自旋轨道：同一个分子轨道中自旋轨道的空间轨道部分不同。</p>
+<script type="math/tex; mode=display">
+\psi _ { a } \left( q _ { 1 } \right) \longrightarrow \left\{ \begin{array} { l } { \varphi _ { i } \left( \vec { r } _ { 1 } \right) \alpha \left( \omega _ { 1 } \right) } \\ { \varphi _ { i } ^ {\color{red} \prime } \left( \vec { r } _ { 1 } \right) \beta \left( \omega _ { 1 } \right) } \end{array} \right.</script><p>非限制性自旋轨道一般用于描述开壳层的电子行为。</p>
+<h2 id="空间轨道的-HF-方程"><a href="#空间轨道的-HF-方程" class="headerlink" title="空间轨道的 HF 方程"></a>空间轨道的 HF 方程</h2><p>空间轨道的 Hatree-Fock 方程为：</p>
+<script type="math/tex; mode=display">
+\hat { f } \left( \vec { r } _ { 1 } \right) \varphi _ { i } \left( \vec { r } _ { 1 } \right) = \varepsilon _ { i } \varphi _ { i } \left( \vec { r } _ { 1 } \right) \label{eq:hf_space}</script><p>其中空间轨道的 Fock 算符为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} { f \left( \vec { r } _ { 1 } \right) = \hat { h } \left( \vec { r } _ { 1 } \right) + \sum _ { j = 1 } ^ { N / 2 } 2 \hat { J } _ { j } \left( \vec { r } _ { 1 } \right) - \hat { K } _ { j } \left( \vec { r } _ { 1 } \right) } \\ { \hat { J } _ { j } \left( \vec { r } _ { 1 } \right) \varphi _ { i } \left( \vec { r } _ { 1 } \right) = \left[ \int \frac { \varphi _ { j } ^ { * } \left( \vec { r } _ { 2 } \right) \varphi _ { j } \left( \vec { r } _ { 2 } \right) } { r _ { 12 } } d \vec { r } _ { 2 } \right] \varphi _ { i } \left( \vec { r } _ { 1 } \right) } \\ { \hat { K } _ { j } \left( \vec { r } _ { 1 } \right) \varphi _ { i } \left( \vec { r } _ { 1 } \right) = \left[ \int \frac { \varphi _ { j } \left( \vec { r } _ { 2 } \right) \varphi _ { i } \left( \vec { r } _ { 2 } \right) } { r _ { 12 } } d \vec { r _ { 2 } } \right] \varphi _ { j } \left( \vec { r } _ { 1 } \right) } \end{aligned}</script><p>上面式子中 $ \hat{K} $ 项前面没有 2 是因为该波函数为限制性自旋波函数，体系为闭壳层，自旋向上和自旋向下的电子个数相同，恰好有一半的空间轨道有电子占据，且这些空间轨道都已经占满，故只有自旋平行的电子之间有交换作用（即只有 $\frac{N}{2}$ 个电子之间有交换作用）。</p>
+<p>分子轨道的轨道能（自旋轨道）：</p>
+<script type="math/tex; mode=display">
+\varepsilon_i =   \varepsilon _ { i } ^ { 0 } + \sum _ { j } ^ { N } \left( J _ { i j } - K _ { i j } \right)</script><p>分子轨道的轨道能（空间轨道，闭壳层限制性）：</p>
+<script type="math/tex; mode=display">
+\varepsilon_i = \varepsilon _ { i } ^ { 0 } + \sum _ { j } ^ { N / 2 } \left( 2 J _ { i j } - K _ { i j } \right)</script><p>电子总能量（自旋轨道）：</p>
+<script type="math/tex; mode=display">
+E_0= \sum _ { i } ^ { N } h _ { i i } + \frac { 1 } { 2 } \sum _ { i } ^ { N } \sum _ { j } ^ { N } J _ { i j } - K _ { i j }</script><p>电子总能量（空间轨道，闭壳层限制性）：</p>
+<script type="math/tex; mode=display">
+E _ 0 = \sum _ { i } ^ { N / 2 } 2 h _ { i i } + \frac { 1 } { 2 } \sum _ { i } ^ { N / 2 } \sum _ { j } ^ { N / 2 } 2 J _ { i j } - K _ { i j }</script><p>上式中第二项前的 $\frac{1}{2}$ 表示已经减去重复计入的空间轨道的相互作用。</p>
+<h2 id="Roothaan-方程"><a href="#Roothaan-方程" class="headerlink" title="Roothaan 方程"></a>Roothaan 方程</h2><p>引入一组<strong>已知</strong>的基函数将空间轨道展开：</p>
+<script type="math/tex; mode=display">
+\varphi _ { i } = \sum _ { v = 1 } ^ { m } C _ { vi } \chi _ { v } \quad i = 1,2 , \cdots , m  \label{eq:roothaan_base}</script><p>将 $\eqref{eq:roothaan_base}$ 代入 $\eqref{eq:hf_space}$ 可以得到：</p>
+<script type="math/tex; mode=display">
+\hat { f } \left( \vec { r } _ { 1 } \right) \varphi _ { i } \left( \vec { r } _ { 1 } \right) = \varepsilon _ { i } \varphi _ { i } \left( \vec { r } _ { 1 } \right)  \quad i = 1,2 , \cdots , m</script><p>上式左乘 $\chi_{\mu}^* (1)$ 并积分，得到：</p>
+<script type="math/tex; mode=display">
+\sum _ { v } ^ { m } C _ { v i } \langle \chi _ { \mu } ( 1 ) | \hat { f } ( 1 ) | \chi _ { v } ( 1 ) \rangle = \varepsilon _ { i } \sum _ { v } ^ { m } C _ { v i } \langle \chi _ { \mu } ( 1 ) | \chi _ { v } ( 1 ) \rangle \quad i = 1,2 , \cdots , m</script><p>令 $ S <em> { \mu \nu } = \langle \chi </em> { \mu } ( 1 ) | \chi <em> { v } ( 1 ) \rangle = \int d \vec { r } </em> { 1 } \chi <em> { \mu } ^ { * } ( 1 ) \chi </em> { v } ( 1 ) $ ，</p>
+<p>$ F <em> { \mu v } = \langle \chi </em> { \mu } ( 1 ) | \hat { f } ( 1 ) | \chi <em> { v } ( 1 ) \rangle = \int d \vec { r } </em> { 1 } \chi <em> { \mu } ^ { * } ( 1 ) \hat { f } ( 1 ) \chi </em> { v } ( 1 ) $ </p>
+<p>由此可以得到方程组：</p>
+<script type="math/tex; mode=display">
+\sum _ { v } ^ { m } F _ { \mu \nu } C _ { v i } = \varepsilon _ { i } \sum _ { v } ^ { m } S _ { \mu \nu } C _ { v i } \quad i = 1,2 , \cdots , m</script><p>或者写成矩阵形式：</p>
+<script type="math/tex; mode=display">
+\mathbf { F C } _ { i } = \varepsilon _ { i } \mathbf { S } \mathbf { C } _ { i } \quad i = 1,2 , \cdots , m</script><p>合并写成矩阵方程：</p>
+<script type="math/tex; mode=display">
+\mathbf { F C } = \mathbf { S } \mathbf { C } \boldsymbol { \varepsilon } \tag{*} \label{eq:roothaan}</script><p>$\eqref{eq:roothaan}​$ 即为 Roothaan 方程。</p>
+<p>其中：</p>
+<script type="math/tex; mode=display">
+\mathbf { C } = \left( \begin{array} { c c c c } { C _ { 11 } } & { C _ { 12 } } & { \cdots } & { C _ { 1 m } } \\ { C _ { 21 } } & { C _ { 22 } } & { \cdots } & { C _ { 2 m } } \\ { C _ { 31 } } & { C _ { 32 } } & { \cdots } & { C _ { 3 m } } \\ { \vdots } & { \vdots } & { } & { \vdots } \\ { C _ { m 1 } } & { C _ { m 2 } } & { \cdots } & { C _ { m m } } \end{array} \right) ,\quad 
+\boldsymbol { \varepsilon } = \left( \begin{array} { c c c c } { \varepsilon _ { 1 } } & { } & { } & { O } \\ { } & { \varepsilon _ { 2 } } & { } & { } \\ { } & { } & { \ddots } & { } \\ { O } & { } & { } & { \varepsilon _ { m } } \end{array} \right)</script><p>它们分别表示分子轨道（空间轨道）和轨道能。</p>
+<p>$C_{ij}$ 表示第 $j$ 个分子轨道（空间轨道）第 $i$ 个基函数的系数。</p>
+<h3 id="重叠矩阵"><a href="#重叠矩阵" class="headerlink" title="重叠矩阵"></a>重叠矩阵</h3><script type="math/tex; mode=display">
+S _ { \mu \nu } = \langle \chi _ { \mu } ^ { * } ( 1 ) | \chi _ { v } ( 1 ) \rangle = \int d \vec { r } _ { 1 } \chi _ { \mu } ^ { * } ( 1 ) \chi _ { v } ( 1 )</script><p>且</p>
+<script type="math/tex; mode=display">
+S _ { \mu \nu } ^ { * } = \left[ \int d \vec { r } _ { 1 } \chi _ { \mu } ^ { * } ( 1 ) \chi _ { v } ( 1 ) \right] ^ { * } = \int d \vec { r } _ { 1 } \chi _ { v } ^ { * } ( 1 ) \chi _ { \mu } ( 1 ) = S _ { v \mu }</script><p>故 $\mathbf{S}$ 为一个 $m \times m$ 的 Hermitian 矩阵，且 $0 \leq \left| S _ { \mu\nu } \right| \leq 1$</p>
+<h3 id="Fock矩阵"><a href="#Fock矩阵" class="headerlink" title="Fock矩阵"></a>Fock矩阵</h3><script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{F} _ { \mu \nu } ={}& \langle \chi _ { \mu } ^ { * } ( 1 ) \hat { f } ( 1 ) \chi _ { v } ( 1 ) \rangle \\
+={}& \int d \vec { r } _ { 1 } \chi _ { \mu } ^ { * } ( 1 ) \hat { f } ( 1 ) \chi _ { v } ( 1 ) \\
+={} & h _ { \mu v } ^ { c o r e } + \sum _ { j } ^ { N / 2 } \int d \vec { r } _ { 1 } \chi _ { \mu } ^ { * } ( 1 ) \left[ 2 \hat { J } _ { j } ( 1 ) - \hat { K } _ { j } ( 1 ) \right] \chi _ { v } ( 1 )
+\end{aligned}</script><p>令 $\varphi <em> { j } = \sum </em> { \sigma } ^ { m } C <em> { \sigma j } \chi </em> { \sigma }$ ，$ \varphi <em> { j } ^ { * } = \sum </em> { \lambda } ^ { m } C <em> { \lambda j } ^ { * } \chi </em> { \lambda } ^ { * } $  ，则</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\int \chi _ { \mu } ^ { * } ( 1 ) \hat { J } _ { j } ( 1 ) \chi _ { v } ( 1 ) d \vec { r } _ { 1 } = \sum _ { \lambda } ^ { m } \sum _ { \sigma } ^ { m } C _ { \sigma j } C _ { \lambda j } ^ { * } \langle \mu v | \lambda \sigma \rangle \\
+\int \chi _ { \mu } ^ { * } ( 1 ) \hat { K } _ { j } ( 1 ) \chi _ { v } ( 1 ) d \vec { r } _ { 1 } = \sum _ { \lambda } ^ { m } \sum _ { \sigma } ^ { m } C _ { \sigma j } C _ { \lambda j } ^ { * } \langle \mu {\color{red} \sigma} | \lambda {\color{red} v} \rangle
+\end{aligned}</script><p>所以 Fock 矩阵的矩阵元可以进一步写成</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+F _ { \mu \nu } ={}& h _ { \mu \nu } ^ { c o r e } + \sum _ { \lambda , \sigma } ^ { m , m } \sum _ { j } ^ { N / 2 } C _ { \sigma j } C _ { \lambda j } ^ { * } [ 2 ( \mu v | \lambda \sigma ) - ( \mu \sigma | \lambda v ) ] \\
+={}& h _ { \mu \nu } ^ { c o r e } + \sum _ { \lambda , \sigma } ^ { m , m } P _ { \sigma \lambda } [ 2 ( \mu v | \lambda \sigma ) - ( \mu \sigma | \lambda v ) ] \\
+={}& h _ { \mu \nu } ^ { c o r e } + G _ { \mu \nu }
+\end{aligned}</script><p>$G<em>{\mu\nu}$ 矩阵即为 Fock 矩阵的双电子项，由密度矩阵 $P</em>{\sigma \lambda}$和基函数的双电子积分给出。 </p>
+<h3 id="密度矩阵"><a href="#密度矩阵" class="headerlink" title="密度矩阵"></a>密度矩阵</h3><p>定义密度矩阵：</p>
+<script type="math/tex; mode=display">
+P _ { \sigma \lambda } = \sum _ { j } ^ { N / 2 } C _ { \sigma j } C _ { \lambda j } ^ { * } = \sum _ { j } ^ { N / 2 } ( C ) _ { \sigma j } \left( C ^ { \dagger } \right) _ { j \lambda }</script><p>$C$ 是分子轨道基函数的展开系数。</p>
+<p>由于闭壳层的限制性，只有 $N/2$ 个空间轨道占有电子，且都占满，故密度矩阵通常等于</p>
+<script type="math/tex; mode=display">
+P = C _ { 0 } C _ { 0 } ^ { \dagger } = \left( \begin{array} { c c c } { \vdots } & { } & { } \\ { c _ { \sigma 1 } } & { \dots } & { c _ { \sigma N / 2 } } \\ { \vdots } & { } & { } \end{array} \right) \left( \begin{array} { c c c } { } & { c _ { \lambda 1 } ^ { * } } \\ { \ldots } & { \vdots } & { \cdots } \\ { } & { c _ { \lambda N / 2 } ^ { * } } \end{array} \right)</script><h2 id="基的幺正化"><a href="#基的幺正化" class="headerlink" title="基的幺正化"></a>基的幺正化</h2><p>Roothaan 方程 $\mathbf { F C } = \mathbf { S } \mathbf { C\varepsilon } $  不是标准的矩阵本征值方程，如果 $\mathbf{S}  = 1$，则 $\mathbf { F C } = \mathbf { C } \varepsilon$  是标准的本征值方程。所以要对 Roothaan 方程进行  Unitary 变换使其满足标准本征值方程，才能进行求解。</p>
+<p>构造变换矩阵 $\mathbf{X}​$ 使得 </p>
+<script type="math/tex; mode=display">
+\mathbf { X } ^ { \dagger } \mathbf { S X } = \mathbf { S } ^ { \prime } = \mathbf { I }</script><p>则构造变换后的 Fock 矩阵 $\mathbf{F}’$</p>
+<script type="math/tex; mode=display">
+\mathbf { F } ^ { \prime } = \mathbf { X } ^ { + } \mathbf { F } \mathbf { X }</script><p>继续假设原系数矩阵 $\mathbf { C } = \mathbf { X } \mathbf { C } ^ { \prime }$ ，此时得到变换后的 Roothaan 方程：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf { F X C } ^ { \prime } ={}& \mathbf { S X C ^ { \prime } \varepsilon } \\
+\left( \mathbf { X } ^ { + } \mathbf { F } \mathbf { X } \right) \mathbf { C } ^ { \prime } ={}& \left( \mathbf { X } ^ { + } \mathbf { S X } \right) \mathbf { C } ^ { \prime } \boldsymbol { \varepsilon }\\
+\mathbf { F } ^ { \prime } \mathbf { C } ^ { \prime } ={}& \mathbf { C } ^ { \prime } \boldsymbol { \varepsilon }
+\end{aligned}</script><p>此时对角化 Fock 矩阵 $\mathbf{F}’$ ，即可得到系数矩阵 $\mathbf C’$ 和本征值 $\boldsymbol{\varepsilon}$ 。 </p>
+<h2 id="SCF-迭代步骤"><a href="#SCF-迭代步骤" class="headerlink" title="SCF 迭代步骤"></a>SCF 迭代步骤</h2><ol>
+<li>给定分子的初始信息（核位置 $\vec{R}<em>\alpha$，元素种类 ${Z</em>{\alpha}}$ ，电子个数 $N<em>{elec}$ ，以及基函数 $\left{ \chi </em> { v } \right}$ ）；</li>
+<li>计算分子积分 $S <em> { \mu \nu } , \quad h </em> { \mu \nu } ^ { \text { core } } , \langle \mu v | \lambda \sigma \rangle$ ；</li>
+<li>幺正化 $\mathbf{S}$ 矩阵，得到变换矩阵 $\mathbf{X}$ ；</li>
+<li><strong>猜</strong>一个初始密度矩阵 $\mathbf{P}$ ；</li>
+<li>由密度矩阵 $\mathbf{P}$ 和双电子积分计算 $\mathbf{G}$ 矩阵；</li>
+<li>构造 Fock 矩阵 $ \mathbf { F } = \mathbf { h } ^ { \mathrm { core } } + \mathbf { G } $ ；</li>
+<li>计算变换后的 Fock 矩阵 $\mathbf { F } ^ { \prime } = \mathbf { X } ^ { + } \mathbf { F } \mathbf { X }$ ；</li>
+<li>对角化 $\mathbf{F}’$ 得到 $\mathbf{C}’$ 和 $\boldsymbol{\varepsilon}$ ；</li>
+<li>计算系数矩阵 $\mathbf { C } = \mathbf { X } \mathbf { C } ^ { \prime }$ ；</li>
+<li>构造密度矩阵 $\mathbf{P}$ ： $P <em> { \mu } = \sum </em> { j } ^ { N / 2 } C <em> { \mu } C </em> { v j } ^ { * }$ ；</li>
+<li>验证密度矩阵 $\mathbf{P}$ 和能量 $\varepsilon$ 是否收敛，若未收敛，返回步骤 5，用刚得到的密度矩阵 $\mathbf{P}$ 计算 $\mathbf{G}$ 矩阵；</li>
+<li>计算已经收敛，迭代结束，计算能量期待值与其它性质。</li>
+</ol>
+<h2 id="基本计算结果"><a href="#基本计算结果" class="headerlink" title="基本计算结果"></a>基本计算结果</h2><ol>
+<li>轨道能与电子能量；</li>
+<li>势能面、构型优化、振动频率分析；</li>
+<li>单电子性质（如分子偶极矩）；</li>
+<li>电荷密度计算等。</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Hatree-Fock 方法的几个关键点：</p>
+<ol>
+<li>使用 Slater 行列式描述分子的波函数；</li>
+<li>使用基函数将分子轨道展开，便于计算；</li>
+<li>使用自洽场方法迭代计算；</li>
+<li>$J<em>{11} - K</em>{11} = 0$ ，没有自相关作用。</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/First-Principle-Calculation/" rel="tag"># First Principle Calculation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/31/2018-12-31_WAVECAR-parsing/" rel="next" title="WAVECAR 数据结构的解析">
+                <i class="fa fa-chevron-left"></i> WAVECAR 数据结构的解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/21/2019-1-21-how-to-setup-travis-ci/" rel="prev" title="如何为 github 上的 cpp 项目设置 Travis-CI 自动测试">
+                如何为 github 上的 cpp 项目设置 Travis-CI 自动测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <div class="site-description motion-element" itemprop="description">伪化生的小窝</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/IonizingRadiation" title="GitHub &rarr; https://github.com/IonizingRadiation" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:PeterSmith_9@outlook.com" title="E-Mail &rarr; mailto:PeterSmith_9@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多原子分子体系S-方程的描述"><span class="nav-number">1.</span> <span class="nav-text">多原子分子体系S-方程的描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hamiltonian-算符"><span class="nav-number">1.1.</span> <span class="nav-text">Hamiltonian 算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Born-Oppenheimer-近似"><span class="nav-number">1.1.1.</span> <span class="nav-text">Born-Oppenheimer 近似</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均场近似"><span class="nav-number">1.1.2.</span> <span class="nav-text">平均场近似</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCAO-近似"><span class="nav-number">1.1.3.</span> <span class="nav-text">LCAO 近似</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式波函数"><span class="nav-number">1.2.</span> <span class="nav-text">行列式波函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库仑作用与交换作用"><span class="nav-number">1.3.</span> <span class="nav-text">库仑作用与交换作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#库仑作用"><span class="nav-number">1.3.1.</span> <span class="nav-text">库仑作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交换作用"><span class="nav-number">1.3.2.</span> <span class="nav-text">交换作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行列式波函数的-Pros"><span class="nav-number">1.3.3.</span> <span class="nav-text">行列式波函数的 Pros</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Slater-Condon-规则"><span class="nav-number">1.4.</span> <span class="nav-text">Slater-Condon 规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.4.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规则"><span class="nav-number">1.4.2.</span> <span class="nav-text">规则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hatree-Fock-方程"><span class="nav-number">2.</span> <span class="nav-text">Hatree-Fock 方程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fock-算符的性质"><span class="nav-number">2.1.</span> <span class="nav-text">Fock 算符的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轨道能与电子总能量"><span class="nav-number">2.2.</span> <span class="nav-text">轨道能与电子总能量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轨道能"><span class="nav-number">2.2.1.</span> <span class="nav-text">轨道能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电子总能量"><span class="nav-number">2.2.2.</span> <span class="nav-text">电子总能量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Koopmans-定理"><span class="nav-number">2.3.</span> <span class="nav-text">Koopmans 定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#电离能"><span class="nav-number">2.3.1.</span> <span class="nav-text">电离能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#亲和能"><span class="nav-number">2.3.2.</span> <span class="nav-text">亲和能</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Roothan-方程"><span class="nav-number">3.</span> <span class="nav-text">Roothan 方程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#限制性与非限制性自旋轨道"><span class="nav-number">3.1.</span> <span class="nav-text">限制性与非限制性自旋轨道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间轨道的-HF-方程"><span class="nav-number">3.2.</span> <span class="nav-text">空间轨道的 HF 方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Roothaan-方程"><span class="nav-number">3.3.</span> <span class="nav-text">Roothaan 方程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重叠矩阵"><span class="nav-number">3.3.1.</span> <span class="nav-text">重叠矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fock矩阵"><span class="nav-number">3.3.2.</span> <span class="nav-text">Fock矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密度矩阵"><span class="nav-number">3.3.3.</span> <span class="nav-text">密度矩阵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基的幺正化"><span class="nav-number">3.4.</span> <span class="nav-text">基的幺正化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SCF-迭代步骤"><span class="nav-number">3.5.</span> <span class="nav-text">SCF 迭代步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本计算结果"><span class="nav-number">3.6.</span> <span class="nav-text">基本计算结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ionizing</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://https-www-ionizing-science.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ionizing.page/2019/01/18/2019-1-18-Understand-Hatree-Fock/";
+    this.page.identifier = "2019/01/18/2019-1-18-Understand-Hatree-Fock/";
+    this.page.title = '简单理解 Hatree-Fock 方法';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-www-ionizing-science.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'uvg5d6PFKOwQMrgsVfD3grKa-gzGzoHsz',
+                'X-LC-Key': 'pORgRsmYGMgcnRO7MKPQFafu',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+        extensions: ['[mhchem]/mhchem.js'],
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("code").map(function(){
+    match = /^\$(.*)\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\$\$(.*)\$\$$/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+    match = /^\\begin/.exec($(this).html());
+    if (match) {
+      $(this).replaceWith("<span class=hpl_mathjax_inline>" + $(this).html() + "</span>");
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,$(this).get(0)]);
+    }
+  });
+});
+</script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<style>
+  .copy-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+    
+    user-select: none;
+    outline: 0;
+  }
+
+  .highlight-wrap .copy-btn {
+    transition: opacity .3s ease-in-out;
+    opacity: 0;
+    padding: 2px 6px;
+    position: absolute;
+    
+      right: 4px;
+      top: 8px;
+    
+  }
+
+  .highlight-wrap:hover .copy-btn,
+  .highlight-wrap .copy-btn:focus {
+    opacity: 1;
+  }
+
+  .highlight-wrap {
+    position: relative;
+  }
+</style>
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
