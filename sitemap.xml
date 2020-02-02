@@ -7,11 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://ionizing.page/</loc>
-  <lastmod>2020-02-02T16:09:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/2020/</loc>
-  <lastmod>2020-02-02T14:33:00Z</lastmod>
+  <lastmod>2020-02-02T16:45:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/archive.html</loc>
@@ -39,6 +35,6 @@
  </url>
  <url>
   <loc>https://ionizing.page/posts/hello-world/</loc>
-  <lastmod>2020-02-02T16:09:00Z</lastmod>
+  <lastmod>2020-02-02T16:42:00Z</lastmod>
  </url>
 </urlset>
