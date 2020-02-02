@@ -1,0 +1,4 @@
+Sitemap: https://ionizing.page/sitemapindex.xml
+
+User-Agent: *
+Host: ionizing.page
