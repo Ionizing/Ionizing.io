@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Viva La Madoka (关于文章 test)</title><link>https://ionizing.page/</link><description></description><atom:link href="https://ionizing.page/categories/cat_test.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><copyright>Contents © 2020 &lt;a href="mailto:PeterSmith_9@outlook.com"&gt;Ionizing&lt;/a&gt; </copyright><lastBuildDate>Sun, 02 Feb 2020 16:54:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Hello World</title><link>https://ionizing.page/posts/hello-world/</link><dc:creator>Ionizing</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Viva La Madoka (关于文章 test)</title><link>https://ionizing.page/</link><description></description><atom:link href="https://ionizing.page/categories/cat_test.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><copyright>Contents © 2020 &lt;a href="mailto:PeterSmith_9@outlook.com"&gt;Ionizing&lt;/a&gt; </copyright><lastBuildDate>Mon, 03 Feb 2020 02:19:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Hello World</title><link>https://ionizing.page/posts/hello-world/</link><dc:creator>Ionizing</dc:creator><description>&lt;p&gt;
 在这里书写你的文章。
 &lt;/p&gt;
 
-&lt;div id="outline-container-org87ae5db" class="outline-2"&gt;
-&lt;h2 id="org87ae5db"&gt;测试&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org87ae5db"&gt;
+&lt;div id="outline-container-org275e7c9" class="outline-2"&gt;
+&lt;h2 id="org275e7c9"&gt;测试&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org275e7c9"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org44d17ad" class="outline-3"&gt;
-&lt;h3 id="org44d17ad"&gt;数学公式&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org44d17ad"&gt;
+&lt;div id="outline-container-org8873865" class="outline-3"&gt;
+&lt;h3 id="org8873865"&gt;数学公式&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8873865"&gt;
 &lt;p&gt;
 \(i\hbar \dfrac{\partial }{\partial t} \Psi = H \Psi\)
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc9d79cd" class="outline-3"&gt;
-&lt;h3 id="orgc9d79cd"&gt;表格&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc9d79cd"&gt;
+&lt;div id="outline-container-org1c548e5" class="outline-3"&gt;
+&lt;h3 id="org1c548e5"&gt;表格&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1c548e5"&gt;
 &lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
 
 
@@ -51,9 +51,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5b0a596" class="outline-3"&gt;
-&lt;h3 id="org5b0a596"&gt;代码块&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5b0a596"&gt;
+&lt;div id="outline-container-org3bbaf36" class="outline-3"&gt;
+&lt;h3 id="org3bbaf36"&gt;代码块&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3bbaf36"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;fn main() {
     println!("Hello world!");
 }

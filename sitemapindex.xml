@@ -7,11 +7,11 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://ionizing.page/categories/cat_test.xml</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
+  <lastmod>2020-02-03T02:19:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/categories/test.xml</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
+  <lastmod>2020-02-03T02:19:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/galleries/rss.xml</loc>
@@ -19,10 +19,10 @@
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/rss.xml</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
+  <lastmod>2020-02-03T02:19:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/sitemap.xml</loc>
-  <lastmod>2020-02-02T17:01:00Z</lastmod>
+  <lastmod>2020-02-03T02:19:00Z</lastmod>
  </sitemap>
 </sitemapindex>
