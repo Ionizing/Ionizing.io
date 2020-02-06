@@ -7,42 +7,50 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://ionizing.page/</loc>
-  <lastmod>2020-02-02T17:00:00Z</lastmod>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/archive.html</loc>
-  <lastmod>2020-02-03T02:19:00Z</lastmod>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/categories/</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://ionizing.page/categories/cat_computerprogramming/</loc>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/categories/cat_test/</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
+  <lastmod>2020-02-06T02:31:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://ionizing.page/categories/cuda-nbody/</loc>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://ionizing.page/categories/draft/</loc>
+  <lastmod>2020-02-06T03:15:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/categories/test/</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/galleries/</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/listings/</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
+  <lastmod>2020-02-06T02:31:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/pages/about/</loc>
-  <lastmod>2020-02-02T17:00:00Z</lastmod>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/pages/notes/</loc>
-  <lastmod>2020-02-02T17:00:00Z</lastmod>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/posts/hello-world/</loc>
-  <lastmod>2020-02-02T16:54:00Z</lastmod>
+  <lastmod>2020-02-06T02:32:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://ionizing.page/posts/nbody-with-cuda/</loc>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
  </url>
 </urlset>
