@@ -83,9 +83,9 @@
         </div>
         
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div id="outline-container-orge751d39" class="outline-2">
-<h2 id="orge751d39">简介</h2>
-<div class="outline-text-2" id="text-orge751d39">
+    <div id="outline-container-org4d63bb0" class="outline-2">
+<h2 id="org4d63bb0">简介</h2>
+<div class="outline-text-2" id="text-org4d63bb0">
 <p>
 本文是研二上学期 CUDA 课程 Project 作业的简单总结。
 </p>
@@ -102,13 +102,13 @@
 </div>
 </div>
 
-<div id="outline-container-org63a4371" class="outline-2">
-<h2 id="org63a4371">环境简介</h2>
-<div class="outline-text-2" id="text-org63a4371">
+<div id="outline-container-org412fdaf" class="outline-2">
+<h2 id="org412fdaf">环境简介</h2>
+<div class="outline-text-2" id="text-org412fdaf">
 </div>
-<div id="outline-container-org43e2143" class="outline-3">
-<h3 id="org43e2143">硬件环境</h3>
-<div class="outline-text-3" id="text-org43e2143">
+<div id="outline-container-org188e1ad" class="outline-3">
+<h3 id="org188e1ad">硬件环境</h3>
+<div class="outline-text-3" id="text-org188e1ad">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <colgroup>
 <col class="org-left">
@@ -208,9 +208,9 @@ GPU 详细信息如下：
 </div>
 </div>
 
-<div id="outline-container-org9311f11" class="outline-3">
-<h3 id="org9311f11">软件环境</h3>
-<div class="outline-text-3" id="text-org9311f11">
+<div id="outline-container-orga8c6dfe" class="outline-3">
+<h3 id="orga8c6dfe">软件环境</h3>
+<div class="outline-text-3" id="text-orga8c6dfe">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <colgroup>
 <col class="org-left">
@@ -235,13 +235,13 @@ GPU 详细信息如下：
 </div>
 </div>
 
-<div id="outline-container-org44a0876" class="outline-2">
-<h2 id="org44a0876">原型程序</h2>
-<div class="outline-text-2" id="text-org44a0876">
+<div id="outline-container-org28c3e9f" class="outline-2">
+<h2 id="org28c3e9f">原型程序</h2>
+<div class="outline-text-2" id="text-org28c3e9f">
 </div>
-<div id="outline-container-org9186b93" class="outline-3">
-<h3 id="org9186b93">相关假设</h3>
-<div class="outline-text-3" id="text-org9186b93">
+<div id="outline-container-org324c80d" class="outline-3">
+<h3 id="org324c80d">相关假设</h3>
+<div class="outline-text-3" id="text-org324c80d">
 <p>
 本项目假设一下条件：
 </p>
@@ -255,9 +255,9 @@ GPU 详细信息如下：
 </div>
 </div>
 
-<div id="outline-container-orgcd05994" class="outline-3">
-<h3 id="orgcd05994">数据结构说明</h3>
-<div class="outline-text-3" id="text-orgcd05994">
+<div id="outline-container-org8649d24" class="outline-3">
+<h3 id="org8649d24">数据结构说明</h3>
+<div class="outline-text-3" id="text-org8649d24">
 <p>
 为提高访存效率，本文使用序列化存储，即将物体状态信息的结构体展开并依次放入
 一维线性数组中，如
@@ -287,13 +287,13 @@ GPU 详细信息如下：
 </div>
 </div>
 
-<div id="outline-container-org42436c7" class="outline-3">
-<h3 id="org42436c7">核心算法</h3>
-<div class="outline-text-3" id="text-org42436c7">
+<div id="outline-container-org85d72a2" class="outline-3">
+<h3 id="org85d72a2">核心算法</h3>
+<div class="outline-text-3" id="text-org85d72a2">
 </div>
-<div id="outline-container-orgbbd882a" class="outline-4">
-<h4 id="orgbbd882a">计算每个物体所受万有引力产生的加速度</h4>
-<div class="outline-text-4" id="text-orgbbd882a">
+<div id="outline-container-orgf6e70bc" class="outline-4">
+<h4 id="orgf6e70bc">计算每个物体所受万有引力产生的加速度</h4>
+<div class="outline-text-4" id="text-orgf6e70bc">
 <p>
 每个物体受的万有引力是其他物体对其万有引力作用的合力
 </p>
@@ -359,9 +359,9 @@ GPU 详细信息如下：
 </pre></div>
 </div>
 </div>
-<div id="outline-container-org5e24c05" class="outline-4">
-<h4 id="org5e24c05">对每个物体的状态进行演化</h4>
-<div class="outline-text-4" id="text-org5e24c05">
+<div id="outline-container-org06d6be2" class="outline-4">
+<h4 id="org06d6be2">对每个物体的状态进行演化</h4>
+<div class="outline-text-4" id="text-org06d6be2">
 <p>
 已知每个物体的加速度，那么每个物体的状态演化过程满足
 </p>
@@ -420,9 +420,9 @@ GPU 详细信息如下：
 </div>
 </div>
 
-<div id="outline-container-org587238b" class="outline-3">
-<h3 id="org587238b">运行结果</h3>
-<div class="outline-text-3" id="text-org587238b">
+<div id="outline-container-org4871895" class="outline-3">
+<h3 id="org4871895">运行结果</h3>
+<div class="outline-text-3" id="text-org4871895">
 <p>
 为方便评估运行性能，本文统一使用 Release 版本程序，让程序演化 512 步（若每一步演
 化的时间过长，可减少演化总步数来节省评估时间），计算出每秒演化的步数 （FPS） ，
@@ -483,9 +483,9 @@ GPU 详细信息如下：
 </div>
 </div>
 
-<div id="outline-container-orgdbe9416" class="outline-2">
-<h2 id="orgdbe9416">优化过程</h2>
-<div class="outline-text-2" id="text-orgdbe9416">
+<div id="outline-container-org8f02304" class="outline-2">
+<h2 id="org8f02304">优化过程</h2>
+<div class="outline-text-2" id="text-org8f02304">
 <p>
 在上一节中本文已经实现了串行版本的 N 体问题模拟程序，因其具有
 \(\mathcal{O}(N^2)\) 的时间复杂度，当模拟物体的数量增加时，计算演化所需的时间呈二
@@ -493,9 +493,9 @@ GPU 详细信息如下：
 </p>
 </div>
 
-<div id="outline-container-orgdd9bde7" class="outline-3">
-<h3 id="orgdd9bde7">优化思路</h3>
-<div class="outline-text-3" id="text-orgdd9bde7">
+<div id="outline-container-org450e68d" class="outline-3">
+<h3 id="org450e68d">优化思路</h3>
+<div class="outline-text-3" id="text-org450e68d">
 <p>
 分析上一节中串行版本程序，可以发现性能热点集中于计算所有物体的加速度上，并且它的
 计算有以下特点：
@@ -512,9 +512,9 @@ GPU 详细信息如下：
 </p>
 </div>
 
-<div id="outline-container-org35e6a58" class="outline-4">
-<h4 id="org35e6a58">线程并行加速</h4>
-<div class="outline-text-4" id="text-org35e6a58">
+<div id="outline-container-org5dd6303" class="outline-4">
+<h4 id="org5dd6303">线程并行加速</h4>
+<div class="outline-text-4" id="text-org5dd6303">
 <p>
 本文为每个物体分配一个线程，每个线程仅涉及读取所有物体的位置信息，而在写入加速信
 息时只写入该物体的加速度信息，因此不存在竞争，这使得此过程可以很轻松地被并行化，
@@ -596,7 +596,7 @@ GPU 详细信息如下：
 
 <ul class="org-ul">
 <li>
-<a id="org8effcf0"></a>正确性验证<br><div class="outline-text-5" id="text-org8effcf0">
+<a id="org88306e8"></a>正确性验证<br><div class="outline-text-5" id="text-org88306e8">
 <p>
 通过在主函数中设置断点，并将 GPU 上演化后的物体状态信息传回内存，与之前 CPU 串行
 版本程序的结果进行比较，发现两者完全一致，因此这个程序的正确性是可以得到保证。对
@@ -611,7 +611,7 @@ GPU 详细信息如下：
 </li>
 
 <li>
-<a id="org5fdbcd7"></a>运行结果<br><div class="outline-text-5" id="text-org5fdbcd7">
+<a id="org12bb79a"></a>运行结果<br><div class="outline-text-5" id="text-org12bb79a">
 <ul class="org-ul">
 <li>固定 <code>numBodies = 1 &lt;&lt; 14</code> ，对每个块分到的线程数 <code>threadsPerBlock</code> 进行扫描</li>
 </ul>
@@ -749,9 +749,9 @@ GPU 详细信息如下：
 </ul>
 </div>
 
-<div id="outline-container-org5b2eeff" class="outline-4">
-<h4 id="org5b2eeff">块内共享显存辅助的线程并行加速</h4>
-<div class="outline-text-4" id="text-org5b2eeff">
+<div id="outline-container-orga6ff467" class="outline-4">
+<h4 id="orga6ff467">块内共享显存辅助的线程并行加速</h4>
+<div class="outline-text-4" id="text-orga6ff467">
 <p>
 在图形显示卡中，可以存放数据的存储器有流处理器的缓存、块内的共享显存和显存，它们
 的访问效率依次降低，考虑到流处理器的缓存过小，且无法人为精确控制对它的读写行为
@@ -851,7 +851,7 @@ GPU 详细信息如下：
 
 <ul class="org-ul">
 <li>
-<a id="org6dd1581"></a>运行结果<br><div class="outline-text-5" id="text-org6dd1581">
+<a id="org1576469"></a>运行结果<br><div class="outline-text-5" id="text-org1576469">
 <p>
 在正确性方面，同样使用设置断点和与 CPU 串行版本比较结果的方法来进行验证，验证结果表
 明该方法与 CPU 版本结果一致。
@@ -986,9 +986,9 @@ GPU 详细信息如下：
 </div>
 </div>
 
-<div id="outline-container-org1636987" class="outline-2">
-<h2 id="org1636987">结果总结</h2>
-<div class="outline-text-2" id="text-org1636987">
+<div id="outline-container-org01ad11d" class="outline-2">
+<h2 id="org01ad11d">结果总结</h2>
+<div class="outline-text-2" id="text-org01ad11d">
 <p>
 本项目以 N 体模拟为题探究了 CUDA 对其的加速效果，通过实验发现，线程并行对这个问
 题有巨大的性能提升，加速比可达 67.8 ，且 N 体中的 N 越大， CUDA 加速效果越明显。
@@ -998,9 +998,9 @@ GPU 详细信息如下：
 </p>
 </div>
 
-<div id="outline-container-org34a6c89" class="outline-3">
-<h3 id="org34a6c89">一点私货</h3>
-<div class="outline-text-3" id="text-org34a6c89">
+<div id="outline-container-org49c82cc" class="outline-3">
+<h3 id="org49c82cc">一点私货</h3>
+<div class="outline-text-3" id="text-org49c82cc">
 <p>
 除了上面提到的算法方面的优化，还有其他的优化方法：
 </p>

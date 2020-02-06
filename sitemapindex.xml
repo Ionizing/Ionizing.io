@@ -7,30 +7,18 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://ionizing.page/categories/cat_computerprogramming.xml</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://ionizing.page/categories/cat_test.xml</loc>
-  <lastmod>2020-02-06T02:30:00Z</lastmod>
+  <lastmod>2020-02-06T07:48:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/categories/cuda-nbody.xml</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://ionizing.page/categories/draft.xml</loc>
-  <lastmod>2020-02-06T03:13:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://ionizing.page/categories/test.xml</loc>
-  <lastmod>2020-02-06T02:30:00Z</lastmod>
+  <lastmod>2020-02-06T07:48:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/rss.xml</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
+  <lastmod>2020-02-06T07:48:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/sitemap.xml</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
+  <lastmod>2020-02-06T07:48:00Z</lastmod>
  </sitemap>
 </sitemapindex>
