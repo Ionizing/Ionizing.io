@@ -1,13 +1,13 @@
 #+BEGIN_COMMENT
 .. title: 使用 CUDA 为 N 体模拟加速
 .. slug: nbody-with-cuda
-.. date: 2020-02-03 10:45:18 UTC+08:00
-.. tags: CUDA NBody, draft
+.. date: 2020-02-06 10:45:18 UTC+08:00
+.. tags: CUDA NBody
 .. category: ComputerProgramming
 .. link: 
 .. description:
 .. type: text
-.. hash_math: true
+.. has_math: true
 
 #+END_COMMENT
 
@@ -19,6 +19,8 @@
 天体力学中， \(N\) 体系统的模拟是典型的多体问题，物体之间的相互作用力是万有引力，每个物体受到剩余
 其他物体的万有引力的合力而产生加速度，进而影响自身的速度和位置。本项目即来研究天体力学中 N 体
 系统演化的 GPU 并行加速问题。
+
+{{{TEASER_END}}}
 
 * 环境简介
 ** 硬件环境
@@ -95,12 +97,12 @@ m_velocity = [
 *** 计算每个物体所受万有引力产生的加速度
 每个物体受的万有引力是其他物体对其万有引力作用的合力
 
-    \begin{equation}
+# \[
     \begin{align}
         a_i &={} - \sum_{j\ne i} G \dfrac{m_j}{||r_{ij}||^2} \cdot \dfrac{r_{ij}}{||r_{ij}||} \\
 	        &={} \sum_{j\ne i} 1 \cdot \dfrac{m_j \cdot (q_i - q_j)}{||q_i - q_j||^3}
     \end{align}
-    \end{equation}
+# \]
 
 公式中 \(r_{ij}\) 是一个矢量，表示物体 \(j\) 到物体 \(i\) 的距离矢量，其模长即是距离的长度；
 由于物体间的力为引力，因此公式前面出现了负号；然而在实现这个公式过程中需要注意在分母中出现了 \(q_i - q_j\) ，
@@ -112,7 +114,7 @@ m_velocity = [
 显然，这个过程的时间复杂度为 \(\mathcal{O} (N^2)\) ，空间复杂度为 \(\mathcal{O}(N)\) 。
 
 相关代码如下:
-#+caption: 计算两体间的力加速度
+# #+caption: 计算两体间的力加速度
 #+BEGIN_SRC C++
 float3 calcSingleAccel(float4 posMassA, float4 posMassB, float3 accel) {
     float3 dr;
@@ -136,7 +138,7 @@ float3 calcSingleAccel(float4 posMassA, float4 posMassB, float3 accel) {
 }
 #+END_SRC
 
-#+caption: 计算所有物体的加速度
+# #+caption: 计算所有物体的加速度
 #+BEGIN_SRC C++
 void calcTotalAccel(float3 m_position[],
                     float3 m_accel[],
@@ -156,12 +158,12 @@ void calcTotalAccel(float3 m_position[],
 *** 对每个物体的状态进行演化
 已知每个物体的加速度，那么每个物体的状态演化过程满足
 
-\begin{equation}
+# \begin{equation}
 \begin{align}
     v_i &={} \int_{t_0}^{t_1} a_i dt \\
     q_i &={} \int_{t_0}^{t_1} v_i dt
 \end{align}
-\end{equation}
+# \end{equation}
 
 显然，我们需要先对 \(v_i\) 进行演化，每个时间间隔内 \(v_i\) 的增量为加速度和时间
 间隔的乘积 \(a_i \cdot dt\) 。由于忽略了物体形状大小和碰撞，系统的机械能守恒，在
@@ -210,7 +212,6 @@ void propergate(float4 m_position[],
 化的时间过长，可减少演化总步数来节省评估时间），计算出每秒演化的步数 （FPS） ，
 通过比较 FPS 来反映程序的运行效率。
 
-:+Name: CPU
 |-----------+--------|
 | numBodies |    FPS |
 |-----------+--------|
@@ -222,15 +223,17 @@ void propergate(float4 m_position[],
 |      8192 |    1.4 |
 |-----------+--------|
 
-当物体数量 \(N\) 多余 2^13 = 8192 是， CPU 版本的程序每一步运行时间过长，因此不
+当物体数量 \(N\) 多于 2^13 = 8192 时， CPU 版本的程序每一步运行时间过长，因此不
 再继续测试。
+
+[[../../images/nbody-with-cuda/cpu.png]]
 
 从图中可以明显看出，串行版本程序的运行效率是二次方递减的（斜率为 2 ），这相当符
 合 \(\mathcal{O}(N^2)\) 的时间复杂度特征。
 
 * 优化过程
 在上一节中本文已经实现了串行版本的 N 体问题模拟程序，因其具有
-\(\mathcal{O}(N^2\) 的时间复杂度，当模拟物体的数量增加时，计算演化所需的时间呈二
+\(\mathcal{O}(N^2)\) 的时间复杂度，当模拟物体的数量增加时，计算演化所需的时间呈二
 次方增加，这个增长速度显然不能使我们满意。
 
 ** 优化思路
@@ -319,6 +322,8 @@ __global__ void integratePositionGPU(float* posMass,
 版本程序的结果进行比较，发现两者完全一致，因此这个程序的正确性是可以得到保证。对
 比截图如下：
 
+[[../../images/nbody-with-cuda/GPUparallel_correctness.png]]
+
 **** 运行结果
 + 固定 =numBodies = 1 << 14= ，对每个块分到的线程数 =threadsPerBlock= 进行扫描
  
@@ -334,6 +339,8 @@ __global__ void integratePositionGPU(float* posMass,
 |             512 | 25.1 |
 |            1024 | 23.3 |
 |-----------------+------|
+
+[[../../images/nbody-with-cuda/gpu_para_tpb.png]]
 
 从上图中，我们可以很明显看出，当 =threadsPerBlock = 64= 时能最大化发挥 GPU 每个
 块的计算能力，尽管在 =deviceInfo= 中每个块最多可以分配 =1024= 个线程，但每个块的
@@ -359,6 +366,8 @@ __global__ void integratePositionGPU(float* posMass,
 |     32876 |    6.6 |
 |-----------+--------|
 
+[[../../images/nbody-with-cuda/gpu_para_nb.png]]
+
 从 =numBodies = 4096= 开始， FPS 的变化趋势已经大致和模拟物体数量呈负二次方速率
 递减，故可以认为当模拟物体数量 =numBodies= 为 4096 时，本机的显卡已经最大化发挥
 了它的性能（在当前算法优化程度和编译参数下）。对比串行版本模拟 8192 个物体只有
@@ -366,6 +375,7 @@ __global__ void integratePositionGPU(float* posMass,
 比达到 67.8 ，效率陡然提升了近两个数量级，由此可见本项目 N 体模拟是一个十分适合
 并行加速的问题，且不需要过多修改代码就能带来相当大的性能收益。
 
+[[../../images/nbody-with-cuda/GPUparallel_benchmark.png]]
 
 *** 块内共享显存辅助的线程并行加速
 在图形显示卡中，可以存放数据的存储器有流处理器的缓存、块内的共享显存和显存，它们
@@ -398,7 +408,7 @@ __global__ void integratePositionGPU(float* posMass,
 
 修改后的代码如下：
 
-#+BEGIN_SRC cuda
+#+BEGIN_SRC c++
 __device__ void
 tileCalAccsGPU(float mPos_i[4],
                float  accel[4]) {
@@ -412,7 +422,7 @@ tileCalAccsGPU(float mPos_i[4],
 由于在迪奥戈这个函数前各个线程已经把自身对应的 =mPos= 写入了 =sh_mPos= 内，此处
 对 =sh_mPos= 遍历不会产生无效访问。
 
-#+BEGIN_SRC cuda
+#+BEGIN_SRC c++
 __global__ void
 calcTotAccsGPU(float* mPos,
                float* mAcc,
@@ -455,7 +465,11 @@ calcTotAccsGPU(float* mPos,
 
 **** 运行结果
 在正确性方面，同样使用设置断点和与 CPU 串行版本比较结果的方法来进行验证，验证结果表
-明该方法与 CPU 版本结果一致。该测试依旧固定 =numBodies = 16384= ，对每个块分到的
+明该方法与 CPU 版本结果一致。
+
+[[../../images/nbody-with-cuda/GPUdynShMem_correctness.png]]
+
+该测试依旧固定 =numBodies = 16384= ，对每个块分到的
 线程数进行扫描，得到结果如下：
 
 |----------+-------|
@@ -471,9 +485,29 @@ calcTotAccsGPU(float* mPos,
 |     1024 | 23.56 |
 |----------+-------|
 
+[[../../images/nbody-with-cuda/gpu_dsm_ts.png]]
+
+固定 =tileSize = 256=, 扫描 =numBodies= ，结果如下：
+|-----------+---------|
+| numBodies |     FPS |
+|-----------+---------|
+|       512 | 2790.19 |
+|      1024 | 2140.02 |
+|      2048 | 1145.73 |
+|      4096 |  315.47 |
+|      8192 |   96.20 |
+|     12800 |   42.80 |
+|     16384 |   26.34 |
+|     25600 |   11.17 |
+|     32768 |    6.87 |
+|-----------+---------|
+
+[[../../images/nbody-with-cuda/gpu_dsm_nb.png]]
+
 对比使用线程并行的版本，使用共享显存加速的程序在达到显卡负载峰值后对计算效率的提
-升十分有限——仅有个位数的帧数提升。（当然不排除本人程序设计水平太低，没有使用正确
-的打开方式，如果有大佬路过且不吝赐教，本人不胜感激）
+升十分有限——仅有个位数的帧数提升。
+
+[[../../images/nbody-with-cuda/GPUdynShMem_benchmark.png]]
 
 * 结果总结
 本项目以 N 体模拟为题探究了 CUDA 对其的加速效果，通过实验发现，线程并行对这个问
@@ -485,7 +519,7 @@ calcTotAccsGPU(float* mPos,
 ** 一点私货
 除了上面提到的算法方面的优化，还有其他的优化方法：
 1. 在编译选项中加入 =--use_fast_math= ，可以试线程并行版本的程序运行效率直接 x2
-   ，对使用共享显存的线程并行程序加速效果反而没那么夸张，运行效率提升只有一半；
+   ，对使用共享显存的线程并行程序加速效果反而没那么夸张，运行效率只能 x1.6 左右；
 2. 对访存进行优化，比如把需要频繁访问的数据放在栈上进行访问，而不是频繁从堆中访问；
 3. 使用只读数据缓存，；
 4. 切换计算能力；
