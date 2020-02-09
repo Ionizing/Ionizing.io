@@ -275,7 +275,7 @@ TIMEZONE = "Asia/Shanghai"
 # One or more folders containing files to be copied as-is into the output.
 # The format is a dictionary of {source: relative destination}.
 # Default is:
-# FILES_FOLDERS = {'files': ''}
+FILES_FOLDERS = {'files/post_assets': 'files'}
 # Which means copy 'files' into 'output'
 
 # One or more folders containing code listings to be processed and published on
@@ -885,7 +885,7 @@ IMAGE_THUMBNAIL_FORMAT = '{name}.thumbnail{ext}'
 # This list MAY be incomplete since pygments adds styles every now and then.
 # Check with list(pygments.styles.get_all_styles()) in an interpreter.
 #
-CODE_COLOR_SCHEME = 'monokai'
+CODE_COLOR_SCHEME = 'friendly'
 
 # FAVICONS contains (name, file, size) tuples.
 # Used to create favicon link like this:
