@@ -6,19 +6,43 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
+  <loc>https://ionizing.page/categories/cat_computerprogramming%202.xml</loc>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://ionizing.page/categories/cat_computerprogramming.xml</loc>
-  <lastmod>2020-02-06T07:48:00Z</lastmod>
+  <lastmod>2020-02-09T10:59:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://ionizing.page/categories/cat_vasp.xml</loc>
+  <lastmod>2020-02-09T10:59:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://ionizing.page/categories/cuda-nbody%202.xml</loc>
+  <lastmod>2020-02-06T03:37:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/categories/cuda-nbody.xml</loc>
-  <lastmod>2020-02-06T07:48:00Z</lastmod>
+  <lastmod>2020-02-09T10:59:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://ionizing.page/categories/draft.xml</loc>
+  <lastmod>2020-02-09T09:33:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://ionizing.page/categories/macos.xml</loc>
+  <lastmod>2020-02-09T10:59:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://ionizing.page/categories/vasp.xml</loc>
+  <lastmod>2020-02-09T10:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/rss.xml</loc>
-  <lastmod>2020-02-06T07:48:00Z</lastmod>
+  <lastmod>2020-02-09T10:59:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://ionizing.page/sitemap.xml</loc>
-  <lastmod>2020-02-06T07:48:00Z</lastmod>
+  <lastmod>2020-02-09T10:59:00Z</lastmod>
  </sitemap>
 </sitemapindex>

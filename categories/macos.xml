@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Viva La Madoka (关于文章 macOS)</title><link>https://ionizing.page/</link><description></description><atom:link href="https://ionizing.page/categories/macos.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><copyright>Contents © 2020 &lt;a href="mailto:PeterSmith_9@outlook.com"&gt;Ionizing&lt;/a&gt; </copyright><lastBuildDate>Sun, 09 Feb 2020 10:59:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>在 macOS 上编译 VASP 5.4.4</title><link>https://ionizing.page/posts/compile-vasp-on-macos/</link><dc:creator>Ionizing</dc:creator><description>&lt;div&gt;&lt;p&gt;
+因组里的服务器放假期间关闭，又适逢疫情导致假期延长好久不能使用 VASP ，故考虑在笔
+记本上编译一个 VASP ，跑一些小的体系试验用。
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://ionizing.page/posts/compile-vasp-on-macos/"&gt;阅读更多…&lt;/a&gt; (剩余阅读时间 7 分钟)&lt;/p&gt;&lt;/div&gt;</description><category>macOS</category><category>VASP</category><guid>https://ionizing.page/posts/compile-vasp-on-macos/</guid><pubDate>Sat, 08 Feb 2020 15:08:21 GMT</pubDate></item></channel></rss>
