@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://ionizing.page/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
+  <lastmod>2020-02-10T08:25:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/archive.html</loc>
@@ -15,74 +15,42 @@
  </url>
  <url>
   <loc>https://ionizing.page/categories/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
+  <lastmod>2020-02-09T11:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/categories/cat_computerprogramming/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/cat_computerprogramming/index%202.html</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
+  <lastmod>2020-02-09T11:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/categories/cat_vasp/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
+  <lastmod>2020-02-09T11:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/categories/cuda-nbody/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/cuda-nbody/index%202.html</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/draft/</loc>
-  <lastmod>2020-02-09T09:34:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/index%202.html</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
+  <lastmod>2020-02-09T11:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/categories/macos/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
+  <lastmod>2020-02-09T11:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/categories/vasp/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
+  <lastmod>2020-02-09T11:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/pages/about/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/pages/about/index%202.html</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
+  <lastmod>2020-02-09T11:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/pages/notes/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/pages/notes/index%202.html</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
+  <lastmod>2020-02-09T11:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/posts/compile-vasp-on-macos/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/posts/n-queens/</loc>
-  <lastmod>2020-02-09T09:34:00Z</lastmod>
+  <lastmod>2020-02-09T11:00:00Z</lastmod>
  </url>
  <url>
   <loc>https://ionizing.page/posts/nbody-with-cuda/</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/posts/nbody-with-cuda/index%202.html</loc>
-  <lastmod>2020-02-06T03:37:00Z</lastmod>
+  <lastmod>2020-02-09T11:02:00Z</lastmod>
  </url>
 </urlset>
