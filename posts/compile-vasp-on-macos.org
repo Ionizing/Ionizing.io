@@ -308,7 +308,7 @@ $ ls bin/
 vasp_gam vasp_ncl vasp_std
 #+END_SRC
 
-* 测试编译结果
+* 测试编译结果 :
 下载测试用的 VASP 输入文件 [[../../files/DiamondSirel.tgz][DiamondSirel.tgz]] 这是一个结构优化的任务。
 
 解压并复制 =vasp_std= 到这个文件夹，然后 =mpirun -np 4 ./vasp_std=
