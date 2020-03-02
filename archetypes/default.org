@@ -1,0 +1,10 @@
+#+TITLE: '{{ replace .Name "-" " " | title }}'
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS: hugo dummy
+#+DATE: "{{ .Date. }}"
+#+HUGO_CATEGORIES: dummy
+#+HUGO_DRAFT: true
+#+HUGO_BASE_DIR: ~/Blog
+#+HUGO_SECTION: post/dummy
+#+EXPORT_FILE_NAME: index
+#+OPTIONS: H:9

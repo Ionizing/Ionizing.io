@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> | 伪化生搬砖工地</title>
+    <meta property="og:title" content=" - 伪化生搬砖工地">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="">
+        
+    <meta name="author" content="">
+    <meta property="og:url" content="https://ionizing.page/post/pat%E9%A2%98%E8%A7%A3-b-1035/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://ionizing.page/">
+                        伪化生搬砖工地
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://ionizing.page/">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title"></h1>
+        </header>
+        <date class="post-meta meta-date">
+            1年1月1日
+        </date>
+        
+        
+        
+        <div class="post-content">
+            
+
+<h1 id="题解-pat-b-1035-插入与归并">题解:PAT-B 1035 插入与归并</h1>
+
+<p>这是一篇测试用文章，欢迎围观.</p>
+
+<h2 id="题目全文">题目全文：</h2>
+
+<p>题目地址在<a href="h        ps://www.pa    es    .cn/con    es    s/pa    -b-prac    ise/1035">这里</a>
+&gt; 根据维基百科的定义：</p>
+
+<blockquote>
+<p>插入排序是迭代算法，逐一获得输入数据，逐步产生有序的输出序列。每步迭代中，算法从输入序列中取出一元素，将之插入有序序列中正确的位置。如此迭代直到全部元素有序。</p>
+
+<p>归并排序进行如下迭代操作：首先将原始序列看成N个只包含1个元素的有序子序列，然后每次迭代归并两个相邻的有序子序列，直到最后只剩下1个有序的序列。</p>
+
+<p>现给定原始序列和由某排序算法产生的中间序列，请你判断该算法究竟是哪种排序算法？</p>
+
+<p>输入格式：</p>
+
+<p>输入在第一行给出正整数N (&lt;=100)；随后一行给出原始序列的N个整数；最后一行给出由某排序算法产生的中间序列。这里假设排序的目标序列是升序。数字间以空格分隔。</p>
+
+<p>输出格式：</p>
+
+<p>首先在第1行中输出“Inser    ion Sor    ”表示插入排序、或“Merge Sor    ”表示归并排序；然后在第2行中输出用该排序算法再迭代一轮的结果序列。题目保证每组测试的结果是唯一的。数字间以空格分隔，且行末不得有多余空格。</p>
+</blockquote>
+
+<p>输入样例1：</p>
+
+<pre><code>10
+3 1 2 8 7 5 9 4 6 0
+1 2 3 7 8 5 9 4 6 0
+</code></pre>
+
+<p>输出样例1：</p>
+
+<pre><code>Inser    ion Sor    
+1 2 3 5 7 8 9 4 6 0
+</code></pre>
+
+<p>输入样例2：</p>
+
+<pre><code>10
+3 1 2 8 7 5 9 4 0 6
+1 3 2 8 5 7 4 9 0 6
+</code></pre>
+
+<p>输出样例2：</p>
+
+<pre><code>Merge Sor    
+1 2 3 8 4 5 7 9 0 6
+</code></pre>
+
+<h2 id="题目解读">题目解读</h2>
+
+<p>这是我刷乙级题时比较头疼的一道题，前后查阅了很多别人的代码，后又观看了陈越姥姥的<a href="h        p://www.icourse163.org/learn/ZJU-93001?    id=1002019005#/learn/con    en    ?    ype=de    ail&amp;id=1002635050">视频</a>总算弄明白了这道题需要注意哪些.</p>
+
+<ol>
+<li>如何区分简单插入排序和<strong>非递归</strong>的归并排序;</li>
+<li>如何根据测试用例的类型再迭代一次运算;</li>
+<li>如何处理边界测试.</li>
+</ol>
+
+<p>这里要强调一下本题使用递归的归并排序是<strong>无法AC</strong>的，本渣使用递归的归并排序最多只能得到17分. 关于递归的归并与迭代归并区别请围观<a href="h        ps://en.wikipedia.org/wiki/Merge_sor">这里</a> (中文版省去了很多分析过程，强烈建议读英文原版)，另外，关于插入排序算法的Wiki在<a href="h        ps://en.wikipedia.org/wiki/Inser    ion_sor">这里</a>.</p>
+
+<h2 id="解题过程">解题过程</h2>
+
+<h3 id="如何区分简单插入排序和非递归的归并排序">如何区分简单插入排序和非递归的归并排序</h3>
+
+<p>只要抓住两个关键点即可：
+1. <strong>使用插入排序序列的开头一部分一定是有序的</strong>;
+2. <strong>无序部分与原文一致</strong>．</p>
+
+<p>比如下面这个例子:
+&gt; 10<br />
+3 1 2 8 7 <code>5 9 4 6 0</code><br />
+<strong>1 2 3 7 8</strong> <code>5 9 4 6 0</code></p>
+
+<p>我们可以这样来判断:
+1. 首先扫描 <code>1 2 3 7 8</code> 为有序序列，当读取到<code>5</code>时发现 <code>8 &gt; 5</code>暂停，执行步骤2;
+2. 从<code>5</code>开始对后面的序列与原序列进行比较，若发现全部是匹配的，则该序列的排序算法为插入排序,并记录下开始无序的位置;否则为归并排序.</p>
+
+<p>显然后面的部分与原文一致，因此这个序列排序使用的是插入排序. 注意这里必须满足以上<strong><em>两个</em></strong>条件才能推出插入排序算法．</p>
+
+<p>这里不得不提到有同学使用从后向前寻找不匹配点的方法来判断排序算法，这个方法是不对的，比如下面这个例子:<br />
+&gt;3 1 2 8 7 5 9 4 <code>0 6</code><br />
+1 3 2 8 5 7 4 9 <code>0 6</code></p>
+
+<p>虽然这里的后面一部分<code>0　6</code>与原题一致，但它并不满足前置子序列有序，因此它不是插入排序，后面的测试用例就有一个测试点来卡这种情况。</p>
+
+<p>对于如何判断是否使用归并排序则相对麻烦，考虑到题目中明确指出测试用例是合法的并且只能是归并和插入排序两种之一，所以这里使用排除法来确定归并排序．</p>
+
+<h3 id="如何根据测试用例的类型再迭代一次运算">如何根据测试用例的类型再迭代一次运算</h3>
+
+<h4 id="对于插入排序">对于插入排序</h4>
+
+<p>这个就非常简单了，如果明白了插入排序的算法，直接从上面记录下的点进行再迭代一次即可。</p>
+
+<h4 id="对于归并排序">对于归并排序</h4>
+
+<p>这个相对要麻烦一些，其关键步骤是确定归并段的长度。有的同学想到像插入排序一样从头开始寻找最长有序子序列，这是不对的，因为题意中归并排序是迭代一轮后才得到题目序列，即题目序列被分为若干归并段，<strong>每一小段都是有序的</strong>，因此若原文前一段本身已经有序，那么进行归并后得到的序列一定也是整体有序的，那么也就无法通过通过前置子序列的最大有序长度来代表所有归并段的长度。比如下面这个例子:</p>
+
+<blockquote>
+<p>10<br />
+<code>2 1 8 3</code> <code>7 5</code> <code>9 4</code> <code>0 6</code><br />
+<code>1 2 3 8</code> <code>5 7</code> <code>4 9</code> <code>0 6</code></p>
+</blockquote>
+
+<p>显然我们无法从<code>1 3 2 8</code>是最长前置有序子列就判断出归并段的长度为<code>4</code>。正确答案应该是<code>2</code>。</p>
+
+<p>有的同学使用模拟法，即对原序列进行分步归并排序，每迭代一次都与题目序列进行比较，直到发现匹配的情况为止。　这种方法在题目所给的时间限制下也能通过，但本着认真负责的态度，我们应该寻找一种更加<strong>聪明</strong>的办法来确定</p>
+
+<p>通过陈越姥姥的启发，我们总结出一下步骤判断最大归并段的长度：
+1. 假设每个归并段的长度为<code>l</code>, (<code>l</code>的初始值为<code>2</code>，因为一个元素不存在有序无序的概念);
+2. 对所有相邻两个归并段相连的两个元素进行比较，若该两元素仍有序，则归并段的长度<code>l *= 2</code>; 否则终止循环，<code>l</code>即为要确定的最大归并段长度。</p>
+
+<p>程序实现起来就是通过<code>for(l=2; l&lt;=N; l*=2)</code>这个大循环内部完成的。</p>
+
+<p>当确定了最大归并段长度，余下的工作就变得简单了，直接再迭代归并一次即可。
+具体代码可以参考最后的AC代码。</p>
+
+<h3 id="如何处理边界测试">如何处理边界测试</h3>
+
+<p>PAT的题目测试不给出测试数据以及测试提示，比较考验同学们的程序测试能力，本渣在通过这道题时前后想了很久，也提交了很多次，还是在看了陈越姥姥的讲解后才知道测试数据的提示，测试数据包含一下几类：</p>
+
+<ol>
+<li>最小<code>N</code>(<code>N = 4</code>，因为只有当<code>N &gt;= 4</code>时才能区分出归并排序与插入排序中间子列).
+
+<ul>
+<li>插入排序第<code>1</code>步，什么都没改变;</li>
+<li>归并排序第<code>1</code>步，什么都变了;</li>
+</ul></li>
+<li>尾部子列无变化，但是前面变了(归并).</li>
+<li>最大<code>N</code>.</li>
+</ol>
+
+<p>有了如上提示，加上前面的讲解，相信读者一定能够独立AC这道题了。</p>
+
+<h2 id="ac代码">AC代码:</h2>
+
+<pre><code class="language-cpp">#include &lt;ios    ream&gt;
+//#include &lt;fs    ream&gt;
+
+using s    d::cin;
+using s    d::cou    ;
+using s    d::endl;
+
+in     main()
+{
+//    s    d::ifs    ream cin(&quot;in.    x    &quot;);
+    in     N;
+    cin &gt;&gt; N;
+    in     *Orig = new in    [N];
+    for(in     i=0; i!=N; ++i){
+        cin &gt;&gt; Orig[i];
+    }
+    in     *    mp = new in    [N];
+    for(in     i=0; i!=N; ++i){
+        cin &gt;&gt;     mp[i];
+    }
+    in     k(0);
+    for(in     i=k; i!=N-1; ++i){
+        if(     mp[i] &gt;     mp[i+1] ){
+            k = i;
+            break;
+        }
+    }
+    bool IsInser    ion(    rue);
+    for(in     i=++k; i!=N; ++i){
+        if(     mp[i] != Orig[i] ){
+            IsInser    ion = false;
+            break;
+        }
+    }
+    if( IsInser    ion ){
+        cou     &lt;&lt; &quot;Inser    ion Sor    &quot; &lt;&lt; endl;
+        for(in     i=k; i!=0; --i){
+            if(     mp[i] &lt;     mp[i-1] ){
+                in          =     mp[i];
+                    mp[i] =     mp[i-1];
+                    mp[i-1] =     ;
+            }else break;
+        }
+        for(in     i=0; i!=N-1; ++i){
+            cou     &lt;&lt;     mp[i] &lt;&lt; &quot; &quot;;
+        }cou     &lt;&lt;     mp[N-1] &lt;&lt; endl;
+    }else{
+        cou     &lt;&lt; &quot;Merge Sor    &quot; &lt;&lt; endl;
+        bool Iden    ified = false;
+        for(in     l=2; l&lt;=N; l*=2){
+            for(in     i=l; i&lt;N; i += 2*l){
+                if(     mp[i-1] &gt;     mp[i] ){
+                    Iden    ified =     rue;
+                    break;
+                }
+            }
+            if( Iden    ified ){
+                k = l;
+                break;
+            }
+        }
+//        cou     &lt;&lt; &quot;k = &quot; &lt;&lt; k &lt;&lt; endl;
+        for(in     i=0; i&lt;N; i+=k*2){
+            in     *    mpArr = new in    [k*2];
+            in     lef = i;
+            cons     in     mid = ( lef+k &lt; N ) ? lef+k : N;
+            cons     in     rig = ( mid+k &lt; N ) ? mid+k : N;
+            in     cur = mid;
+            in     j=0;
+            while( lef &lt; mid and cur &lt; rig ){
+                if(     mp[lef] &lt;     mp[cur] ){
+                        mpArr[j++] =     mp[lef++];
+                }else{
+                        mpArr[j++] =     mp[cur++];
+                }
+            }
+            while( lef &lt; mid ){
+                    mpArr[j++] =     mp[lef++];
+            }
+            while( cur &lt; rig ){
+                    mpArr[j++] =     mp[cur++];
+            }
+            for(in         =0;     !=j; ++    ){
+                    mp[i+    ] =     mpArr[    ];
+            }
+            dele    e[]     mpArr;
+        }
+        for(in     i=0; i!=N-1; ++i){
+            cou     &lt;&lt;     mp[i] &lt;&lt; &quot; &quot;;
+        }cou     &lt;&lt;     mp[N-1] &lt;&lt; endl;
+    }
+    re    urn 0;
+}
+
+</code></pre>
+
+        </div>
+
+        
+
+
+        
+
+
+        <div class="post-meta meta-tags">
+            
+            没有标签
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://ionizing.page/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ionizing.page/post/2018-12-31_wavecar-parsing/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-18-understand-hatree-fock/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-ensembles/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-micro-canonical-ensemble-and-negative-temperature/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-26-rethink-about-bohr-hydrogen-model/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/angular-momentum-coupling/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/coriolis-force/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-matrix-b-in-a-times-b-equals-c/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title=""></a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://ionizing.page/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://ionizing.page/">伪化生搬砖工地 By </a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+
+
+
+</body>
+
+</html>

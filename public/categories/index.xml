@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/categories/</link>
+    <description>Recent content in Categories on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 06 Feb 2020 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Programming</title>
+      <link>https://ionizing.page/categories/Programming/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://ionizing.page/categories/Programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VASP</title>
+      <link>https://ionizing.page/categories/VASP/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://ionizing.page/categories/VASP/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

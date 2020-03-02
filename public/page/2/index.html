@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+	<meta name="generator" content="Hugo 0.59.1" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>伪化生搬砖工地 | </title>
+    <meta property="og:title" content="伪化生搬砖工地 | ">
+    <meta property="og:type" content="website">
+    <meta name="Keywords" content="">
+    <meta name="description" content="">
+    <meta property="og:url" content="https://ionizing.page/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <link rel="alternate" type="application/rss+xml+xml" href="https://ionizing.page/index.xml" title="伪化生搬砖工地" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <h1>
+                        <a id="logo" href="https://ionizing.page/">
+                            伪化生搬砖工地
+                        </a>
+                    </h1>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://ionizing.page/">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/how-to-struggle-with-vasp/" title=""></a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            1年1月1日
+        </date>
+        
+        <div class="post-content">
+            警告：本渣刚学 VASP 不久，对 VASP 的算法、参数不甚了解，如果有大触偶遇此文，并发现有错误，请在评论区指出或邮箱联系本渣。
+ 前言 本文是本渣从 3 月初以来刚接触 VASP 所学技能与遇到坑的总结，以纪念我为文献中一副图而逝去的最近一星期。何为 VASP 以及VASP 能做什么？本渣只是一个刚学的菜鸡，恕不能回答，请自行 Google 解决。
+VASP 的输入文件 想要执行一次最简单的计算，VASP 需要至少4个文件，它们分别是：
+ INCAR：VASP 计算的核心文件，基本等同于本次计算的司令部。它包含了“算什么”、“怎么算”、和“输入、输出那些”这三个方面的内容，它的几项常用（PBE计算中）参数在后面我们会较为详细地了解到； POSCAR：决定元胞结构的文件。它包含了元胞的格子类型、格子大小、以和格子内所有原子的种类及坐标，在弛豫时，它还可以指定哪些原子可以在哪些方向上进行弛豫，在 VASP 中我们无需给出原子间的成键情况，仅给出原子的坐标即可； KPOINTS：描述 VASP 计算中对元胞格子的 mesh 精细度，或指定格子中哪些点的信息需要计算（？这里留个问号，本渣也不是很懂这里）； POTCAR：赝势库，按 POSCAR 中元素列出顺序给出了对应元素的赝势库。  以上四个文件全为文本文件。当然我们还可以命令 VASP 读取上一次的计算结果，比如 WAVECAR ，比如 CHGCAR ，用以更快地收敛或者执行某些特殊的计算。
+我们需要 VASP 的哪些输出文件？（目前为止）  OUTCAR：VASP 的计算日志，里面包含了几乎所有我们需要的结果，明文存储，随计算过程实时更新； WAVECAR：二进制文件，经常很大，计算结束时会将内存中的波函数平面波系数写入该文件。（我对这个文件所了解的仅有这些； OSZICAR：VASP 计算过程中能量收敛日志，每个电子步结束时写入； EIGENVAL：VASP 计算出的能带信息保存在这个文件中，计算结束时被写入（可以使用 Py hon 等工具以它为输入绘制能带图，但本渣太菜，目前还没写这个小程序； CONTCAR：在弛豫中，这个文件包含了VASP每个离子步结束时系统优化得到的元胞原子的坐标，每个离子步结束时写入；如果希望从还未收敛的弛豫结果继续计算，应直接将这个文件复制并重命名为 POSCAR 继续计算即可； CHG &amp; CHGCAR：这个两个文件都包含了元胞中原子的位置信息，以及电荷密度信息，但 CHG 比 CHGCAR 小一些，因其不包含 PAW one cen re； vasprun.……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/how-to-struggle-with-vasp/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/pat%E9%A2%98%E8%A7%A3-b-1035/" title=""></a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            1年1月1日
+        </date>
+        
+        <div class="post-content">
+            题解:PAT-B 1035 插入与归并 这是一篇测试用文章，欢迎围观.
+题目全文： 题目地址在这里 &gt; 根据维基百科的定义：
+ 插入排序是迭代算法，逐一获得输入数据，逐步产生有序的输出序列。每步迭代中，算法从输入序列中取出一元素，将之插入有序序列中正确的位置。如此迭代直到全部元素有序。
+归并排序进行如下迭代操作：首先将原始序列看成N个只包含1个元素的有序子序列，然后每次迭代归并两个相邻的有序子序列，直到最后只剩下1个有序的序列。
+现给定原始序列和由某排序算法产生的中间序列，请你判断该算法究竟是哪种排序算法？
+输入格式：
+输入在第一行给出正整数N (&lt;=100)；随后一行给出原始序列的N个整数；最后一行给出由某排序算法产生的中间序列。这里假设排序的目标序列是升序。数字间以空格分隔。
+输出格式：
+首先在第1行中输出“Inser ion Sor ”表示插入排序、或“Merge Sor ”表示归并排序；然后在第2行中输出用该排序算法再迭代一轮的结果序列。题目保证每组测试的结果是唯一的。数字间以空格分隔，且行末不得有多余空格。
+ 输入样例1：
+10 3 1 2 8 7 5 9 4 6 0 1 2 3 7 8 5 9 4 6 0  输出样例1：
+Inser ion Sor 1 2 3 5 7 8 9 4 6 0  输入样例2：
+10 3 1 2 8 7 5 9 4 0 6 1 3 2 8 5 7 4 9 0 6  输出样例2：……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/pat%E9%A2%98%E8%A7%A3-b-1035/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/physchem-revise-1/" title=""></a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            1年1月1日
+        </date>
+        
+        <div class="post-content">
+            这是这个系列的第一篇，也是第一次写这种类型的札记，如果有纰漏，还请在评论区指出，谢谢各位！
+热力学量说明 物理化学中，热力学主要研究7个热力学量，这7个量如下：
+ $U$，系统的热力学能，或称内能，属于状态函数，$U=f(T)$，无法求出$U$的值，但可以求出$\Del a U$的值，单位为J； $Q$，系统与环境交换的热量，当系统放热时，$Q$为负值；系统吸热，则$Q$为正值，单位为J； $W$，环境对系统所做的功，分为体积功和非体积功，单位为J； $H$，焓，定义为 $H=U+pV$，无实际含义，仅为计算方便而产生，属于状态函数，$H=f(T)$，与$U$一样，无法求出$H$的值，但可以求出$\Del a H$的值，单位为J； $S$，大名鼎鼎的熵，定义为$S=\in _A^B (\dfrac{\del a Q}{T})_R$，属于状态函数，处于绝对零度时完美晶体的熵为0，单位J$\cdo $K$^{-1}$ $A$，亥姆霍兹自由能，定义为$A=U-TS$，为状态函数，无法求出$A$的值，但可以求出$\Del a A$的值，单位为J； $G$，吉布斯自由能，定义为$G=H-TS$，为状态函数，无法求出$G$的值，但可以求出$\Del a G$的值，单位为J；  以上说明中，状态函数是指当系统状态一定时，其值即确定，亦即在某个过程中其变化量$\Del a f$只与始末状态有关，与过程细节无关。这个性质非常重要，物理化学常见的设计过程求解热力学量的理论基础即在于此。
+热力学四大定律 是的，热力学有四大定律，分别为热力学第零定律、热力学第一定律、热力学第二定律和热力学第三定律。
+热力学第零定律 如果两个系统分别与处于确定状态的第三个系统达到热平衡，则这两个系统彼此也将处于热平衡。
+这个定律定义了温度的概念，当两个系统相互接触处于热平衡后，它们的性质不再变化，我们称之具有相同的温度。而定义中提到的第三系统为温度计的产生奠定了理论基础。
+热力学第一定律 在变化过程中，系统的热力学能变化量表示为系统和环境的热交换量与外界对系统所做功的总和。 写成公式即为 $ \Del a U = Q + W $， 或者写成微分形式$ \ma hrm{d}U = \del a Q + \del a W $
+热力学第二定律 文字可表述为：
+ 克劳修斯表述：不可能把热从低温物体传到高温物体，而不引起其他变化； 开尔文表述：不可能从单一热源取出热使之完全变为功，而不发生其他变化。
+ 数学形式：
+ 克劳修斯不等式表述形式：$ \Del a S_{A\ o B}-\sum_A^B \dfrac{\del a Q}{T} \geq 0 $ 常用表述形式：$ \ma hrm{d}S - \dfrac{\del a Q}{T} \geq 0 $  上式表明，在一个隔离系统中，熵永不减少。 隔离系统是绝热的，即$\del a Q=0$，因此$\ma hrm{d}S_{\ma hrm{iso}} \geq 0$。……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/physchem-revise-1/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/quantum-physics-learning-log-1/" title=""></a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            1年1月1日
+        </date>
+        
+        <div class="post-content">
+            简介  这篇手记仅为自己学习记录而写。 虽然题目提到量子力学，但内容与量子力学关系不大，事实是这篇文章提到的某些概念以及方法在以后学习中十分普遍，因此有必要将其归为量子力学学习手记。 就当这是在打数学基础好了。  符号说明    符号 说明，以下符号表示的量是在 复数范围 内讨论的     $\mid i\rangle$ ke ，也称列向量   $\langle i\mid$ bra，也称行向量   $\langle i\mid j \rangle $ inner produc ，求向量$\langle i\mid $与向量$\mid j\rangle$的内积   $\mid i \rangle \langle j \mid $ ou er produc ，求向量$\mid i\rangle$与向量$\langle j\mid $的外积   $\mid i\rangle ^\dagger$ ranspose conjuga e，共轭转置，即向量每个元素取共轭复数后整体转置，$\mid i\rangle ^\dagger = \langle i^*\mid $   $\Omega$, $\Lambda$ 算子，或称算符，由函数组成的矩阵   $\Omega^\dagger$ 对 $\Omega$ 取共轭转置    题目重现 如图，两个振子组成一维耦合振子，两质点的质量均为$m$，所有弹簧劲度系数均为$k$，以右为正方向，两者位移分别为$x_1$、$x_2$。若两振子初始速度均为零，设两个振子在各自平衡位置时的位移为０，且初始位置未知，求这两个振子的位移-时间函数即$x_i( )$。……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/quantum-physics-learning-log-1/">阅读全文</a></p>
+    </article>
+    
+    
+
+
+
+<ol class="page-navigator">
+    
+    <li class="prev">
+        <a href="https://ionizing.page/">上一页</a>
+    </li>
+    
+
+    
+    <li >
+        <a href="https://ionizing.page/">1</a>
+    </li>
+    
+    <li  class="current">
+        <a href="https://ionizing.page/page/2/">2</a>
+    </li>
+    
+
+    
+</ol>
+
+
+
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://ionizing.page/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ionizing.page/post/2018-12-31_wavecar-parsing/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-18-understand-hatree-fock/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-ensembles/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-micro-canonical-ensemble-and-negative-temperature/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-26-rethink-about-bohr-hydrogen-model/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/angular-momentum-coupling/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/coriolis-force/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-matrix-b-in-a-times-b-equals-c/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title=""></a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://ionizing.page/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://ionizing.page/">伪化生搬砖工地 By </a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+
+
+
+</body>
+
+</html>
