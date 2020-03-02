@@ -1,3 +1,7 @@
 [submodule "themes/maupassant"]
 	path = themes/maupassant
 	url = https://github.com/Ionizing/maupassant-hugo
+[submodule "public"]
+	path = public
+	url = https://github.com/Ionizing/ionizing.github.io.git
+	branch = master
