@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VASP on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/tags/VASP/</link>
+    <description>Recent content in VASP on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 21 May 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/tags/VASP/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在 macOS 上编译 VASP 5.4.4</title>
+      <link>https://ionizing.page/post/compile-vasp-on-macos/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://ionizing.page/post/compile-vasp-on-macos/</guid>
+      <description>因组里的服务器放假期间关闭，又适逢疫情导致假期延长好久不能使用 VASP ，故考虑在笔记本上编译一个 VASP ，跑一些小的体系试验用。 准备工作 本机环境 本辣鸡使用的机器拥有 16G RAM 和 4 核 CPU ，跑十几个原子的体系应该还是没问题的。系统是 macOS 10.15.1 ，机器上已经安装了 Homebrew 。 安装依赖库 GCC 全家桶 由于 macOS 默认使用 LLVM + Clang 编译器，</description>
+    </item>
+    
+  </channel>
+</rss>

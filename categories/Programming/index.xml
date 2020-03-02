@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/categories/Programming/</link>
+    <description>Recent content in Programming on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 06 Feb 2020 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/categories/Programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用 CUDA 为 N 体模拟加速</title>
+      <link>https://ionizing.page/post/nbody-with-cuda/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://ionizing.page/post/nbody-with-cuda/</guid>
+      <description>简介 本文是研二上学期 CUDA 课程 Project 作业的简单总结。 在物理学中， 多体问题一般是指在已知初始位置、速度和质量的多个物体在经典力学框架下进行演化的预测问题。 在多体系统中，每个物体都受到其他物体的相互作用而使其自身的运动产生响应的影响。在天体力学中， \(N\) 体系统的模拟是典型的多体问题，物体之间的相</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,56 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
- <url>
-  <loc>https://ionizing.page/</loc>
-  <lastmod>2020-02-10T08:25:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/archive.html</loc>
-  <lastmod>2020-02-09T10:59:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/</loc>
-  <lastmod>2020-02-09T11:02:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/cat_computerprogramming/</loc>
-  <lastmod>2020-02-09T11:02:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/cat_vasp/</loc>
-  <lastmod>2020-02-09T11:00:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/cuda-nbody/</loc>
-  <lastmod>2020-02-09T11:02:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/macos/</loc>
-  <lastmod>2020-02-09T11:00:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/categories/vasp/</loc>
-  <lastmod>2020-02-09T11:00:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/pages/about/</loc>
-  <lastmod>2020-02-09T11:02:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/pages/notes/</loc>
-  <lastmod>2020-02-09T11:02:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/posts/compile-vasp-on-macos/</loc>
-  <lastmod>2020-02-09T11:00:00Z</lastmod>
- </url>
- <url>
-  <loc>https://ionizing.page/posts/nbody-with-cuda/</loc>
-  <lastmod>2020-02-09T11:02:00Z</lastmod>
- </url>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://ionizing.page/tags/C&#43;&#43;/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/categories/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/tags/CUDA/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/tags/NBody/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/post/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/categories/Programming/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/tags/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/post/nbody-with-cuda/</loc>
+    <lastmod>2020-03-02T21:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/tags/macOS/</loc>
+    <lastmod>2020-03-02T20:58:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/tags/VASP/</loc>
+    <lastmod>2020-03-02T20:58:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/categories/VASP/</loc>
+    <lastmod>2020-03-02T20:58:46+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ionizing.page/post/compile-vasp-on-macos/</loc>
+    <lastmod>2020-03-02T20:58:46+08:00</lastmod>
+  </url>
+  
 </urlset>
