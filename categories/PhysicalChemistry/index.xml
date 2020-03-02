@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PhysicalChemistry on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/categories/PhysicalChemistry/</link>
+    <description>Recent content in PhysicalChemistry on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 26 Jun 2017 17:07:41 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/categories/PhysicalChemistry/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>物理化学复习札记（一）：理想气体热力学量求解总结</title>
+      <link>https://ionizing.page/post/PhysChem-Revise-1/</link>
+      <pubDate>Mon, 26 Jun 2017 17:07:41 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/PhysChem-Revise-1/</guid>
+      <description>这是这个系列的第一篇，也是第一次写这种类型的札记，如果有纰漏，还请在评论区指出，谢谢各位！ 热力学量说明 物理化学中，热力学主要研究7个热力学量，这7个量如下： $U$，系统的热力学能，或称内能，属于状态函数，$U=f(T)$，无法求出$U$的值，但可以求出$\Delta U$的值，单位</description>
+    </item>
+    
+    <item>
+      <title>微正则系综与负温度的导出</title>
+      <link>https://ionizing.page/post/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/</guid>
+      <description>微正则系综 基本概念 微正则系综是指参量为 $N​$ $V​$ $E​$ 的体系，对应于宏观的孤立体系，即「在宏观看来」，体系的粒子数、体积、和内能都不改变。$\newcommand{\dif}{\mathop{}\mathrm{d}}​$ 上一篇博文中我们已经知道，统计力学中存在两个假设，其</description>
+    </item>
+    
+  </channel>
+</rss>

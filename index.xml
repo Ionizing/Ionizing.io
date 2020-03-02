@@ -29,5 +29,122 @@
       <description>因组里的服务器放假期间关闭，又适逢疫情导致假期延长好久不能使用 VASP ，故考虑在笔记本上编译一个 VASP ，跑一些小的体系试验用。 准备工作 本机环境 本辣鸡使用的机器拥有 16G RAM 和 4 核 CPU ，跑十几个原子的体系应该还是没问题的。系统是 macOS 10.15.1 ，机器上已经安装了 Homebrew 。 安装依赖库 GCC 全家桶 由于 macOS 默认使用 LLVM + Clang 编译器，</description>
     </item>
     
+    <item>
+      <title>统计力学笔记——系综的概念</title>
+      <link>https://ionizing.page/post/2019-3-22-Ensembles/</link>
+      <pubDate>Fri, 22 Mar 2019 21:50:44 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2019-3-22-Ensembles/</guid>
+      <description>何为「系综」？ 简单来说 系综 (Ensemble) 就是一个宏观态对应所有可能微观态的集合。 $\newcommand{\dif}{\mathop{}\mathrm{d}}$ 对于宏观态，我们研究对象所含有的粒子的数量级在 1023左右（即 1 mol 物质所含粒子的数量），而这个宏观态的宏观量（如压力 $p​$ ，温度 $T​$ ，体积 $V​$ ，粒子数目 $N​$ ，以及内能 $E​$ 等）可以保持不变，但是</description>
+    </item>
+    
+    <item>
+      <title>如何求解 A * B = C 中的矩阵 B ？</title>
+      <link>https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/</link>
+      <pubDate>Fri, 25 Jan 2019 23:44:50 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/</guid>
+      <description>问题 给定一个矩阵方程 $$ \mathbf{A} \times \mathbf{B} = \mathbf{C} $$ 其中 $\mathbf{B}$ 是方阵， $\mathbf{A}$ 和 $\mathbf{C}$ 的形状相同，问如何求解 $\mathbf{B}$ ? 解答 $\mathbf{A}$ 和 $\mathbf{C}$ 的形状相同，如果它们都是方阵，则 $$ \begin{align} \mathbf{A} \times \mathbf{B} ={}&amp;amp; \mathbf{C} \ \mathbf{A}^{-1} \times \mathbf{A} \times \mathbf{B} ={}&amp;amp; \mathbf{A}^{-1} \times \mathbf{C} \ \mathbf{B} ={}&amp;amp; \mathbf{A}^{-1} \times \mathbf{C} \label{eq:easy} \end{align} $$ 但 $\mathbf{A}$ 和 $\mathbf{C}$ 未必是方阵，所以不存在逆矩阵，也就无法通过等式左右同时左乘 $\mathbf{A}^{-1}$ 的方法直接求出 $\mathbf{B}$ 。那么此时如何求解 $\mathbf{B}$ 呢</description>
+    </item>
+    
+    <item>
+      <title>如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</title>
+      <link>https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/</link>
+      <pubDate>Mon, 21 Jan 2019 11:32:17 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/</guid>
+      <description>前言 Travis-CI 是一个持续集成测试网站，其 org 版对用户免费开放，对用户的 public 仓库可以免费提供 持续集成测试服务（私有仓库要使用 com 版） 设置步骤 访问 [](https://travis-ci.org) 并使自己的 github 账户与 travis-ci 关联，并给予它足够的权限 （一路下一步就行）； 点击右上角的用户头像，进入自己的 repositories 配置面板，找到自己想要开启集成测试的项目， 开启集成测</description>
+    </item>
+    
+    <item>
+      <title>WAVECAR 数据结构的解析</title>
+      <link>https://ionizing.page/post/2018-12-31_WAVECAR-parsing/</link>
+      <pubDate>Mon, 31 Dec 2018 20:16:24 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2018-12-31_WAVECAR-parsing/</guid>
+      <description>我们知道，WAVECAR 是 VASP 计算完成后输出的一个二进制文件，它包含的信息用普通的文本编辑器不能直接查看。但有时一些拥有好奇心的人总想看看它里面到底储存了什么东东，于是闲得 X 疼的本人就本着生命不息、折腾不止的态度研究了一下 WAVECAR 的数据结构，终于写出了一个能解析 WAVECAR 的小程序，于是有了这篇博</description>
+    </item>
+    
+    <item>
+      <title>在 VASP(PBE) 计算中如何优雅地踩坑？</title>
+      <link>https://ionizing.page/post/how-to-struggle-with-vasp/</link>
+      <pubDate>Wed, 28 Mar 2018 17:28:20 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/how-to-struggle-with-vasp/</guid>
+      <description>警告：本渣刚学 VASP 不久，对 VASP 的算法、参数不甚了解，如果有大触偶遇此文，并发现有错误，请在评论区指出或邮箱联系本渣。 前言 本文是本渣从 3 月初以来刚接触 VASP 所学技能与遇到坑的总结，以纪念我为文献中一副图而逝去的最近一星期。何为 VASP 以及 VASP 能做什么？本渣只是一个刚学的菜鸡，恕不能回答，请自行 Google 解</description>
+    </item>
+    
+    <item>
+      <title>简谐振动系统浅析（一）</title>
+      <link>https://ionizing.page/post/how-to-solve-viberation-1/</link>
+      <pubDate>Sat, 30 Sep 2017 22:21:37 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/how-to-solve-viberation-1/</guid>
+      <description>何为简谐振动 引用 Wikipedia 上的定义，简谐运动（或简谐振动、谐振、SHM（Simple Harmonic Motion））既是最基本也是最简单的一种机械振动。当某物体进行简谐运动时，物体所受的力跟位移成正比，并且力总是指向平衡位置。 典型的例子即为水平面内的弹簧振子，如下图所示（忽略一切摩擦） 如果用 $F$ 表示物体</description>
+    </item>
+    
+    <item>
+      <title>浅谈科里奥利力</title>
+      <link>https://ionizing.page/post/Coriolis-Force/</link>
+      <pubDate>Wed, 23 Aug 2017 13:25:06 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/Coriolis-Force/</guid>
+      <description>简介 苯渣在补力学时卡在了科氏力这一节，经过 Mr. Ren , 物吧大佬以及 Wikipedia 上的详细解释，我总算稍稍弄懂了这个家伙到底是怎么产生的了，于是写下本文分享一下愚见。 引子 坐过旋转木马的同学应该会有这样的体验：当坐在绕轴旋转的座位上向轴扔一个纸团（乱扔垃圾什么的最讨厌啦）时，纸团并不会砸到轴上，似乎纸</description>
+    </item>
+    
+    <item>
+      <title>量子力学学习手记（一）</title>
+      <link>https://ionizing.page/post/Quantum-Physics-Learning-Log-1/</link>
+      <pubDate>Fri, 30 Jun 2017 21:28:24 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/Quantum-Physics-Learning-Log-1/</guid>
+      <description>简介 这篇手记仅为自己学习记录而写。 虽然题目提到量子力学，但内容与量子力学关系不大，事实是这篇文章提到的某些概念以及方法在以后学习中十分普遍，因此有必要将其归为量子力学学习手记。 就当这是在打数学基础好了。 符号说明 符号 说明，以下符号表示的量是在 复数范围 内讨论的 $\mid i\rangle$ ket，也称列向量 $\langle</description>
+    </item>
+    
+    <item>
+      <title>物理化学复习札记（一）：理想气体热力学量求解总结</title>
+      <link>https://ionizing.page/post/PhysChem-Revise-1/</link>
+      <pubDate>Mon, 26 Jun 2017 17:07:41 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/PhysChem-Revise-1/</guid>
+      <description>这是这个系列的第一篇，也是第一次写这种类型的札记，如果有纰漏，还请在评论区指出，谢谢各位！ 热力学量说明 物理化学中，热力学主要研究7个热力学量，这7个量如下： $U$，系统的热力学能，或称内能，属于状态函数，$U=f(T)$，无法求出$U$的值，但可以求出$\Delta U$的值，单位</description>
+    </item>
+    
+    <item>
+      <title>PAT题解 B 1035</title>
+      <link>https://ionizing.page/post/PAT%E9%A2%98%E8%A7%A3-B-1035/</link>
+      <pubDate>Thu, 22 Jun 2017 13:33:59 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/PAT%E9%A2%98%E8%A7%A3-B-1035/</guid>
+      <description>题解:PAT-B 1035 插入与归并 这是一篇测试用文章，欢迎围观. 题目全文： 题目地址在这里 根据维基百科的定义： 插入排序是迭代算法，逐一获得输入数据，逐步产生有序的输出序列。每步迭代中，算法从输入序列中取出一元素，将之插入有序序列中正确的位置。如此迭代直到全部元素有序。 归并排序进行如下迭代</description>
+    </item>
+    
+    <item>
+      <title>微正则系综与负温度的导出</title>
+      <link>https://ionizing.page/post/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/</guid>
+      <description>微正则系综 基本概念 微正则系综是指参量为 $N​$ $V​$ $E​$ 的体系，对应于宏观的孤立体系，即「在宏观看来」，体系的粒子数、体积、和内能都不改变。$\newcommand{\dif}{\mathop{}\mathrm{d}}​$ 上一篇博文中我们已经知道，统计力学中存在两个假设，其</description>
+    </item>
+    
+    <item>
+      <title>角动量耦合与 CG 系数</title>
+      <link>https://ionizing.page/post/Angular-Momentum-Coupling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/Angular-Momentum-Coupling/</guid>
+      <description>不同世界的角动量 宏观世界的角动量 首先我们回顾一下角动量的定义，给定一个转轴和物体的位置及动量矢量 $\mathbf{r}$ 、 $\mathbf{p}$ ，那么这个物体所具有的角动量就是 $$ \vec{L} = \mathbf{r} \times \mathbf{p} $$ 如下图所示 其中 $\vec{L}$ 与转轴共线，它的方向可以由右手定则确定。 与动量的意义类似，角动量也是一种守恒量，这使得在研究某些问题时以角动量守恒为</description>
+    </item>
+    
+    <item>
+      <title>重新思考玻尔氢原子模型</title>
+      <link>https://ionizing.page/post/2019-3-26-Rethink-about-Bohr-Hydrogen-Model/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2019-3-26-Rethink-about-Bohr-Hydrogen-Model/</guid>
+      <description>经典理论的困境 卢瑟福通过 $\alpha$ 粒子散射实验确定了原子的结构。人们知道了原子的正电荷全部集中在很小的一部分上；$\newcommand{\dif}{\mathop{}\mathrm{d}}$ 按照经典电磁学理论，当电子的运动有加速度时，会辐射出电磁波，电子的动能会以电磁波的形式释放。如果</description>
+    </item>
+    
   </channel>
 </rss>

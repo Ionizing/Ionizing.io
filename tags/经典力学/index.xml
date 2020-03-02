@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>经典力学 on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/tags/%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6/</link>
+    <description>Recent content in 经典力学 on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 23 Aug 2017 13:25:06 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/tags/%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>浅谈科里奥利力</title>
+      <link>https://ionizing.page/post/Coriolis-Force/</link>
+      <pubDate>Wed, 23 Aug 2017 13:25:06 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/Coriolis-Force/</guid>
+      <description>简介 苯渣在补力学时卡在了科氏力这一节，经过 Mr. Ren , 物吧大佬以及 Wikipedia 上的详细解释，我总算稍稍弄懂了这个家伙到底是怎么产生的了，于是写下本文分享一下愚见。 引子 坐过旋转木马的同学应该会有这样的体验：当坐在绕轴旋转的座位上向轴扔一个纸团（乱扔垃圾什么的最讨厌啦）时，纸团并不会砸到轴上，似乎纸</description>
+    </item>
+    
+  </channel>
+</rss>

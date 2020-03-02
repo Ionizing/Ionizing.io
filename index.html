@@ -106,9 +106,206 @@
         <p class="readmore"><a href="https://ionizing.page/post/compile-vasp-on-macos/">阅读全文</a></p>
     </article>
     
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/2019-3-22-Ensembles/" title="统计力学笔记——系综的概念">统计力学笔记——系综的概念</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年3月22日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/Physics'>Physics</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            何为「系综」？ 简单来说 系综 (Ensemble) 就是一个宏观态对应所有可能微观态的集合。 $\newcommand{\dif}{\mathop{}\mathrm{d}}$ 对于宏观态，我们研究对象所含有的粒子的数量级在 1023左右（即 1 mol 物质所含粒子的数量），而这个宏观态的宏观量（如压力 $p​$ ，温度 $T​$ ，体积 $V​$ ，粒子数目 $N​$ ，以及内能 $E​$ 等）可以保持不变，但是……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/2019-3-22-Ensembles/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/" title="如何求解 A * B = C 中的矩阵 B ？">如何求解 A * B = C 中的矩阵 B ？</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年1月25日
+        </date>
+        
+        <div class="post-content">
+            问题 给定一个矩阵方程 $$ \mathbf{A} \times \mathbf{B} = \mathbf{C} $$ 其中 $\mathbf{B}$ 是方阵， $\mathbf{A}$ 和 $\mathbf{C}$ 的形状相同，问如何求解 $\mathbf{B}$ ? 解答 $\mathbf{A}$ 和 $\mathbf{C}$ 的形状相同，如果它们都是方阵，则 $$ \begin{align} \mathbf{A} \times \mathbf{B} ={}&amp; \mathbf{C} \ \mathbf{A}^{-1} \times \mathbf{A} \times \mathbf{B} ={}&amp; \mathbf{A}^{-1} \times \mathbf{C} \ \mathbf{B} ={}&amp; \mathbf{A}^{-1} \times \mathbf{C} \label{eq:easy} \end{align} $$ 但 $\mathbf{A}$ 和 $\mathbf{C}$ 未必是方阵，所以不存在逆矩阵，也就无法通过等式左右同时左乘 $\mathbf{A}^{-1}$ 的方法直接求出 $\mathbf{B}$ 。那么此时如何求解 $\mathbf{B}$ 呢……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title="如何为 github 上的 cpp 项目设置 Travis-CI 自动测试">如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年1月21日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/Programming'>Programming</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            前言 Travis-CI 是一个持续集成测试网站，其 org 版对用户免费开放，对用户的 public 仓库可以免费提供 持续集成测试服务（私有仓库要使用 com 版） 设置步骤 访问 [](https://travis-ci.org) 并使自己的 github 账户与 travis-ci 关联，并给予它足够的权限 （一路下一步就行）； 点击右上角的用户头像，进入自己的 repositories 配置面板，找到自己想要开启集成测试的项目， 开启集成测……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/" title="WAVECAR 数据结构的解析">WAVECAR 数据结构的解析</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年12月31日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/FirstPrinciple'>FirstPrinciple</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            我们知道，WAVECAR 是 VASP 计算完成后输出的一个二进制文件，它包含的信息用普通的文本编辑器不能直接查看。但有时一些拥有好奇心的人总想看看它里面到底储存了什么东东，于是闲得 X 疼的本人就本着生命不息、折腾不止的态度研究了一下 WAVECAR 的数据结构，终于写出了一个能解析 WAVECAR 的小程序，于是有了这篇博……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/how-to-struggle-with-vasp/" title="在 VASP(PBE) 计算中如何优雅地踩坑？">在 VASP(PBE) 计算中如何优雅地踩坑？</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年3月28日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/FirstPrinciple'>FirstPrinciple</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            警告：本渣刚学 VASP 不久，对 VASP 的算法、参数不甚了解，如果有大触偶遇此文，并发现有错误，请在评论区指出或邮箱联系本渣。 前言 本文是本渣从 3 月初以来刚接触 VASP 所学技能与遇到坑的总结，以纪念我为文献中一副图而逝去的最近一星期。何为 VASP 以及 VASP 能做什么？本渣只是一个刚学的菜鸡，恕不能回答，请自行 Google 解……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/how-to-struggle-with-vasp/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title="简谐振动系统浅析（一）">简谐振动系统浅析（一）</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2017年9月30日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/Physics'>Physics</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            何为简谐振动 引用 Wikipedia 上的定义，简谐运动（或简谐振动、谐振、SHM（Simple Harmonic Motion））既是最基本也是最简单的一种机械振动。当某物体进行简谐运动时，物体所受的力跟位移成正比，并且力总是指向平衡位置。 典型的例子即为水平面内的弹簧振子，如下图所示（忽略一切摩擦） 如果用 $F$ 表示物体……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/how-to-solve-viberation-1/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/Coriolis-Force/" title="浅谈科里奥利力">浅谈科里奥利力</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2017年8月23日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/Physics'>Physics</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            简介 苯渣在补力学时卡在了科氏力这一节，经过 Mr. Ren , 物吧大佬以及 Wikipedia 上的详细解释，我总算稍稍弄懂了这个家伙到底是怎么产生的了，于是写下本文分享一下愚见。 引子 坐过旋转木马的同学应该会有这样的体验：当坐在绕轴旋转的座位上向轴扔一个纸团（乱扔垃圾什么的最讨厌啦）时，纸团并不会砸到轴上，似乎纸……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/Coriolis-Force/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://ionizing.page/post/Quantum-Physics-Learning-Log-1/" title="量子力学学习手记（一）">量子力学学习手记（一）</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2017年6月30日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/QuantumMechanics'>QuantumMechanics</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            简介 这篇手记仅为自己学习记录而写。 虽然题目提到量子力学，但内容与量子力学关系不大，事实是这篇文章提到的某些概念以及方法在以后学习中十分普遍，因此有必要将其归为量子力学学习手记。 就当这是在打数学基础好了。 符号说明 符号 说明，以下符号表示的量是在 复数范围 内讨论的 $\mid i\rangle$ ket，也称列向量 $\langle……
+        </div>
+        <p class="readmore"><a href="https://ionizing.page/post/Quantum-Physics-Learning-Log-1/">阅读全文</a></p>
+    </article>
+    
     
 
 
+
+<ol class="page-navigator">
+    
+
+    
+    <li  class="current">
+        <a href="https://ionizing.page/">1</a>
+    </li>
+    
+    <li >
+        <a href="https://ionizing.page/page/2/">2</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="https://ionizing.page/page/2/">下一页</a>
+    </li>
+    
+</ol>
 
 
 
@@ -138,6 +335,38 @@
         <a href="https://ionizing.page/post/compile-vasp-on-macos/" title="在 macOS 上编译 VASP 5.4.4">在 macOS 上编译 VASP 5.4.4</a>
     </li>
     
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-Ensembles/" title="统计力学笔记——系综的概念">统计力学笔记——系综的概念</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/" title="如何求解 A * B = C 中的矩阵 B ？">如何求解 A * B = C 中的矩阵 B ？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title="如何为 github 上的 cpp 项目设置 Travis-CI 自动测试">如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/" title="WAVECAR 数据结构的解析">WAVECAR 数据结构的解析</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-struggle-with-vasp/" title="在 VASP(PBE) 计算中如何优雅地踩坑？">在 VASP(PBE) 计算中如何优雅地踩坑？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title="简谐振动系统浅析（一）">简谐振动系统浅析（一）</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Coriolis-Force/" title="浅谈科里奥利力">浅谈科里奥利力</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Quantum-Physics-Learning-Log-1/" title="量子力学学习手记（一）">量子力学学习手记（一）</a>
+    </li>
+    
 </ul>
     </section>
 
@@ -147,7 +376,19 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="https://ionizing.page/categories/Programming/">Programming (1)</a></li>
+    <li><a href="https://ionizing.page/categories/Algorithm/">Algorithm (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/AtomicPhysics/">AtomicPhysics (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/FirstPrinciple/">FirstPrinciple (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/PhysicalChemistry/">PhysicalChemistry (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Physics/">Physics (3)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Programming/">Programming (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/QuantumMechanics/">QuantumMechanics (1)</a></li>
     
     <li><a href="https://ionizing.page/categories/VASP/">VASP (1)</a></li>
     
@@ -158,15 +399,71 @@
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
+    <a href="https://ionizing.page/tags/Angular-Momentum-Coupling/">Angular Momentum Coupling</a>
+    
+    <a href="https://ionizing.page/tags/Bohr/">Bohr</a>
+    
     <a href="https://ionizing.page/tags/C&#43;&#43;/">C&#43;&#43;</a>
     
     <a href="https://ionizing.page/tags/CUDA/">CUDA</a>
     
+    <a href="https://ionizing.page/tags/Clebsch-Gordan-Coefficients/">Clebsch-Gordan Coefficients</a>
+    
+    <a href="https://ionizing.page/tags/Correspondence-Principle/">Correspondence Principle</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Atom-Model/">Hydrogen Atom Model</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Spectra/">Hydrogen Spectra</a>
+    
+    <a href="https://ionizing.page/tags/Linear-Algebra/">Linear Algebra</a>
+    
     <a href="https://ionizing.page/tags/NBody/">NBody</a>
+    
+    <a href="https://ionizing.page/tags/Negative-Temperature/">Negative Temperature</a>
+    
+    <a href="https://ionizing.page/tags/OUTCAR/">OUTCAR</a>
+    
+    <a href="https://ionizing.page/tags/PAT/">PAT</a>
+    
+    <a href="https://ionizing.page/tags/Physical-Chemistry/">Physical Chemistry</a>
+    
+    <a href="https://ionizing.page/tags/Rydberg-Constant/">Rydberg Constant</a>
+    
+    <a href="https://ionizing.page/tags/Statistical-Mechanics/">Statistical Mechanics</a>
     
     <a href="https://ionizing.page/tags/VASP/">VASP</a>
     
+    <a href="https://ionizing.page/tags/WAVECAR/">WAVECAR</a>
+    
+    <a href="https://ionizing.page/tags/Wigner-3-j-Symbol/">Wigner 3-j Symbol</a>
+    
+    <a href="https://ionizing.page/tags/cpp/">cpp</a>
+    
     <a href="https://ionizing.page/tags/macOS/">macOS</a>
+    
+    <a href="https://ionizing.page/tags/travis-ci/">travis-ci</a>
+    
+    <a href="https://ionizing.page/tags/%E5%8C%96%E5%AD%A6/">化学</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8C%AF%E5%8A%A8/">振动</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+    
+    <a href="https://ionizing.page/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">数学基础</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86/">物理</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/">物理化学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%AD%A6/">物理学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%A7%91%E9%87%8C%E5%A5%A5%E5%88%A9%E5%8A%9B/">科里奥利力</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6/">经典力学</a>
+    
+    <a href="https://ionizing.page/tags/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/">量子力学</a>
     
 </div>
     </section>

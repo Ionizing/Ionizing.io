@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QuantumMechanics on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/categories/QuantumMechanics/</link>
+    <description>Recent content in QuantumMechanics on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 30 Jun 2017 21:28:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/categories/QuantumMechanics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>量子力学学习手记（一）</title>
+      <link>https://ionizing.page/post/Quantum-Physics-Learning-Log-1/</link>
+      <pubDate>Fri, 30 Jun 2017 21:28:24 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/Quantum-Physics-Learning-Log-1/</guid>
+      <description>简介 这篇手记仅为自己学习记录而写。 虽然题目提到量子力学，但内容与量子力学关系不大，事实是这篇文章提到的某些概念以及方法在以后学习中十分普遍，因此有必要将其归为量子力学学习手记。 就当这是在打数学基础好了。 符号说明 符号 说明，以下符号表示的量是在 复数范围 内讨论的 $\mid i\rangle$ ket，也称列向量 $\langle</description>
+    </item>
+    
+  </channel>
+</rss>

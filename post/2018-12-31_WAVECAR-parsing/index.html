@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WAVECAR 数据结构的解析 | 伪化生搬砖工地</title>
+    <meta property="og:title" content="WAVECAR 数据结构的解析 - 伪化生搬砖工地">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2018-12-31T20:16:24&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2018-12-31T20:16:24&#43;08:00'>
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="WAVECAR 数据结构的解析">
+        
+    <meta name="author" content="Ionizing">
+    <meta property="og:url" content="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://ionizing.page/">
+                        伪化生搬砖工地
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://ionizing.page/">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">WAVECAR 数据结构的解析</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年12月31日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/FirstPrinciple'>FirstPrinciple</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>我们知道，WAVECAR 是 VASP 计算完成后输出的一个二进制文件，它包含的信息用普通的文本编辑器不能直接查看。但有时一些拥有好奇心的人总想看看它里面到底储存了什么东东，于是闲得 X 疼的本人就本着生命不息、折腾不止的态度研究了一下 WAVECAR 的数据结构，终于写出了一个能解析 WAVECAR 的小程序，于是有了这篇博客。</p>
+<h1 id="wavecar-的基本结构">WAVECAR 的基本结构</h1>
+<p><code>WAVECAR</code> 本身是由多个等长的记录 (record) 组成的，没有特殊说明的情况下，<code>WAVECAR</code> 中大部分数据的存储类型为<code>double</code>(64-bit)，即使是整数也会被转换为双精度浮点数存储。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> ---------------------------------------------
+|info    |header  |body   |body    | ....
+ ---------------------------------------------
+</code></pre></td></tr></table>
+</div>
+</div><p>下面我们从源码的角度分析一下 VASP 在读写 <code>WAVECAR</code> 时都发生了哪些操作。</p>
+<h1 id="读写-wavecar-的函数">读写 WAVECAR 的函数</h1>
+<p>与文件读写有关的操作有一些定义在源码的 <code>fileio.F</code> 中（本渣读的是 VASP 5.4.1 的源码，但这种很基础的函数在版本更新时应该不会有太大变动吧），其中读写 WAVECAR 的函数有：</p>
+<ul>
+<li><code>OPENWAV(IO, COM, EXT)</code></li>
+<li><code>CLOSEWAV</code></li>
+<li><code>READ_TO_BUF(IU, IREC, IRECL_REAL, INBUF, IFAIL)</code></li>
+<li><code>WRITE_FROM_BUF(IU, IREC, IRECL_REAL, OUTBUF)</code></li>
+<li><code>INWAV_HEAD(WDES, LATT_INI, LATT_CUR, ENMAXI, ISTART, IU0)</code></li>
+<li><code>INWAV_FAST(IO, WDES, W, GRID, LATT_CUR, LATT_INI, ISTART, EFERMI)</code></li>
+<li><del><code>INWAV_ALTERNATIVE(IO, WDES, W, GRID, LATT_CUR, LREAD, EXT)</code></del></li>
+<li><code>OUTWAV_4(IO, WDES, W, LATT_INI, EXT)</code></li>
+<li><code>OUTWAV(IO, WDES, W, LATT_INI, EFERMI, EXT)</code></li>
+</ul>
+<p>上面<code>OPENWAV</code>, <code>CLOSEWAV</code>, 分别是打开文件操作句柄同时确定写入的一些参数和关闭文件操作句柄，对应 C++ 里面的 <code>fstream::open()</code> 和 <code>fstream::close()</code> 操作；</p>
+<h2 id="read_to_buf-和-write_from_buf"><code>READ_TO_BUF</code> 和 <code>WRITE_FROM_BUF</code></h2>
+<p>顾名思义，它们执行的是一个读取和写入一个 <strong>buffer</strong> 到文件的操作（对于相同的数据量一次性读写大量数据比多次读写，每次读写少量的数据效率更高）。函数参数中的 <code>*BUF</code> 就是读写用到的 <code>buffer</code>，由于 Fortran 语言的特性，它的函数传参默认为传引用，所以 <code>READ_TO_BUF</code> 函数执行完毕后数据已经放到了 <code>INBUF</code> 中了，这一点对从 C 系语言入门的本渣来说很不习惯。函数的 <code>IREC</code> 和 <code>IRECL_REAL</code> 分别表示 <code>WAVECAR</code> 中记录的位置和 <code>real(q)</code> 的数据在内存中占的大小。 <code>IU</code> 参数在本函数中没有作用（目测作者是想将文件指针作为参数传进来，但最后因为某种原因放弃了，现在 VASP 中 <code>WAVECAR</code> 的 <code>unit</code> 已经写死了，为 <code>12</code>）。</p>
+<ul>
+<li><code>IU</code>: 文件操作结构，此处无作用；</li>
+<li><code>IREC</code>：此次读取/写入 <code>buffer</code> 的记录的编号；</li>
+<li><code>IRECL_REAL</code>：此次读取/写入 <code>buffer</code> 中 <code>real(q)</code> 的长度；</li>
+<li><code>*BUF</code>：读取、写入的 <code>buffer</code> ，是一个一维数组；</li>
+<li><code>IFAIL</code>：读取时是否失败的标志。</li>
+</ul>
+<h2 id="inwav_head"><code>INWAV_HEAD</code></h2>
+<p>这个函数读取 <code>WAVECAR</code> 的 header 部分，即 <code>WAVECAR</code> 中第<strong>二</strong>个记录的前 12 个<code>double</code> 型的值。这 12 个值按照顺序分别表示：</p>
+<ul>
+<li><code>_nKpoints</code>: 体系取了多少个 K 点，转换为 <code>int</code> 型；</li>
+<li><code>_nBands</code>: 体系中有多少条能带，转换为 <code>int</code> 型；</li>
+<li><code>_enCut</code>: 体系的截断能，无需转换；</li>
+<li><code>_latticeVectors</code>: 接下来的⑨个 <code>double</code> 值构成了一个矩阵，它们表示体系在实空间中的格矢，按照行优先的顺序分别存放，无需转换；</li>
+<li><code>_eFermi</code>: 体系的费米能级（在早期版本的 VASP 不会写入这个值）</li>
+</ul>
+<p>事实上，这个函数还做了一些检查，比如用户提供的 <code>NBAND</code> 、 <code>NKPOINTS</code> 是否与 <code>WAVECAR</code> 中对应值一致等，由于现在这些都不重要，我们暂时略过。</p>
+<ul>
+<li><code>WDES</code>: <code>WAVECAR</code> 的描述结构，包含了波函数的一些初步描述信息；</li>
+<li><code>LATT_INI</code>: 从 <code>WAVECAR</code> 读取的格子结构；</li>
+<li><code>LATT_CUR</code>: 从 <code>POSCAR</code> 读取的格子结构，程序会对 <code>LATT_INI</code> 和 <code>LATT_CUR</code> 作 diff 操作，如果两者有差别，则给出警告；</li>
+<li><code>ENMAXI</code>: 从 <code>WAVECAR</code> 中读取的截断能（<code>ENCUT</code>）；</li>
+<li><code>ISTART</code>: 是否为从头算，即是否舍弃 <code>WAVECAR</code> 重新计算波函数，手册中有详细说明；</li>
+<li><code>IU0</code>: 文件句柄，各种错误信息、警告信息都将从这个句柄输出。</li>
+</ul>
+<p><del>### <code>INWAV_ALTERNATIVE</code>
+这个函数很迷，它只在 <code>chi.F</code> 中有调用，并且是在 <code>LGW0 == true</code> 时才调用，并且实质上只是调用了 <code>INWAV_HEAD</code> 和一些输出警告、帮助的函数，在 <code>chi.F</code> 中在对它的调用后面还有一些其他的读写函数，个人认为 <code>INWAV_ALTERNATIVE</code> 是在执行特殊计算任务时读取 <code>WAVECAR</code> 的函数，它与我们解析 <code>WAVECAR</code> 的任务关系不大。</del></p>
+<h2 id="inwav_fast"><code>INWAV_FAST</code></h2>
+<p>这个函数是读取 <code>WAVECAR</code> 的 <strong>主要函数</strong> 。</p>
+<p>它首先读取 <code>WAVECAR</code> 的开头部分，获得以下三个值：</p>
+<ul>
+<li><code>_recordLength</code>: <code>WAVECAR</code> 中每个记录的长度，应转换为 <code>int</code> 类型；</li>
+<li><code>_nSpin</code>: <code>WAVECAR</code> 中是否开启自旋，如果开启自旋，则上下两个自旋的波函数等将分别存放，应转换为 <code>int</code> 类型；</li>
+<li><code>_precisionTag</code>: <code>WAVECAR</code> 中平面波系数的精度标签，它决定了平面系数是使用 <code>complex&lt;float&gt;</code> 存储还是 <code>complex&lt;double&gt;</code> 来存储。这个标签应转换为 <code>int</code> 类型；</li>
+</ul>
+<p>然后调用 <code>INWAV_HEAD</code> 获得体系的 header 信息。</p>
+<p>最后，它将文件指针定位到第<strong>三</strong>个记录，并开始读取体系的能带、K 点的波函数信息。</p>
+<p>从第三个记录开始，<code>WAVECAR</code> 的数据结构如下：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">for</span> (<span style="color:#458;font-weight:bold">int</span> ispin<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; i<span style="color:#000;font-weight:bold">!=</span>_nSpin; <span style="color:#000;font-weight:bold">++</span>i) {
+    <span style="color:#000;font-weight:bold">for</span> (<span style="color:#458;font-weight:bold">int</span> ikpoint<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; ikpoint<span style="color:#000;font-weight:bold">!=</span>_nKpoint; <span style="color:#000;font-weight:bold">++</span>ikpoint) {
+        <span style="color:#998;font-style:italic">// one record here.         (1)
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">for</span> (<span style="color:#458;font-weight:bold">int</span> iband<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; iband<span style="color:#000;font-weight:bold">!=</span>_nBand; <span style="color:#000;font-weight:bold">++</span>iband) {
+            <span style="color:#998;font-style:italic">// one record here.     (2)
+</span><span style="color:#998;font-style:italic"></span>        } <span style="color:#998;font-style:italic">// end for iband
+</span><span style="color:#998;font-style:italic"></span>    } <span style="color:#998;font-style:italic">// end for ikpoint
+</span><span style="color:#998;font-style:italic"></span>} <span style="color:#998;font-style:italic">// end for ispin
+</span></code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>(1)</code> 处的记录读取 <code>4 + 3*_nBand</code> 个值，前四个值分别为：</p>
+<ul>
+<li><code>current_nPlaneWave</code>: 该 K 点波函数展开需要的平面波数量，转换为 <code>int</code> 类型；</li>
+<li><code>current_kVector</code>: 该 K 点的坐标（倒空间），转换为 3 个 <code>double</code> 类型；</li>
+</ul>
+<p>之后的 <code>3*_nBand</code> 个值构成一个 <code>_nBand * 3</code> 的矩阵，前两列分别表示该 K 点处各个能带的特征值（能量），由于特征值解出来可能是复数，所以这里用两列表示，第一列表示 <code>band</code> 的实部，第二列表示 <code>band</code> 的虚部，第三列表示每个能带的费米权重，即</p>
+<pre><code>Re(band[0]), Im(band[0]), fermiWeights[0];
+Re(band[1]), Im(band[1]), fermiWeights[1];
+...          ...          ...
+</code></pre><p><code>(2)</code> 处的记录就是每个 K 点每条能带波函数展开的平面波系数，系数的个数由前面得到的 <code>current_nPlaneWave</code> 决定。由于 <code>WAVECAR</code> 中占比最大的部分就是这部分，故设法减小文件的体积时便从这里开刀。还记得这个函数开头得到的 <code>_precisionTag</code> 吗？这里就派上用场了：
+如果 <code>_precisionTag == 45200 || _precisionTag == 53300</code> ，则后面的波函数展开的平面波系数就是由 <code>complex&lt;float&gt;</code> 类型存储，否则由 <code>complex&lt;double&gt;</code> 类型存储，即</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">switch</span> (_precisionTag) {
+    <span style="color:#000;font-weight:bold">case</span> <span style="color:#099">45200</span><span style="color:#000;font-weight:bold">:</span> ;
+    <span style="color:#000;font-weight:bold">case</span> <span style="color:#099">53300</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#a61717;background-color:#e3d2d2">平面波系数类型</span> <span style="color:#000;font-weight:bold">=</span> complex<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">float</span> <span style="color:#000;font-weight:bold">&gt;</span>; <span style="color:#000;font-weight:bold">break</span>;
+    <span style="color:#000;font-weight:bold">case</span> <span style="color:#099">45210</span><span style="color:#000;font-weight:bold">:</span> ;
+    <span style="color:#000;font-weight:bold">case</span> <span style="color:#099">53310</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#a61717;background-color:#e3d2d2">平面波系数类型</span> <span style="color:#000;font-weight:bold">=</span> complex<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">double</span><span style="color:#000;font-weight:bold">&gt;</span>; <span style="color:#000;font-weight:bold">break</span>;
+    <span style="color:#000;font-weight:bold">default</span><span style="color:#000;font-weight:bold">:</span> _precisionTag <span style="color:#a61717;background-color:#e3d2d2">无效，终止程序。</span>
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>因此， <code>WAVECAR</code> 共有 <code>2 + nSpin * nKpoint * (1 + nBand)</code> 条记录，每条记录的长度都是一样的。</p>
+<p>其大部分参数和 <code>INWAV_HEAD</code> 一致，只多了一个 <code>GRID</code></p>
+<ul>
+<li><code>GRID</code>: 格子的 mesh 结构，但在这个函数中不参与文件读写，暂时不需要了解它的作用。</li>
+</ul>
+<h2 id="outwav-和-outwav_4"><code>OUTWAV</code> 和 <code>OUTWAV_4</code></h2>
+<p>这两个函数的功能几乎一致，只是 <code>OUTWAV</code> 比 <code>OUTWAV_4</code> 多了一个 <code>EFERMI</code> 的参数，很自然地 <code>OUTWAV</code> 将这个参数写在了 header 的最后，这也解释了为什么早期版本的 header 没有 <code>_eFermi</code> 这一项。至于函数的具体流程，读者只需按照 <code>INWAV_FAST</code> 的流程把读改成写即可，事实上源代码也确实是这样做的。</p>
+<p>读到这里读者是否有个疑问， <code>WAVECAR</code> 是由连续的等长的记录组成的，这个记录的长度在读取时可以得到，那么在写入的时候如何确定？源代码中是这样确定这个数的：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fortran" data-lang="fortran">      IO%IRECLW<span style="color:#000;font-weight:bold">=</span><span style="color:#0086b3">MAX</span>((NPL_TOT<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)<span style="color:#000;font-weight:bold">/</span><span style="color:#099">2</span>,<span style="color:#099">7</span>)<span style="color:#000;font-weight:bold">*</span>IO%ICMPLX
+      IRECLW_OLD<span style="color:#000;font-weight:bold">=</span><span style="color:#0086b3">MAX</span>(<span style="color:#0086b3">MAX</span>((NPL_TOT<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)<span style="color:#000;font-weight:bold">/</span><span style="color:#099">2</span>,<span style="color:#099">6</span>),((WDES%NB_TOT<span style="color:#000;font-weight:bold">*</span><span style="color:#099">3</span><span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)<span style="color:#000;font-weight:bold">/</span><span style="color:#099">2</span><span style="color:#000;font-weight:bold">+</span><span style="color:#099">2</span>))<span style="color:#000;font-weight:bold">*</span>IO%ICMPLX
+</code></pre></td></tr></table>
+</div>
+</div><p>翻译成人话就是使每条记录都不溢出的最小值，（我在实现小程序时直接使用 <code>_recordLength = (_maxOfNPlaneWaves + 1) / 2</code> 来决定平面波系数数组的大小，这样虽然会浪费一点内存，但省去了很多麻烦）。</p>
+<ul>
+<li><code>IO</code>: 文件读写的句柄结构，包含多个文件读写的句柄；</li>
+<li><code>WDES</code>: 波函数的描述结构，这里只用到了里面对于 <code>_nBand</code>、<code>nSpin</code> 、 <code>_nKpoint</code>以及 <code>_enCut</code> 等值（未全列出）；</li>
+<li><code>W</code>: 储存 <code>band</code> 、<code>fermiWeight</code> 等值的结构</li>
+<li><code>LATT_INI</code>: 格子的描述结构，包含格子在实空间的格矢；</li>
+<li><code>EFERMI</code>: 费米能级；</li>
+<li><code>EXT</code>: 这是个可选参数，表示写入前 <code>WAVECAR</code> 是否存在。</li>
+</ul>
+<h1 id="wavecar-解析小程序的实现"><code>WAVECAR</code> 解析小程序的实现</h1>
+<p>显然我们要构建一个类，这个类要包含至少两部分内容：</p>
+<ol>
+<li><code>WAVECAR</code> 的 header 部分；</li>
+<li><code>WAVECAR</code> 的 body 部分。</li>
+</ol>
+<p>header 部分直接按照 <code>INWAV_FAST</code> 或者 <code>OUTWAV</code> 给出的顺序读取即可：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">private</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#458;font-weight:bold">int</span>  _recordLength, _nSpin, _precisionTag;
+    <span style="color:#458;font-weight:bold">bool</span> _isDoubleType;
+    <span style="color:#458;font-weight:bold">int</span> _fileSize;
+
+    <span style="color:#458;font-weight:bold">int</span> _nKpoints, _nBands;
+    <span style="color:#458;font-weight:bold">double</span> _enCut;
+    Eigen<span style="color:#000;font-weight:bold">::</span>Matrix<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">double</span>, <span style="color:#099">3</span>, <span style="color:#099">3</span><span style="color:#000;font-weight:bold">&gt;</span> _latticeVectors;
+    Eigen<span style="color:#000;font-weight:bold">::</span>Matrix<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">double</span>, <span style="color:#099">3</span>, <span style="color:#099">3</span><span style="color:#000;font-weight:bold">&gt;</span> _reciprocalVectors;
+    <span style="color:#458;font-weight:bold">double</span> _omega;
+    <span style="color:#458;font-weight:bold">double</span> _eFermi;
+</code></pre></td></tr></table>
+</div>
+</div><p>body 部分与之类似：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    VectorXi _nPlaneWaves;
+    Matrix<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">double</span>, Dynamic, <span style="color:#099">3</span><span style="color:#000;font-weight:bold">&gt;</span> _kVectors;
+    std<span style="color:#000;font-weight:bold">::</span>vector<span style="color:#000;font-weight:bold">&lt;</span>Matrix<span style="color:#000;font-weight:bold">&lt;</span>std<span style="color:#000;font-weight:bold">::</span>complex<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">double</span><span style="color:#000;font-weight:bold">&gt;</span>, Dynamic, Dynamic<span style="color:#000;font-weight:bold">&gt;&gt;</span> _bands;
+    std<span style="color:#000;font-weight:bold">::</span>vector<span style="color:#000;font-weight:bold">&lt;</span>Matrix<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#458;font-weight:bold">double</span>, Dynamic, Dynamic<span style="color:#000;font-weight:bold">&gt;&gt;</span> _fermiWeights;
+    <span style="color:#458;font-weight:bold">int</span> _maxOfNPlaneWaves;
+
+    <span style="color:#998;font-style:italic">// 4 dimensions are: (ispin, kpoint, nband, nplanewaves)
+</span><span style="color:#998;font-style:italic"></span>    std<span style="color:#000;font-weight:bold">::</span>vector<span style="color:#000;font-weight:bold">&lt;</span> Matrix<span style="color:#000;font-weight:bold">&lt;</span>
+        VectorXcd, Dynamic, Dynamic<span style="color:#000;font-weight:bold">&gt;&gt;</span> _complexWaves;
+</code></pre></td></tr></table>
+</div>
+</div><p>需要的操作也很简单：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000;font-weight:bold">private</span><span style="color:#000;font-weight:bold">:</span>
+  <span style="color:#458;font-weight:bold">void</span> read_info();
+  <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">read_header</span>();
+  <span style="color:#458;font-weight:bold">void</span> <span style="color:#900;font-weight:bold">read_band</span>();
+</code></pre></td></tr></table>
+</div>
+</div><p>按照上文和源码稍微修改一下基本就能实现了，限于篇幅原因，这里不贴出所有代码了（</p>
+<p>输出的效果如图：</p>
+<p><img src="a.png" alt=""></p>
+<p>2019-1-15 更新: 已实现的波函数解析程序请见<a href="https://github.com/Ionizing/wavecar_parser">这里</a></p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://ionizing.page/">Ionizing</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/">https://ionizing.page/post/2018-12-31_WAVECAR-parsing/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/how-to-struggle-with-vasp/">在 VASP(PBE) 计算中如何优雅地踩坑？</a></li>
+        
+        <li><a href="/post/PAT%E9%A2%98%E8%A7%A3-B-1035/">PAT题解 B 1035</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://ionizing.page/tags/VASP'>VASP</a></li>
+                
+                <li><a href='https://ionizing.page/tags/C&#43;&#43;'>C&#43;&#43;</a></li>
+                
+                <li><a href='https://ionizing.page/tags/WAVECAR'>WAVECAR</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ionizing/ionizing.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://ionizing.page/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ionizing.page/post/nbody-with-cuda/" title="使用 CUDA 为 N 体模拟加速">使用 CUDA 为 N 体模拟加速</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/compile-vasp-on-macos/" title="在 macOS 上编译 VASP 5.4.4">在 macOS 上编译 VASP 5.4.4</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-Ensembles/" title="统计力学笔记——系综的概念">统计力学笔记——系综的概念</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/" title="如何求解 A * B = C 中的矩阵 B ？">如何求解 A * B = C 中的矩阵 B ？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title="如何为 github 上的 cpp 项目设置 Travis-CI 自动测试">如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/" title="WAVECAR 数据结构的解析">WAVECAR 数据结构的解析</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-struggle-with-vasp/" title="在 VASP(PBE) 计算中如何优雅地踩坑？">在 VASP(PBE) 计算中如何优雅地踩坑？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title="简谐振动系统浅析（一）">简谐振动系统浅析（一）</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Coriolis-Force/" title="浅谈科里奥利力">浅谈科里奥利力</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Quantum-Physics-Learning-Log-1/" title="量子力学学习手记（一）">量子力学学习手记（一）</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://ionizing.page/categories/Algorithm/">Algorithm (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/AtomicPhysics/">AtomicPhysics (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/FirstPrinciple/">FirstPrinciple (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/PhysicalChemistry/">PhysicalChemistry (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Physics/">Physics (3)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Programming/">Programming (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/QuantumMechanics/">QuantumMechanics (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/VASP/">VASP (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://ionizing.page/tags/Angular-Momentum-Coupling/">Angular Momentum Coupling</a>
+    
+    <a href="https://ionizing.page/tags/Bohr/">Bohr</a>
+    
+    <a href="https://ionizing.page/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://ionizing.page/tags/CUDA/">CUDA</a>
+    
+    <a href="https://ionizing.page/tags/Clebsch-Gordan-Coefficients/">Clebsch-Gordan Coefficients</a>
+    
+    <a href="https://ionizing.page/tags/Correspondence-Principle/">Correspondence Principle</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Atom-Model/">Hydrogen Atom Model</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Spectra/">Hydrogen Spectra</a>
+    
+    <a href="https://ionizing.page/tags/Linear-Algebra/">Linear Algebra</a>
+    
+    <a href="https://ionizing.page/tags/NBody/">NBody</a>
+    
+    <a href="https://ionizing.page/tags/Negative-Temperature/">Negative Temperature</a>
+    
+    <a href="https://ionizing.page/tags/OUTCAR/">OUTCAR</a>
+    
+    <a href="https://ionizing.page/tags/PAT/">PAT</a>
+    
+    <a href="https://ionizing.page/tags/Physical-Chemistry/">Physical Chemistry</a>
+    
+    <a href="https://ionizing.page/tags/Rydberg-Constant/">Rydberg Constant</a>
+    
+    <a href="https://ionizing.page/tags/Statistical-Mechanics/">Statistical Mechanics</a>
+    
+    <a href="https://ionizing.page/tags/VASP/">VASP</a>
+    
+    <a href="https://ionizing.page/tags/WAVECAR/">WAVECAR</a>
+    
+    <a href="https://ionizing.page/tags/Wigner-3-j-Symbol/">Wigner 3-j Symbol</a>
+    
+    <a href="https://ionizing.page/tags/cpp/">cpp</a>
+    
+    <a href="https://ionizing.page/tags/macOS/">macOS</a>
+    
+    <a href="https://ionizing.page/tags/travis-ci/">travis-ci</a>
+    
+    <a href="https://ionizing.page/tags/%E5%8C%96%E5%AD%A6/">化学</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8C%AF%E5%8A%A8/">振动</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+    
+    <a href="https://ionizing.page/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">数学基础</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86/">物理</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/">物理化学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%AD%A6/">物理学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%A7%91%E9%87%8C%E5%A5%A5%E5%88%A9%E5%8A%9B/">科里奥利力</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6/">经典力学</a>
+    
+    <a href="https://ionizing.page/tags/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/">量子力学</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://ionizing.page/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://ionizing.page/">伪化生搬砖工地 By Ionizing</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.2.8/raphael.min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/flowchart/1.12.2/flowchart.min.js" crossorigin="anonymous"></script>
+        <script>(function () {
+                if (!window.flowchart) return;
+                const blocks = document.querySelectorAll('pre code.language-flowchart, pre code.language-flow');
+                for (let i = 0; i < blocks.length; i++) {
+                    const block = blocks[i];
+                    const rootElement = block.parentNode;
+                    const container = document.createElement('div');
+                    const id = `js-flowchart-diagrams-${i}`;
+                    container.id = id;
+                    container.className = 'align-center';
+                    container.setAttribute("style", "overFlow-x:auto");
+                    rootElement.parentNode.replaceChild(container, rootElement);
+                    const diagram = flowchart.parse(block.childNodes[0].nodeValue);
+                    diagram.drawSVG(id, window.flowchartDiagramsOptions ? window.flowchartDiagramsOptions : {});
+                }
+            })();
+        </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js" crossorigin="anonymous"></script>
+        <script>window.sequenceDiagramsOptions = {theme: 'simple'};(function () {
+            if (!window.Diagram) return;
+            const blocks = document.querySelectorAll('pre code.language-sequence');
+            for (let i = 0; i < blocks.length; i++) {
+                const block = blocks[i];
+                
+                const rootElement = block.parentNode;
+                const container = document.createElement('div');
+                const id = `js-sequence-diag-${i}`;
+                container.id = id;
+                container.className = 'align-center';
+                container.setAttribute("style", "overFlow-x:auto");
+                rootElement.parentNode.replaceChild(container, rootElement);
+
+                const diagram = Diagram.parse(block.childNodes[0].nodeValue);
+                diagram.drawSVG(id, window.sequenceDiagramsOptions
+                    ? window.sequenceDiagramsOptions
+                    : { theme: 'simple' });
+            }
+        })();
+        </script><script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-101595379-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

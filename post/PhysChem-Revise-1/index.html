@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>物理化学复习札记（一）：理想气体热力学量求解总结 | 伪化生搬砖工地</title>
+    <meta property="og:title" content="物理化学复习札记（一）：理想气体热力学量求解总结 - 伪化生搬砖工地">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2017-06-26T17:07:41&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2017-06-26T17:07:41&#43;08:00'>
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="物理化学复习札记（一）：理想气体热力学量求解总结">
+        
+    <meta name="author" content="Ionizing">
+    <meta property="og:url" content="https://ionizing.page/post/PhysChem-Revise-1/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://ionizing.page/">
+                        伪化生搬砖工地
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://ionizing.page/">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">物理化学复习札记（一）：理想气体热力学量求解总结</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2017年6月26日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/PhysicalChemistry'>PhysicalChemistry</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p><strong>这是这个系列的第一篇，也是第一次写这种类型的札记，如果有纰漏，还请在评论区指出，谢谢各位！</strong></p>
+<h2 id="热力学量说明">热力学量说明</h2>
+<p>物理化学中，热力学主要研究7个热力学量，这7个量如下：</p>
+<ol>
+<li>$U$，系统的热力学能，或称内能，属于状态函数，$U=f(T)$，无法求出$U$的值，但可以求出$\Delta U$的值，单位为J；</li>
+<li>$Q$，系统与环境交换的热量，当系统放热时，$Q$为负值；系统吸热，则$Q$为正值，单位为J；</li>
+<li>$W$，环境对系统所做的功，分为体积功和非体积功，单位为J；</li>
+<li>$H$，焓，定义为 $H=U+pV$，无实际含义，仅为计算方便而产生，属于状态函数，$H=f(T)$，与$U$一样，无法求出$H$的值，但可以求出$\Delta H$的值，单位为J；</li>
+<li>$S$，大名鼎鼎的熵，定义为$S=\int_A^B (\dfrac{\delta Q}{T})_R$，属于状态函数，处于绝对零度时完美晶体的熵为0，单位J$\cdot $K$^{-1}$</li>
+<li>$A$，亥姆霍兹自由能，定义为$A=U-TS$，为状态函数，无法求出$A$的值，但可以求出$\Delta A$的值，单位为J；</li>
+<li>$G$，吉布斯自由能，定义为$G=H-TS$，为状态函数，无法求出$G$的值，但可以求出$\Delta G$的值，单位为J；</li>
+</ol>
+<p>以上说明中，状态函数是指当系统状态一定时，其值即确定，亦即在某个过程中其变化量$\Delta f$只与始末状态有关，与过程细节无关。这个性质<strong>非常重要</strong>，物理化学常见的设计过程求解热力学量的理论基础即在于此。</p>
+<h2 id="热力学四大定律">热力学四大定律</h2>
+<p>是的，热力学有四大定律，分别为热力学第零定律、热力学第一定律、热力学第二定律和热力学第三定律。</p>
+<h3 id="热力学第零定律">热力学第零定律</h3>
+<p><strong>如果两个系统分别与处于确定状态的第三个系统达到热平衡，则这两个系统彼此也将处于热平衡。</strong></p>
+<p>这个定律定义了温度的概念，当两个系统相互接触处于热平衡后，它们的性质不再变化，我们称之具有相同的温度。而定义中提到的第三系统为温度计的产生奠定了理论基础。</p>
+<h3 id="热力学第一定律">热力学第一定律</h3>
+<p><strong>在变化过程中，系统的热力学能变化量表示为系统和环境的热交换量与外界对系统所做功的总和。</strong>
+写成公式即为 $ \Delta U = Q + W $，
+或者写成微分形式$ \mathrm{d}U = \delta Q + \delta W $</p>
+<h3 id="热力学第二定律">热力学第二定律</h3>
+<p>文字可表述为：</p>
+<blockquote>
+<p>克劳修斯表述：不可能把热从低温物体传到高温物体，而不引起其他变化；
+开尔文表述：不可能从单一热源取出热使之完全变为功，而不发生其他变化。</p>
+</blockquote>
+<p>数学形式：</p>
+<ul>
+<li>克劳修斯不等式表述形式：$ \Delta S_{A\to B}-\sum_A^B \dfrac{\delta Q}{T} \geq 0 $</li>
+<li>常用表述形式：$ \mathrm{d}S - \dfrac{\delta Q}{T} \geq 0 $</li>
+</ul>
+<p>上式表明，在一个隔离系统中，熵永不减少。 隔离系统是绝热的，即$\delta Q=0$，因此$\mathrm{d}S_{\mathrm{iso}} \geq 0$。</p>
+<h3 id="热力学第三定律">热力学第三定律</h3>
+<p>可以表述为**在温度趋于热力学温度0K的等温过程中，系统的熵值不变 **，也可以表述为“<strong>在0K时，任何完美晶体的熵等于零</strong>”，还可以表述为”<strong>绝对零度不可能达到</strong>“。</p>
+<h2 id="特殊过程的热力学量求值">特殊过程的热力学量求值</h2>
+<p><strong>本节所有过程均为$p$,$V$,$T$过程，不考虑非体积功！</strong></p>
+<p>常见的变化过程（均为理想气体的变化过程）有：</p>
+<ol>
+<li>等温过程：系统由状态1变到状态2，变化过程中以及始态和终态的温度不变，<strong>且等于环境温度</strong>；</li>
+<li>等压过程：系统在变化过程中，始态和终态压力相等，且等于环境压力；</li>
+<li>等容过程：系统在变化过程中保持体积不变。在刚性容器中发生的变化一般是等容过程；</li>
+<li>绝热过程：系统在变化过程中与环境之间没有热的交换，或者是由于有绝热壁的存在，或者是因为变化太快而与环境来不及热交换，或者热交换量极少可近似看作是绝热过程；</li>
+<li>环状过程：系统从始态出发，经过一系列变化后又回到了原来状态。经此过程，所有状态函数的变化量都为零。</li>
+</ol>
+<p>另外，自由膨胀过程可以看为外压恒为0的等压膨胀过程；节流膨胀过程属于实际气体的不可逆过程，不在本札记讨论范围内。</p>
+<h3 id="自由膨胀过程">自由膨胀过程</h3>
+<p>此过程不可逆，可看作外压恒为零的等压过程。</p>
+<ul>
+<li>$\Delta U=0$，由<code>Gay-Lussac-Joule</code>实验得出，而$U=f(T)$，故此过程中气体$T$不变；</li>
+<li>$W=0$，显然，自由膨胀时外压恒为零，也无非体积功，故$W=0$；</li>
+<li>$Q=0$，由热力学第一定律，$\Delta U=Q+W$，式中$\Delta U=0$，$W=0$，因此$Q=0$；</li>
+<li>$\Delta H=0$，$H$是状态函数，由上文气体$T$不变可以推出$H$不变。 另外也可由公式$\Delta H=\Delta U + \Delta(pV)$，$pV=nRT$（n、T不变，所以$pV$不变）推出$\Delta H=0$；</li>
+<li>$\Delta S&gt;0$，显然该过程不可逆，其对应的可逆过程为等温可逆膨胀，计算得$\Delta S=\int\dfrac{\delta Q}{T} = \dfrac{Q}{T} = nR\ln\dfrac{V_2}{V_1} = -nR\ln\dfrac{p_2}{p_1}$；</li>
+<li>$\Delta G&lt;0​$，由公式$\Delta G=\Delta H-\Delta (TS)​$，并且$\Delta H=0​$、$T​$不变得出$\Delta G=-T\Delta S​$；</li>
+<li>$\Delta A&lt;0$，与计算$\Delta G$的过程类似，$\Delta A=-T\Delta S$。</li>
+</ul>
+<h3 id="等温可逆过程">等温可逆过程</h3>
+<p>此过程满足 $pV=nRT=\mathrm{Constant}$。</p>
+<ul>
+<li>$\Delta U=0$，$U$为状态函数，等温过程系统温度不变，因此$U$不变、$\Delta U=0$；</li>
+<li>$W$，由公式$W=-\int_{V_1}^{V_2}p_{\mathrm{e}}\mathrm{d}V$，且$p_e=p=\dfrac{nRT}{V}$（可逆过程中环境压力始终近似于系统压力），所以$W=-nRT\int_{V_1}^{V^2} \dfrac{1}{V} \mathrm{d}V=-nRT\ln\dfrac{V_2}{V_1}$；此外，若已知系统的始末压力，也可以将前式变换为$W=nRT\dfrac{p_1}{p_2}$</li>
+<li>$Q$，由热力学第一定律，$\Delta U=W+Q$，得$Q=-W=nRT\ln\dfrac{V_2}{V_1}$；</li>
+<li>$\Delta H$，与$U$类似，为状态函数，$\Delta H=0$；</li>
+<li>$\Delta S$，此过程已经为可逆过程，不必再设计可逆过程。因此$\Delta S=\int\dfrac{\delta Q}{T} = \dfrac{Q}{T} = nR\ln\dfrac{V_2}{V_1} = -nR\ln\dfrac{p_2}{p_1}$；</li>
+<li>$\Delta G$，直接代入公式$\Delta G=\Delta H-\Delta(TS)$，得$\Delta G=-nRT\ln\dfrac{V_2}{V_1}=nRT\ln\dfrac{p_2}{p_1}=W $；</li>
+<li>$\Delta A$，同$\Delta G$，得到$\Delta A=\Delta G=W=-nRT\ln\dfrac{V_2}{V_1}=nRT\ln\dfrac{p_2}{p_1} $。</li>
+</ul>
+<h3 id="等压过程">等压过程</h3>
+<p>此过程满足 $\dfrac{nRT}{V}=\text{Constant}$</p>
+<ul>
+<li>$\Delta U$，此时$\Delta U\neq 0$，应用公式$\Delta U=Q_{\mathrm{V}}=nC_{\mathrm{V,m}} (T_2 - T_1)=\dfrac{p}{R}C_{\mathrm{V,m}} (V_2-V_1)$计算。单原子分子理想气体的$C_\mathrm{V,m}=\dfrac{3}{2}R$。</li>
+<li>$W​$，显然 $W=-\int_{V_1}^{V_2}p_e\mathrm{d}V=p(V_2 - V_1)​$；</li>
+<li>$Q$，等压过程中的热交换量用$Q_\mathrm{p}$表示，并且$Q_\mathrm{p}=nC_\mathrm{p,m}\Delta T$或者使用$C_\mathrm{p,m}=C_\mathrm{V,m}+R$以及$Q=\Delta U-W$求解。</li>
+<li>$\Delta H$，直接使用公式$\Delta H = \Delta U + \Delta(pV) = nC_\mathrm{P,m}(T_2-T_1)$</li>
+<li>$\Delta S$，等压过程对应的可逆过程为物体的可逆加热或冷却，有$\delta Q_R=C\mathrm{d}T=nC_\mathrm{p,m}\mathrm{d}T$，因此，$\Delta S = \int_{T_A}^{T_B} \dfrac{nC_\mathrm{p,m}}{T}\mathrm{d}T=nC_\mathrm{p,m}\ln\dfrac{T_{B}}{T_{A}} $，根据公式$pV=nRT$可以求出$T$，这里不再对式子进行展开；</li>
+<li>$\Delta G$，直接代入式子$\Delta G=\Delta H-\Delta(TS)$即可（题目会给出气体的标准摩尔熵，结合上面的$\Delta S$可以使用$\Delta (TS)=T_2 n(S_m+\Delta S) - T_1 nS_m$求出$\Delta G$）；</li>
+<li>$\Delta A$，同$\Delta G$，直接代入$\Delta A=\Delta U-\Delta (TS)$求解。</li>
+</ul>
+<h3 id="等容过程">等容过程</h3>
+<p>此过程满足$\dfrac{nRT}{p}=\mathrm{Constant}$。</p>
+<ul>
+<li>$\Delta U$，与等压过程一样，直接使用公式$\Delta U=Q_\mathrm{V}=nC_\mathrm{V,m}\Delta T$。单原子分子理想气体的$C_\mathrm{V,m}=\dfrac{3}{2}R $；</li>
+<li>$W$，因为体积无变化，$\mathrm{d}V=0$，故$W=\int_{V_1}^{V_2} p\mathrm{d}V=0$；</li>
+<li>$Q$，等容过程的热交换量也成为恒容热$Q_\mathrm{V}$，$Q_\mathrm{V}=nC_\mathrm{V,m}\Delta T$；</li>
+<li>$\Delta H$，可以结合式子$pV=nRT$求出$\Delta (pV)=nR\Delta T$，最后代入$\Delta H=\Delta U-\Delta (PV)$求出$\Delta H$；</li>
+<li>$\Delta S$，等容过程对应的可逆过程为物体的可逆加热或冷却，有$\delta Q_R=C\mathrm{d}T=nC_\mathrm{V,m}\mathrm{d}T$，因此，$\Delta S = \int_{T_A}^{T_B} \dfrac{nC_\mathrm{V,m}}{T}\mathrm{d}T=\Delta S=nC_\mathrm{V,m}\ln\dfrac{T_{B}}{T_{A}} $，根据公式$pV=nRT$可以求出$T$，这里不再对式子进行展开；</li>
+<li>$\Delta G$，同等压过程，因为温度发生改变，必须知道$S$的初始值才能计算出$\Delta (TS)$，所以题目会给出或间接给出$S$，此时直接代入公式$\Delta  G=\Delta H-\Delta (TS)$即可求出吉布斯自由能的变化值；</li>
+<li>$\Delta A$，与$\Delta G$类似，仅将$\Delta H$替换为$\Delta U$其余不变，即可计算出亥姆霍兹自由能的变化值。</li>
+</ul>
+<h3 id="绝热可逆过程">绝热可逆过程</h3>
+<p>这是一个非常重要的过程，可逆，满足方程$pV^\gamma=K=\mathrm{Constant}$，式中$\gamma=\dfrac{C_\mathrm{p,m}}{C_\mathrm{V,m}}$，对于理想气体$\gamma=\dfrac{5}{3}$。</p>
+<ul>
+<li>$\Delta U$，由热力学第一定律，$\Delta U=Q+W$，$Q=0$，故$\Delta U=W=nC_\mathrm{V,m}\Delta T$；</li>
+<li>$Q$，绝热过程定义直接表明$Q=0$；</li>
+<li>$W​$，$W=-\int_{V_1}^{V_2}p\mathrm{d}V = -\int_{V_1}^{V_2}\dfrac{K}{V^\gamma}\mathrm{d}V = -\big[ \dfrac{K}{(1-\gamma)V^{\gamma-1}} \big]_{V_1}^{V_2} = -\dfrac{K}{1-\gamma} \big[ \dfrac{1}{V_2^{\gamma-1}} - \dfrac{1}{V_1^{\gamma-1}} \big] $
+因为$p_1 V_1^\gamma = p_2 V_2^\gamma = K$，上式写为$ W=\dfrac{p_2 V_2- p_1 V_1}{\gamma -1}=\dfrac{nR(T_2 - T_1)}{\gamma -1}  $，又因为$\dfrac{nR}{C_V}=\gamma-1$，所以$W=C_V(T_2 -T_1)$</li>
+<li>$\Delta H$，计算$\Delta H$必须知道$\Delta (pV)$，此时没有更加简单的办法，只能分别求出$p_1$，$V_1$，$p_2$，$V_2$然后计算出$p_2 V_2 - p_1 V_1$最后代入$\Delta H=\Delta U +p_2 V_2 - p_1 V_1$即可求出$\Delta H$；</li>
+<li>$\Delta S$，该过程为绝热可逆过程，$\delta Q_R=0$，故熵变为０，即$\Delta S=0$；</li>
+<li>$\Delta G$，该过程为变温过程，故题目会直接或间接给出$S$的初始值，然后利用$\Delta G=\Delta H-\Delta (TS)=\Delta H-S\Delta T$计算出$\Delta G$即可；</li>
+<li>$\Delta A$，与$\Delta G$类似，将$\Delta G$中的$\Delta H$换为$\Delta U$即可。</li>
+</ul>
+<h3 id="环状过程">环状过程</h3>
+<p>此过程没有具体的方程，但可以多个过程组成，系统最终状态与初始状态相同。</p>
+<ul>
+<li>由于系统初始状态与终末状态相同，故<strong>系统</strong>中所有状态函数的变化量为零，即$\Delta U=\Delta H=\Delta S=\Delta G=\Delta A=0$，<strong>注意，此式子描述的是系统的热力学量，而此系统与外界有能量交换，故为非孤立体系，熵变可以为０</strong>。</li>
+<li>$W$与$Q$，计算这两个热力学量时<strong>不能</strong>设计过程来求，只能按照过程的具体细节，分解成容易求出$W$和$Q$的过程分别计算出两者，然后求和。</li>
+</ul>
+<p>以上为本渣的总结，如有纰漏，还请大神指正。</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://ionizing.page/">Ionizing</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://ionizing.page/post/PhysChem-Revise-1/">https://ionizing.page/post/PhysChem-Revise-1/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6'>物理化学</a></li>
+                
+                <li><a href='https://ionizing.page/tags/%E5%8C%96%E5%AD%A6'>化学</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ionizing/ionizing.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://ionizing.page/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ionizing.page/post/nbody-with-cuda/" title="使用 CUDA 为 N 体模拟加速">使用 CUDA 为 N 体模拟加速</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/compile-vasp-on-macos/" title="在 macOS 上编译 VASP 5.4.4">在 macOS 上编译 VASP 5.4.4</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-Ensembles/" title="统计力学笔记——系综的概念">统计力学笔记——系综的概念</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/" title="如何求解 A * B = C 中的矩阵 B ？">如何求解 A * B = C 中的矩阵 B ？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title="如何为 github 上的 cpp 项目设置 Travis-CI 自动测试">如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/" title="WAVECAR 数据结构的解析">WAVECAR 数据结构的解析</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-struggle-with-vasp/" title="在 VASP(PBE) 计算中如何优雅地踩坑？">在 VASP(PBE) 计算中如何优雅地踩坑？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title="简谐振动系统浅析（一）">简谐振动系统浅析（一）</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Coriolis-Force/" title="浅谈科里奥利力">浅谈科里奥利力</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Quantum-Physics-Learning-Log-1/" title="量子力学学习手记（一）">量子力学学习手记（一）</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://ionizing.page/categories/Algorithm/">Algorithm (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/AtomicPhysics/">AtomicPhysics (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/FirstPrinciple/">FirstPrinciple (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/PhysicalChemistry/">PhysicalChemistry (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Physics/">Physics (3)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Programming/">Programming (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/QuantumMechanics/">QuantumMechanics (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/VASP/">VASP (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://ionizing.page/tags/Angular-Momentum-Coupling/">Angular Momentum Coupling</a>
+    
+    <a href="https://ionizing.page/tags/Bohr/">Bohr</a>
+    
+    <a href="https://ionizing.page/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://ionizing.page/tags/CUDA/">CUDA</a>
+    
+    <a href="https://ionizing.page/tags/Clebsch-Gordan-Coefficients/">Clebsch-Gordan Coefficients</a>
+    
+    <a href="https://ionizing.page/tags/Correspondence-Principle/">Correspondence Principle</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Atom-Model/">Hydrogen Atom Model</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Spectra/">Hydrogen Spectra</a>
+    
+    <a href="https://ionizing.page/tags/Linear-Algebra/">Linear Algebra</a>
+    
+    <a href="https://ionizing.page/tags/NBody/">NBody</a>
+    
+    <a href="https://ionizing.page/tags/Negative-Temperature/">Negative Temperature</a>
+    
+    <a href="https://ionizing.page/tags/OUTCAR/">OUTCAR</a>
+    
+    <a href="https://ionizing.page/tags/PAT/">PAT</a>
+    
+    <a href="https://ionizing.page/tags/Physical-Chemistry/">Physical Chemistry</a>
+    
+    <a href="https://ionizing.page/tags/Rydberg-Constant/">Rydberg Constant</a>
+    
+    <a href="https://ionizing.page/tags/Statistical-Mechanics/">Statistical Mechanics</a>
+    
+    <a href="https://ionizing.page/tags/VASP/">VASP</a>
+    
+    <a href="https://ionizing.page/tags/WAVECAR/">WAVECAR</a>
+    
+    <a href="https://ionizing.page/tags/Wigner-3-j-Symbol/">Wigner 3-j Symbol</a>
+    
+    <a href="https://ionizing.page/tags/cpp/">cpp</a>
+    
+    <a href="https://ionizing.page/tags/macOS/">macOS</a>
+    
+    <a href="https://ionizing.page/tags/travis-ci/">travis-ci</a>
+    
+    <a href="https://ionizing.page/tags/%E5%8C%96%E5%AD%A6/">化学</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8C%AF%E5%8A%A8/">振动</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+    
+    <a href="https://ionizing.page/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">数学基础</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86/">物理</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/">物理化学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%AD%A6/">物理学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%A7%91%E9%87%8C%E5%A5%A5%E5%88%A9%E5%8A%9B/">科里奥利力</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6/">经典力学</a>
+    
+    <a href="https://ionizing.page/tags/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/">量子力学</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://ionizing.page/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://ionizing.page/">伪化生搬砖工地 By Ionizing</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.2.8/raphael.min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/flowchart/1.12.2/flowchart.min.js" crossorigin="anonymous"></script>
+        <script>(function () {
+                if (!window.flowchart) return;
+                const blocks = document.querySelectorAll('pre code.language-flowchart, pre code.language-flow');
+                for (let i = 0; i < blocks.length; i++) {
+                    const block = blocks[i];
+                    const rootElement = block.parentNode;
+                    const container = document.createElement('div');
+                    const id = `js-flowchart-diagrams-${i}`;
+                    container.id = id;
+                    container.className = 'align-center';
+                    container.setAttribute("style", "overFlow-x:auto");
+                    rootElement.parentNode.replaceChild(container, rootElement);
+                    const diagram = flowchart.parse(block.childNodes[0].nodeValue);
+                    diagram.drawSVG(id, window.flowchartDiagramsOptions ? window.flowchartDiagramsOptions : {});
+                }
+            })();
+        </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js" crossorigin="anonymous"></script>
+        <script>window.sequenceDiagramsOptions = {theme: 'simple'};(function () {
+            if (!window.Diagram) return;
+            const blocks = document.querySelectorAll('pre code.language-sequence');
+            for (let i = 0; i < blocks.length; i++) {
+                const block = blocks[i];
+                
+                const rootElement = block.parentNode;
+                const container = document.createElement('div');
+                const id = `js-sequence-diag-${i}`;
+                container.id = id;
+                container.className = 'align-center';
+                container.setAttribute("style", "overFlow-x:auto");
+                rootElement.parentNode.replaceChild(container, rootElement);
+
+                const diagram = Diagram.parse(block.childNodes[0].nodeValue);
+                diagram.drawSVG(id, window.sequenceDiagramsOptions
+                    ? window.sequenceDiagramsOptions
+                    : { theme: 'simple' });
+            }
+        })();
+        </script><script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-101595379-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

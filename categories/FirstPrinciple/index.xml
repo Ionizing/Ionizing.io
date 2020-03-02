@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FirstPrinciple on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/categories/FirstPrinciple/</link>
+    <description>Recent content in FirstPrinciple on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 31 Dec 2018 20:16:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/categories/FirstPrinciple/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WAVECAR 数据结构的解析</title>
+      <link>https://ionizing.page/post/2018-12-31_WAVECAR-parsing/</link>
+      <pubDate>Mon, 31 Dec 2018 20:16:24 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2018-12-31_WAVECAR-parsing/</guid>
+      <description>我们知道，WAVECAR 是 VASP 计算完成后输出的一个二进制文件，它包含的信息用普通的文本编辑器不能直接查看。但有时一些拥有好奇心的人总想看看它里面到底储存了什么东东，于是闲得 X 疼的本人就本着生命不息、折腾不止的态度研究了一下 WAVECAR 的数据结构，终于写出了一个能解析 WAVECAR 的小程序，于是有了这篇博</description>
+    </item>
+    
+    <item>
+      <title>在 VASP(PBE) 计算中如何优雅地踩坑？</title>
+      <link>https://ionizing.page/post/how-to-struggle-with-vasp/</link>
+      <pubDate>Wed, 28 Mar 2018 17:28:20 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/how-to-struggle-with-vasp/</guid>
+      <description>警告：本渣刚学 VASP 不久，对 VASP 的算法、参数不甚了解，如果有大触偶遇此文，并发现有错误，请在评论区指出或邮箱联系本渣。 前言 本文是本渣从 3 月初以来刚接触 VASP 所学技能与遇到坑的总结，以纪念我为文献中一副图而逝去的最近一星期。何为 VASP 以及 VASP 能做什么？本渣只是一个刚学的菜鸡，恕不能回答，请自行 Google 解</description>
+    </item>
+    
+  </channel>
+</rss>

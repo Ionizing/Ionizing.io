@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>排序 on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/tags/%E6%8E%92%E5%BA%8F/</link>
+    <description>Recent content in 排序 on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 22 Jun 2017 13:33:59 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/tags/%E6%8E%92%E5%BA%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PAT题解 B 1035</title>
+      <link>https://ionizing.page/post/PAT%E9%A2%98%E8%A7%A3-B-1035/</link>
+      <pubDate>Thu, 22 Jun 2017 13:33:59 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/PAT%E9%A2%98%E8%A7%A3-B-1035/</guid>
+      <description>题解:PAT-B 1035 插入与归并 这是一篇测试用文章，欢迎围观. 题目全文： 题目地址在这里 根据维基百科的定义： 插入排序是迭代算法，逐一获得输入数据，逐步产生有序的输出序列。每步迭代中，算法从输入序列中取出一元素，将之插入有序序列中正确的位置。如此迭代直到全部元素有序。 归并排序进行如下迭代</description>
+    </item>
+    
+  </channel>
+</rss>

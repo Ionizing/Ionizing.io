@@ -20,5 +20,14 @@
       <description>简介 本文是研二上学期 CUDA 课程 Project 作业的简单总结。 在物理学中， 多体问题一般是指在已知初始位置、速度和质量的多个物体在经典力学框架下进行演化的预测问题。 在多体系统中，每个物体都受到其他物体的相互作用而使其自身的运动产生响应的影响。在天体力学中， \(N\) 体系统的模拟是典型的多体问题，物体之间的相</description>
     </item>
     
+    <item>
+      <title>如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</title>
+      <link>https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/</link>
+      <pubDate>Mon, 21 Jan 2019 11:32:17 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/</guid>
+      <description>前言 Travis-CI 是一个持续集成测试网站，其 org 版对用户免费开放，对用户的 public 仓库可以免费提供 持续集成测试服务（私有仓库要使用 com 版） 设置步骤 访问 [](https://travis-ci.org) 并使自己的 github 账户与 travis-ci 关联，并给予它足够的权限 （一路下一步就行）； 点击右上角的用户头像，进入自己的 repositories 配置面板，找到自己想要开启集成测试的项目， 开启集成测</description>
+    </item>
+    
   </channel>
 </rss>

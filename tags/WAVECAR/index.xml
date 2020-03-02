@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WAVECAR on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/tags/WAVECAR/</link>
+    <description>Recent content in WAVECAR on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 31 Dec 2018 20:16:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/tags/WAVECAR/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WAVECAR 数据结构的解析</title>
+      <link>https://ionizing.page/post/2018-12-31_WAVECAR-parsing/</link>
+      <pubDate>Mon, 31 Dec 2018 20:16:24 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2018-12-31_WAVECAR-parsing/</guid>
+      <description>我们知道，WAVECAR 是 VASP 计算完成后输出的一个二进制文件，它包含的信息用普通的文本编辑器不能直接查看。但有时一些拥有好奇心的人总想看看它里面到底储存了什么东东，于是闲得 X 疼的本人就本着生命不息、折腾不止的态度研究了一下 WAVECAR 的数据结构，终于写出了一个能解析 WAVECAR 的小程序，于是有了这篇博</description>
+    </item>
+    
+  </channel>
+</rss>

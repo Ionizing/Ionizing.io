@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Physics on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/categories/Physics/</link>
+    <description>Recent content in Physics on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 22 Mar 2019 21:50:44 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/categories/Physics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>统计力学笔记——系综的概念</title>
+      <link>https://ionizing.page/post/2019-3-22-Ensembles/</link>
+      <pubDate>Fri, 22 Mar 2019 21:50:44 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/2019-3-22-Ensembles/</guid>
+      <description>何为「系综」？ 简单来说 系综 (Ensemble) 就是一个宏观态对应所有可能微观态的集合。 $\newcommand{\dif}{\mathop{}\mathrm{d}}$ 对于宏观态，我们研究对象所含有的粒子的数量级在 1023左右（即 1 mol 物质所含粒子的数量），而这个宏观态的宏观量（如压力 $p​$ ，温度 $T​$ ，体积 $V​$ ，粒子数目 $N​$ ，以及内能 $E​$ 等）可以保持不变，但是</description>
+    </item>
+    
+    <item>
+      <title>简谐振动系统浅析（一）</title>
+      <link>https://ionizing.page/post/how-to-solve-viberation-1/</link>
+      <pubDate>Sat, 30 Sep 2017 22:21:37 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/how-to-solve-viberation-1/</guid>
+      <description>何为简谐振动 引用 Wikipedia 上的定义，简谐运动（或简谐振动、谐振、SHM（Simple Harmonic Motion））既是最基本也是最简单的一种机械振动。当某物体进行简谐运动时，物体所受的力跟位移成正比，并且力总是指向平衡位置。 典型的例子即为水平面内的弹簧振子，如下图所示（忽略一切摩擦） 如果用 $F$ 表示物体</description>
+    </item>
+    
+    <item>
+      <title>浅谈科里奥利力</title>
+      <link>https://ionizing.page/post/Coriolis-Force/</link>
+      <pubDate>Wed, 23 Aug 2017 13:25:06 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/Coriolis-Force/</guid>
+      <description>简介 苯渣在补力学时卡在了科氏力这一节，经过 Mr. Ren , 物吧大佬以及 Wikipedia 上的详细解释，我总算稍稍弄懂了这个家伙到底是怎么产生的了，于是写下本文分享一下愚见。 引子 坐过旋转木马的同学应该会有这样的体验：当坐在绕轴旋转的座位上向轴扔一个纸团（乱扔垃圾什么的最讨厌啦）时，纸团并不会砸到轴上，似乎纸</description>
+    </item>
+    
+  </channel>
+</rss>

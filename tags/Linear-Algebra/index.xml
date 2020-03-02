@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linear Algebra on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/tags/Linear-Algebra/</link>
+    <description>Recent content in Linear Algebra on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 25 Jan 2019 23:44:50 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/tags/Linear-Algebra/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何求解 A * B = C 中的矩阵 B ？</title>
+      <link>https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/</link>
+      <pubDate>Fri, 25 Jan 2019 23:44:50 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/</guid>
+      <description>问题 给定一个矩阵方程 $$ \mathbf{A} \times \mathbf{B} = \mathbf{C} $$ 其中 $\mathbf{B}$ 是方阵， $\mathbf{A}$ 和 $\mathbf{C}$ 的形状相同，问如何求解 $\mathbf{B}$ ? 解答 $\mathbf{A}$ 和 $\mathbf{C}$ 的形状相同，如果它们都是方阵，则 $$ \begin{align} \mathbf{A} \times \mathbf{B} ={}&amp;amp; \mathbf{C} \ \mathbf{A}^{-1} \times \mathbf{A} \times \mathbf{B} ={}&amp;amp; \mathbf{A}^{-1} \times \mathbf{C} \ \mathbf{B} ={}&amp;amp; \mathbf{A}^{-1} \times \mathbf{C} \label{eq:easy} \end{align} $$ 但 $\mathbf{A}$ 和 $\mathbf{C}$ 未必是方阵，所以不存在逆矩阵，也就无法通过等式左右同时左乘 $\mathbf{A}^{-1}$ 的方法直接求出 $\mathbf{B}$ 。那么此时如何求解 $\mathbf{B}$ 呢</description>
+    </item>
+    
+  </channel>
+</rss>

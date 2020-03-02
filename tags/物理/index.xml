@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>物理 on 伪化生搬砖工地</title>
+    <link>https://ionizing.page/tags/%E7%89%A9%E7%90%86/</link>
+    <description>Recent content in 物理 on 伪化生搬砖工地</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 30 Sep 2017 22:21:37 +0000</lastBuildDate>
+    
+	<atom:link href="https://ionizing.page/tags/%E7%89%A9%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>简谐振动系统浅析（一）</title>
+      <link>https://ionizing.page/post/how-to-solve-viberation-1/</link>
+      <pubDate>Sat, 30 Sep 2017 22:21:37 +0000</pubDate>
+      
+      <guid>https://ionizing.page/post/how-to-solve-viberation-1/</guid>
+      <description>何为简谐振动 引用 Wikipedia 上的定义，简谐运动（或简谐振动、谐振、SHM（Simple Harmonic Motion））既是最基本也是最简单的一种机械振动。当某物体进行简谐运动时，物体所受的力跟位移成正比，并且力总是指向平衡位置。 典型的例子即为水平面内的弹簧振子，如下图所示（忽略一切摩擦） 如果用 $F$ 表示物体</description>
+    </item>
+    
+  </channel>
+</rss>

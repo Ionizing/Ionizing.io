@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>统计力学笔记——系综的概念 | 伪化生搬砖工地</title>
+    <meta property="og:title" content="统计力学笔记——系综的概念 - 伪化生搬砖工地">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-03-22T21:50:44&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-03-22T21:50:44&#43;08:00'>
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="统计力学笔记——系综的概念">
+        
+    <meta name="author" content="Ionizing">
+    <meta property="og:url" content="https://ionizing.page/post/2019-3-22-Ensembles/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://ionizing.page/">
+                        伪化生搬砖工地
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://ionizing.page/">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">统计力学笔记——系综的概念</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年3月22日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/Physics'>Physics</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="何为系综">何为「系综」？</h1>
+<p>简单来说 <a href="https://en.wikipedia.org/wiki/Statistical_ensemble_(mathematical_physics)">系综</a> (Ensemble) 就是一个宏观态对应所有可能微观态的集合。 $\newcommand{\dif}{\mathop{}\mathrm{d}}$</p>
+<p>对于宏观态，我们研究对象所含有的粒子的数量级在 10<!-- raw HTML omitted -->23<!-- raw HTML omitted --> 左右（即 1 mol 物质所含粒子的数量），而这个宏观态的宏观量（如压力 $p​$ ，温度 $T​$ ，体积 $V​$ ，粒子数目 $N​$ ，以及内能 $E​$ 等）可以保持不变，但是给定一个宏观态，固定其中某些宏观量后，却可能有极大量微观态与之对应。为了研究方便，我们给这些对应于同一个宏观态的微观态的集合起名字叫做「系综」。</p>
+<p>为了简化模型，我们使用理想气体分子作为研究的粒子，通常研究的系综体系有：</p>
+<ul>
+<li>微正则系综（<a href="https://en.wikipedia.org/wiki/Microcanonical_ensemble">Microcanonical Ensemble</a>） $\Longrightarrow$ 等粒子数、等容、等能量的体系，即孤立体系（与外界完全隔离，与环境没有物质交换、没有做功、甚至没有能量交换的体系）所对应的系综，热力学参量为 $N$ 、 $V$ 、 $E$ ；</li>
+<li>正则系综（<a href="https://en.wikipedia.org/wiki/Canonical_ensemble">Canonical Ensemble</a>） $\Longrightarrow$  等粒子数、等容、等温的体系，即封闭体系（容器体积封闭固定无法对外界做功，与外界没有粒子交换，但是容器壁可以传热，体系与外界仅有能量交换，<strong>且体系温度保持恒定</strong>）所对应的系综，热力学参量为 $N$ ，$V$ ， $T$ ；</li>
+<li>巨正则系综（<a href="https://en.wikipedia.org/wiki/Grand_canonical_ensemble">Grand Canonical Ensemble</a>） $\Longrightarrow$ 等化学势、等容、等温的体系，即开放体系（容器体积固定，但并不封闭，体系内外有物质交换和能量交换，但体系的化学势与温度始终保持恒定）所对应的系综，热力学参量为 $\mu$ ， $V$ ， $T$ ；</li>
+<li>等温等压系综（<a href="https://en.wikipedia.org/wiki/Isothermal%E2%80%93isobaric_ensemble">Isothermal-Isobaric Ensemble</a>） $\Longrightarrow$ 等粒子数、等温、等压的体系（如一个自由的密闭活塞）所对应的系综，热力学参量为 $N$ ， $T$ ， $p$ 。</li>
+</ul>
+<p>PS.</p>
+<ol>
+<li>个人认为带「正则」的名字翻译得……很让人摸不着头脑，无法从名字知道系综的参量情况，可能是这个术语本身在命名时就比较随意吧。不过命名不是重点，其内在的逻辑才是应该关心的；</li>
+<li>其中的热力学「参量」表示我们给定体系的热力学量。类似于程序设计中「函数」的「输入参数」；</li>
+<li>给定上面的这些热力学「参量」并<!-- raw HTML omitted --><strong>不代表体系在任意时刻保持这些热力学量恒定</strong><!-- raw HTML omitted -->。给定它们表示体系在宏观上保持这些热力学量不变，但在微观角度看，这些热力学量是在<strong>时刻不停地涨落</strong>，但是它们整体表现出的<strong>平均值</strong>是恒定不变的，这才是给定热力学参量的真正含义；</li>
+<li>为什么要定义系综？其实刚开始时人们研究宏观态时是只研究其对应的某一个微观态在一段时间内的演化过程，但是研究一个态需要知道这个态的初始参数（所有粒子的初速度、位置信息等），每次研究都要设置这个参数，很麻烦，并且很多时候人们并不知道这些参数；而且在很短时间内这个态经过演化已经经历过了所有可能的等价态，使得结果与初始参数的关系并不大。于是人们将<!-- raw HTML omitted --><strong>研究一个体系在一段时间的演化</strong><!-- raw HTML omitted -->转化成<!-- raw HTML omitted --><strong>研究多个等价体系在同一时间内的统计分布</strong><!-- raw HTML omitted -->，这样并不需要定义其中某个微观态的初始参数，而是给出这些微观态平均表现出的热力学性质，然后研究这些态的热力学量在统计上的分布就能达到想要的效果，系综的概念应运而生。</li>
+</ol>
+<h1 id="热力学基本关系式httpsenwikipediaorgwikifundamental_thermodynamic_relation"><a href="https://en.wikipedia.org/wiki/Fundamental_thermodynamic_relation">热力学基本关系式</a></h1>
+<p>只有一个公式：
+$$
+\dif E = T\dif S - p\dif V + \mu\dif N
+\label{eq:thermal_relation}
+$$
+式 $\eqref{eq:thermal_relation}​$ 中：</p>
+<ul>
+<li>$E$ ——内能，J；</li>
+<li>$T​$ ——温度，K；</li>
+<li>$S​$ ——熵，J/K；</li>
+<li>$p$ ——压力，Pa；</li>
+<li>$V$ ——体积，m<!-- raw HTML omitted -->3<!-- raw HTML omitted -->；</li>
+<li>$\mu$ ——化学势，J；</li>
+<li>$N$ ——粒子数目。</li>
+</ul>
+<p>仔细观察这个公式，可以发现公式每一项的量纲都是能量： $E$ ， $TS$ ， $pV$ ， $\mu N$ 单位都是 J 。</p>
+<p>并且，等式右边微分符号左边都是<a href="https://en.wikipedia.org/wiki/Intensive_and_extensive_properties#Intensive_properties">强度量</a>—— $T$ ， $p$ ， $\mu$ ；被微分的量都是<a href="https://en.wikipedia.org/wiki/Intensive_and_extensive_properties#Extensive_properties">广延量</a> ——$S$ ， $V$ ， $N$ 。</p>
+<p>强度量不随物质的多少或系统的大小而改变，比如两份温度同样是 300 K 的气体混合在一块，并不意味着它们总体的温度是各自温度的加和，这样的相加是没有意义的，所以温度是强度量；但如果是两份体积为 1 L 的气体混合在一块，它们的总体积就可以是 2 L，那么体积就是广延量；</p>
+<p>再次审视这个公式，我们发现等号右边的每一项的两个量都是一对共轭量，这一点在后面的公式推导中很重要。</p>
+<h2 id="beta-的定义及对热力学基本关系式的变形">$\beta$ 的定义及对热力学基本关系式的变形</h2>
+<p>为了后面研究的方便，我们定义温度与玻尔兹曼常数乘积的倒数为 $\beta$ ：
+$$
+\beta = \frac{1}{kT}
+$$
+其中 $k$ 是<a href="https://en.wikipedia.org/wiki/Boltzmann_constant">玻尔兹曼常数</a>， $k = \frac{R}{N_A} = \frac{8.314}{6.02\times 10^{23}} = 1.38064852\times 10^{−23}$ 单位是 J/K。</p>
+<p>接着我们对式 $\eqref{eq:thermal_relation}$ 进行变形：
+$$
+\begin{align}\notag
+\dif E &amp;={} T\dif S - p\dif V + \mu\dif N \ \notag
+\frac{1}{T} \dif E &amp;={} \dif S - \frac{p}{T} \dif V + \frac{\mu}{T}\dif N \ \notag
+\frac{1}{kT} \dif E &amp;={} \frac{1}{k}\dif S - \frac{p}{kT} \dif V + \frac{\mu}{kT}\dif N \ \notag
+\beta \dif E &amp;={} \frac{1}{k}\dif S -\beta p\dif V + \beta\mu \dif N\ \notag
+\frac{1}{k}\dif S &amp;={} \beta \dif E +\beta p\dif V - \beta\mu \dif N\<br>
+\label{eq:thermal_relation_derivative}
+\end{align}
+$$</p>
+<p>这时要请出一位热力学历史上的一位重要人物——玻尔兹曼，在他的墓碑上写着一个著名的公式</p>
+<p><img src="boltzmann_tombstone.jpg" alt="玻尔兹曼的墓碑">
+$$
+S = k\ln \Omega \label{eq:boltzmann}
+$$
+式 $\eqref{eq:boltzmann}$ 中，$k$ 为玻尔兹曼常数， $\Omega$ 是体系的状态数并且无量纲， $S$ 就是体系的熵，将式 $\eqref{eq:boltzmann}$ 代入 $\eqref{eq:thermal_relation_derivative}$ 中
+$$
+\begin{align} \notag
+\frac{1}{k}\dif k\ln \Omega &amp;={} \beta \dif E + \beta p\dif V - \beta \mu\dif N \<br>
+\dif \ln \Omega &amp;={} \beta \dif E + \beta p\dif V - \beta \mu\dif N \label{eq:eq5}
+\end{align}
+$$
+式  $\eqref{eq:eq5}$ 在后面的推导中会<strong>非常有用</strong>。</p>
+<h1 id="两个假设">两个假设</h1>
+<p>和量子力学存在五个假设类似，统计力学也是在几个假设的前提下延伸的，当然这里的假设数量比量子力学要少很多——只有两个，它们分别是：</p>
+<ol>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Ergodic_hypothesis">遍历性假设</a>
+当时间足够长，所有的粒子都能遍历整个体系，体系不存在对于所有状态 $\nu$ ，都使得 $P_{\nu} = 0$ 的区域。</p>
+<p>$P_{\nu}$ 是体系某区域出现粒子的概率， $\nu$ 表示体系所处的状态。</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/A_priori_probability">等几率假设</a></p>
+<p>对于微正则系综（孤立体系，$N$ $V$ $E$ 为给定参数），每个状态出现的概率相等。这里我们使用 $\varOmega(N, V, E)$ 表示体系的总状态数，则每个状态出现的概率
+$$
+P_{\nu} = \frac{1}{\varOmega(N, V, E)}
+$$</p>
+</li>
+</ol>
+<h1 id="态密度与简并度">态密度与简并度</h1>
+<ol>
+<li>
+<p>态密度 （Density of States, DOS）</p>
+<p>态密度被定义为体系能量在 $E \sim E + \delta E$ 之间的状态数：
+$$
+\bar{\varOmega}(N, V, E) := \frac{\Delta \varOmega(N, V, E)}{\delta E}
+$$</p>
+</li>
+<li>
+<p>简并度 （Degree of degeneracy）</p>
+<p>当 $\delta E \to 0$ 时，态密度即为简并度：
+$$
+g := \frac{\dif \varOmega(N, V, E)}{\dif E}
+$$</p>
+</li>
+</ol>
+<p><strong>个人认为</strong>：简并度与态密度的区别是简并度是对于一个能级而言，态密度是对一段能级而言。</p>
+<p>​	如果一个体系的能级是连续分布的，那么求其某一个点上的简并度，是不合适的，就像在一个二维图形上取一条线求这条线的面积一样，求出来的值是零；而如果一个体系的能级是量子化的，此时再求简并度就很合理，因为在两个分立能级之间没有态，态全部「确切」地分布在各个能级上，因此数/计算某个能级上有多少个态是可行的。</p>
+<h1 id="参考资料--致谢">参考资料 &amp; 致谢</h1>
+<p>Wikipedia: 已在超链接中给出；</p>
+<p>Roommate: Li Shihao；</p>
+<p>《李政道讲义：统计力学》；</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://ionizing.page/">Ionizing</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://ionizing.page/post/2019-3-22-Ensembles/">https://ionizing.page/post/2019-3-22-Ensembles/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2019-3-22-Micro-Canonical-Ensemble-and-Negative-Temperature/">微正则系综与负温度的导出</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://ionizing.page/tags/Statistical-Mechanics'>Statistical Mechanics</a></li>
+                
+                <li><a href='https://ionizing.page/tags/Physical-Chemistry'>Physical Chemistry</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ionizing/ionizing.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://ionizing.page/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ionizing.page/post/nbody-with-cuda/" title="使用 CUDA 为 N 体模拟加速">使用 CUDA 为 N 体模拟加速</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/compile-vasp-on-macos/" title="在 macOS 上编译 VASP 5.4.4">在 macOS 上编译 VASP 5.4.4</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-Ensembles/" title="统计力学笔记——系综的概念">统计力学笔记——系综的概念</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/" title="如何求解 A * B = C 中的矩阵 B ？">如何求解 A * B = C 中的矩阵 B ？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title="如何为 github 上的 cpp 项目设置 Travis-CI 自动测试">如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/" title="WAVECAR 数据结构的解析">WAVECAR 数据结构的解析</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-struggle-with-vasp/" title="在 VASP(PBE) 计算中如何优雅地踩坑？">在 VASP(PBE) 计算中如何优雅地踩坑？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title="简谐振动系统浅析（一）">简谐振动系统浅析（一）</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Coriolis-Force/" title="浅谈科里奥利力">浅谈科里奥利力</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Quantum-Physics-Learning-Log-1/" title="量子力学学习手记（一）">量子力学学习手记（一）</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://ionizing.page/categories/Algorithm/">Algorithm (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/AtomicPhysics/">AtomicPhysics (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/FirstPrinciple/">FirstPrinciple (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/PhysicalChemistry/">PhysicalChemistry (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Physics/">Physics (3)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Programming/">Programming (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/QuantumMechanics/">QuantumMechanics (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/VASP/">VASP (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://ionizing.page/tags/Angular-Momentum-Coupling/">Angular Momentum Coupling</a>
+    
+    <a href="https://ionizing.page/tags/Bohr/">Bohr</a>
+    
+    <a href="https://ionizing.page/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://ionizing.page/tags/CUDA/">CUDA</a>
+    
+    <a href="https://ionizing.page/tags/Clebsch-Gordan-Coefficients/">Clebsch-Gordan Coefficients</a>
+    
+    <a href="https://ionizing.page/tags/Correspondence-Principle/">Correspondence Principle</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Atom-Model/">Hydrogen Atom Model</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Spectra/">Hydrogen Spectra</a>
+    
+    <a href="https://ionizing.page/tags/Linear-Algebra/">Linear Algebra</a>
+    
+    <a href="https://ionizing.page/tags/NBody/">NBody</a>
+    
+    <a href="https://ionizing.page/tags/Negative-Temperature/">Negative Temperature</a>
+    
+    <a href="https://ionizing.page/tags/OUTCAR/">OUTCAR</a>
+    
+    <a href="https://ionizing.page/tags/PAT/">PAT</a>
+    
+    <a href="https://ionizing.page/tags/Physical-Chemistry/">Physical Chemistry</a>
+    
+    <a href="https://ionizing.page/tags/Rydberg-Constant/">Rydberg Constant</a>
+    
+    <a href="https://ionizing.page/tags/Statistical-Mechanics/">Statistical Mechanics</a>
+    
+    <a href="https://ionizing.page/tags/VASP/">VASP</a>
+    
+    <a href="https://ionizing.page/tags/WAVECAR/">WAVECAR</a>
+    
+    <a href="https://ionizing.page/tags/Wigner-3-j-Symbol/">Wigner 3-j Symbol</a>
+    
+    <a href="https://ionizing.page/tags/cpp/">cpp</a>
+    
+    <a href="https://ionizing.page/tags/macOS/">macOS</a>
+    
+    <a href="https://ionizing.page/tags/travis-ci/">travis-ci</a>
+    
+    <a href="https://ionizing.page/tags/%E5%8C%96%E5%AD%A6/">化学</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8C%AF%E5%8A%A8/">振动</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+    
+    <a href="https://ionizing.page/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">数学基础</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86/">物理</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/">物理化学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%AD%A6/">物理学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%A7%91%E9%87%8C%E5%A5%A5%E5%88%A9%E5%8A%9B/">科里奥利力</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6/">经典力学</a>
+    
+    <a href="https://ionizing.page/tags/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/">量子力学</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://ionizing.page/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://ionizing.page/">伪化生搬砖工地 By Ionizing</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.2.8/raphael.min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/flowchart/1.12.2/flowchart.min.js" crossorigin="anonymous"></script>
+        <script>(function () {
+                if (!window.flowchart) return;
+                const blocks = document.querySelectorAll('pre code.language-flowchart, pre code.language-flow');
+                for (let i = 0; i < blocks.length; i++) {
+                    const block = blocks[i];
+                    const rootElement = block.parentNode;
+                    const container = document.createElement('div');
+                    const id = `js-flowchart-diagrams-${i}`;
+                    container.id = id;
+                    container.className = 'align-center';
+                    container.setAttribute("style", "overFlow-x:auto");
+                    rootElement.parentNode.replaceChild(container, rootElement);
+                    const diagram = flowchart.parse(block.childNodes[0].nodeValue);
+                    diagram.drawSVG(id, window.flowchartDiagramsOptions ? window.flowchartDiagramsOptions : {});
+                }
+            })();
+        </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js" crossorigin="anonymous"></script>
+        <script>window.sequenceDiagramsOptions = {theme: 'simple'};(function () {
+            if (!window.Diagram) return;
+            const blocks = document.querySelectorAll('pre code.language-sequence');
+            for (let i = 0; i < blocks.length; i++) {
+                const block = blocks[i];
+                
+                const rootElement = block.parentNode;
+                const container = document.createElement('div');
+                const id = `js-sequence-diag-${i}`;
+                container.id = id;
+                container.className = 'align-center';
+                container.setAttribute("style", "overFlow-x:auto");
+                rootElement.parentNode.replaceChild(container, rootElement);
+
+                const diagram = Diagram.parse(block.childNodes[0].nodeValue);
+                diagram.drawSVG(id, window.sequenceDiagramsOptions
+                    ? window.sequenceDiagramsOptions
+                    : { theme: 'simple' });
+            }
+        })();
+        </script><script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-101595379-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

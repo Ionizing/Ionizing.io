@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>重新思考玻尔氢原子模型 | 伪化生搬砖工地</title>
+    <meta property="og:title" content="重新思考玻尔氢原子模型 - 伪化生搬砖工地">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="重新思考玻尔氢原子模型">
+        
+    <meta name="author" content="Ionizing">
+    <meta property="og:url" content="https://ionizing.page/post/2019-3-26-Rethink-about-Bohr-Hydrogen-Model/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://ionizing.page/">
+                        伪化生搬砖工地
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://ionizing.page/">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">重新思考玻尔氢原子模型</h1>
+        </header>
+        <date class="post-meta meta-date">
+            1年1月1日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/AtomicPhysics'>AtomicPhysics</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="经典理论的困境">经典理论的困境</h1>
+<ol>
+<li>
+<p>卢瑟福通过 $\alpha$ <a href="https://en.wikipedia.org/wiki/Rutherford_scattering">粒子散射实验</a>确定了原子的结构。人们知道了原子的正电荷全部集中在很小的一部分上；$\newcommand{\dif}{\mathop{}\mathrm{d}}$</p>
+</li>
+<li>
+<p>按照经典电磁学理论，当电子的运动有加速度时，<a href="https://physics.stackexchange.com/questions/65339/how-and-why-do-accelerating-charges-radiate-electromagnetic-radiation">会辐射出电磁波</a>，电子的动能会以电磁波的形式释放。如果电子是绕原子核做圆周运动，那么由于向心加速度的存在，电子会损失动能，并最终落在原子核上，原子的寿命将很短，但事实上原子并不都在辐射电磁波，并且相当它们都很稳定；</p>
+</li>
+<li>
+<p>按照经典理论，电子跃迁产生的波长应电子当前的轨道半径有关，那么在电子逐渐失去动能时，轨道半径是连续缩小的，此时产生的辐射应该是连续光谱，但氢原子的光谱谱线不是连续，而是分立的，并且在可见光范围内谱线的波长满足 <a href="https://en.wikipedia.org/wiki/Balmer_series">Balmer 公式</a>
+$$
+\frac{1}{\lambda} = R (\frac{1}{4} - \frac{1}{n^2})
+$$
+式中 $R$ 是 <!-- raw HTML omitted -->Rydberg<!-- raw HTML omitted --> 常数，$n$ 是大于等于 3 的整数。</p>
+<p>P.S. 当时对于氢原子光谱谱线的实验已经比较成熟，获得的数据也很相当精确，虽然在可见光范围内氢原子的谱线只有 4 条，但就是凭借这四个数值， Balmer 在不断努力下终于推出了 Balmer 公式。 Balmer 是一名数学教师，个人觉得他的工作比 Kepler 从 Tycho 的数据中得到行星运动三定律还要难好多。Kepler 在总结规律时所拥有的数据量有很多，但 Balmer 手中有的数据仅有 4 个谱线的波长。要从这 4 个数中总结出一个正确的公式，难度可想而之，用在「黑夜之中摸索前进」形容再贴切不过。</p>
+</li>
+</ol>
+<h1 id="玻尔的假设">玻尔的假设</h1>
+<p>玻尔认为，氢原子的结构像太阳系一样，核处在中间，电子在核的周围做匀速圆周运动。</p>
+<p>为了「掩盖」掉经典理论在这个模型中的失效之处，玻尔假设：</p>
+<ol>
+<li>电子在核周围的轨道上运动；</li>
+<li>电子在轨道上做匀速圆周运动时不释放能量，并且轨道的半径只能取某些特定的值；</li>
+<li>电子在不同轨道间跃迁会释放/吸收能量，产生电磁波。</li>
+</ol>
+<p>这些假设中的「轨道」仍然是经典意义上的轨道——半径固定的圆（或者行星三定律中的椭圆， whatever）。</p>
+<p>其中第三条是具有突破性的假设，那时人们的思维禁锢在经典理论中：氢原子发出的光是由于电子在核周围做匀速圆周运动产生的，这样的想法无论如何也无法解释为什么原子处于基态时没有释放出电磁波。但根据跃迁假设，电子在不同轨道间跃迁才会释放、吸收能量，从而产生电磁波，人们才能观察到氢原子光谱。而在这之后人们用量子力学解释电子跃迁时仍然在使用这一条&quot;假设&rdquo;，可见这条假设的合理性是毋庸置疑的。</p>
+<h1 id="玻尔模型的数学表达">玻尔模型的数学表达</h1>
+<p>不妨取电子的质量为 $m_e$ ，核固定不动，且核和电子所带电量都为 $e$ ，电性相反。</p>
+<p>那么电子在绕核运动时
+$$
+\frac{m_e v^2}{r} = \frac{e^2}{4\pi\epsilon_0 r^2}
+$$
+经过变形，得到
+$$
+\omega^2 = \frac{e^2/4\pi\epsilon_0}{m_e r^3} \label{eq3}
+$$
+而电子的势能与动能之和为
+$$
+\begin{aligned}
+E &amp;={} \frac{1}{2} m_e v^2 - \frac{e^2/4\pi\epsilon_0}{r} \<br>
+&amp;={} - \frac{e^2/4\pi\epsilon_0}{2r}
+\end{aligned}
+$$
+那么两个能级的能量差就为
+$$
+\Delta E = -\frac{e^2/4\pi\epsilon_0}{2} (\frac{1}{r&rsquo;} - \frac{1}{r})
+$$</p>
+<h2 id="correspondence-principle">Correspondence Principle</h2>
+<p>玻尔认为，他的模型在大量子数极限下，电子的行为与对应的经典情形中的电子行为相一致，这也被称为<a href="https://en.wikipedia.org/wiki/Correspondence_principle">对应原理</a> 。</p>
+<p>于是在 $r$ 很大时， $\Delta r = r&rsquo; - r \ll r$ 。并且有
+$$
+\begin{aligned}
+\Delta E &amp;={} -\frac{e^2/4\pi\epsilon_0}{2} (\frac{1}{r&rsquo;} - \frac{1}{r}) \<br>
+&amp;={} - \frac{e^2/4\pi\epsilon_0}{2} (\frac{r - r&rsquo;}{r\cdot r&rsquo;}) \<br>
+&amp;={} - \frac{e^2/4\pi\epsilon_0}{2} (\frac{\Delta r}{r\cdot r&rsquo;}) \<br>
+&amp;\approx{} - \frac{e^2/4\pi\epsilon_0}{2} \frac{\Delta r}{r^2}
+\end{aligned}
+$$
+上面的式子可以推出
+$$
+\omega = \frac{\Delta E}{\hbar} = \frac{e^2/4\pi\epsilon_0}{2\hbar} \cdot \frac{\Delta r}{r^2}
+$$
+在大量子数极限下，$\omega$ 应当满足经典理论下电匀速圆周运动的角频率，公式 $\eqref{eq3}$ 可以推出
+$$
+\omega = \sqrt{\frac{e^2/4\pi\epsilon_0}{m_e}} \cdot \frac{1}{r^{\frac{3}{2}}}
+$$
+以上两个 $\omega$ 的表达式相等，可以得到
+$$
+\frac{e^2/4\pi\epsilon_0}{2\hbar} \cdot \frac{\Delta r}{r^2} = \sqrt{\frac{e^2/4\pi\epsilon_0}{m_e}} \cdot \frac{1}{r^{\frac{3}{2}}} \<br>
+\begin{aligned}
+\Delta r &amp;={} \frac{r^2}{r^{\frac{3}{2}}} \cdot \frac{\sqrt{\frac{e^2/4\pi\epsilon_0}{m_e}}}{\frac{e^2/4\pi\epsilon_0}{2\hbar}} \<br>
+&amp;={} r^{\frac{1}{2}} \cdot \textrm{Constant}
+\end{aligned}
+$$
+即 $\Delta r \propto \sqrt{r}$ ， $\textrm{Constant} = \frac{2\hbar}{\sqrt{m_ee^2/4\pi\epsilon_0}{}} = 2\sqrt{a_0}$ ，整理得到
+$$
+\Delta r = 2\sqrt{a_0 r}
+$$
+我们把上面的式子看成是差分求导的结果，即
+$$
+\begin{aligned}
+\frac{\Delta r}{\Delta n} &amp;={} 2\sqrt{a_0 r} \<br>
+\frac{\dif r}{\dif n} &amp;={} 2\sqrt{a_0 r}
+\end{aligned}
+$$
+其中 $\Delta n = 1$</p>
+<p>应用玻尔假设第二条，电子的轨道半径是分立的，结合上面 $r$ 导数的表达式，我们「猜」
+$$
+r = an^x,\qquad n\in N_+
+$$
+于是</p>
+<p>$$
+\frac{\dif r}{\dif n} = 2 \sqrt{a_0 r} = axn^{x-1}\<br>
+2\sqrt{a_0 an^x} = axn^{x-1}\<br>
+axn^{x-1} \propto n^{x/2}
+$$</p>
+<p>很容易得到 $x = 2$ ， $a_0 = a$ 。于是乎我们得到了电子轨道半径的表达式
+$$
+r = a_0 n^2
+$$
+那么电子轨道角动量的表达式为
+$$
+\begin{aligned}
+L &amp;={} m_e vr \<br>
+&amp;={} m_e \sqrt{\frac{e^2/4\pi\epsilon_0}{m_e r}} r \<br>
+&amp;={} \sqrt{m_e\frac{e^2}{4\pi\epsilon_0} r} \<br>
+&amp;={} \sqrt{m_e \frac{e^2}{4\pi\epsilon_0} a_0n^2} \<br>
+&amp;={} \sqrt{m_e \frac{e^2}{4\pi\epsilon_0} \frac{\hbar^2}{(e^2/4\pi\epsilon_0)m_e} n^2}\<br>
+&amp;={} n\hbar
+\end{aligned}
+$$</p>
+<p>角动量的量纲是 <!-- raw HTML omitted -->L = mvr = pr<!-- raw HTML omitted --> ，这恰好和不确定性原理公式体现出的量纲一致
+$$
+\Delta p \times \Delta x \ge \frac{\hbar}{2}
+$$</p>
+<h2 id="里德堡常数的推导">里德堡常数的推导</h2>
+<p>我们可以求出不同量子数 $n$ 对应能级的能量为
+$$
+\begin{aligned}
+E(n) &amp;={} - \frac{e^2/4\pi\epsilon_0}{2r} \<br>
+&amp;={} - \frac{e^2/4\pi\epsilon_0}{2a_0 n^2}
+\end{aligned}
+$$
+不同能级 $n = i$、, $n = j$ 之间的的能量差为
+$$
+\begin{aligned}
+\Delta E &amp;={} E(j) - E(i) \<br>
+&amp;={} \frac{e^2/4\pi\epsilon_0}{2a_0}\cdot \left( \frac{1}{i^2} - \frac{1}{j^2} \right) \<br>
+&amp;={} \frac{e^2/4\pi\epsilon_0}{2} \frac{m_e e^2}{4\pi\epsilon_0 \hbar^2} \left( \frac{1}{i^2} - \frac{1}{j^2} \right) \<br>
+&amp;={} \frac{m_e e^4}{8 \epsilon_0^2 h^2} \left( \frac{1}{i^2} - \frac{1}{j^2} \right)
+\end{aligned}
+$$
+令 $i = 2$ ， $j = n$ ，并且等式两边同除以 $c$ （以便于写成 $\frac{1}{\lambda}$ 的表达式）
+$$
+\frac{1}{\lambda} = \frac{m_e e^4}{8\epsilon_0^2 h^2c} \left( \frac{1}{4} - \frac{1}{n^2} \right)
+$$
+上式恰好是巴尔末给出的经验公式，其中原式中的常数是里德堡常数 $R = \frac{m_e e^4}{8\epsilon_0^2 h^2 c}$ ，约为 $1.0974 \times 10^7$ m<!-- raw HTML omitted -->-1<!-- raw HTML omitted -->，这与实验值非常接近（实验值的前几位也是 10974 ）。<a href="https://en.wikipedia.org/wiki/Bohr%E2%80%93Einstein_debates">相传</a>爱因斯坦刚刚听说玻尔的模型时并未相信这个模型的正确性，但当他听说玻尔把里德堡常数也算出来的时候，爱因斯坦立即表示认可这个模型。</p>
+<p>当然如果把 $i$ 换成其它数，得到的一系列 $\lambda$ 就是氢原子光谱的其他系。</p>
+<h1 id="总结">总结</h1>
+<ol>
+<li>巴尔末总结的公式在玻尔构建他的模型时起到了重要的作用，没有这个公式，就相当于写程序没有参考输出、写出的程序不知道怎么测试；</li>
+<li>玻尔提出的三个假设在一定程度上是合理的，虽然仍有很多经典力学的残留，但其第三条假设在之后仍被沿用（或许把它应该改称为一个正确的命题）；</li>
+<li>玻尔提出的对应性原理在其构建模型时也起到了举足轻重的作用。很多教科书上讲玻尔氢原子模型时直接给出「电子的角动量是量子化的 $L =  n\hbar$ 」，然后继续推出电子的轨道半径是量子化的，这样写不免有把结论当条件用的嫌疑；而事实上，玻尔是通过对应性原理推出电子轨道半径的表达式，进而推出电子的角动量表达式；</li>
+<li>玻尔的氢原子模型在<strong>当时</strong>相当圆满地解释了氢原子光谱；</li>
+<li>当然，从现在的眼光看，这个模型有很多缺陷，如忽略了电子的自旋、核的自旋、相对论效应等，是经典力学语言到量子语言的过渡产物。</li>
+</ol>
+<h1 id="参考致谢">参考&amp;致谢</h1>
+<p><!-- raw HTML omitted -->Atomic Physics<!-- raw HTML omitted --> , C.Foot, Exercise 1.12</p>
+<p>Wikipedia</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://ionizing.page/">Ionizing</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://ionizing.page/post/2019-3-26-Rethink-about-Bohr-Hydrogen-Model/">https://ionizing.page/post/2019-3-26-Rethink-about-Bohr-Hydrogen-Model/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://ionizing.page/tags/Hydrogen-Atom-Model'>Hydrogen Atom Model</a></li>
+                
+                <li><a href='https://ionizing.page/tags/Bohr'>Bohr</a></li>
+                
+                <li><a href='https://ionizing.page/tags/Correspondence-Principle'>Correspondence Principle</a></li>
+                
+                <li><a href='https://ionizing.page/tags/Rydberg-Constant'>Rydberg Constant</a></li>
+                
+                <li><a href='https://ionizing.page/tags/Hydrogen-Spectra'>Hydrogen Spectra</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ionizing/ionizing.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://ionizing.page/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ionizing.page/post/nbody-with-cuda/" title="使用 CUDA 为 N 体模拟加速">使用 CUDA 为 N 体模拟加速</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/compile-vasp-on-macos/" title="在 macOS 上编译 VASP 5.4.4">在 macOS 上编译 VASP 5.4.4</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-Ensembles/" title="统计力学笔记——系综的概念">统计力学笔记——系综的概念</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/" title="如何求解 A * B = C 中的矩阵 B ？">如何求解 A * B = C 中的矩阵 B ？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title="如何为 github 上的 cpp 项目设置 Travis-CI 自动测试">如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/" title="WAVECAR 数据结构的解析">WAVECAR 数据结构的解析</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-struggle-with-vasp/" title="在 VASP(PBE) 计算中如何优雅地踩坑？">在 VASP(PBE) 计算中如何优雅地踩坑？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title="简谐振动系统浅析（一）">简谐振动系统浅析（一）</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Coriolis-Force/" title="浅谈科里奥利力">浅谈科里奥利力</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Quantum-Physics-Learning-Log-1/" title="量子力学学习手记（一）">量子力学学习手记（一）</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://ionizing.page/categories/Algorithm/">Algorithm (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/AtomicPhysics/">AtomicPhysics (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/FirstPrinciple/">FirstPrinciple (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/PhysicalChemistry/">PhysicalChemistry (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Physics/">Physics (3)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Programming/">Programming (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/QuantumMechanics/">QuantumMechanics (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/VASP/">VASP (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://ionizing.page/tags/Angular-Momentum-Coupling/">Angular Momentum Coupling</a>
+    
+    <a href="https://ionizing.page/tags/Bohr/">Bohr</a>
+    
+    <a href="https://ionizing.page/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://ionizing.page/tags/CUDA/">CUDA</a>
+    
+    <a href="https://ionizing.page/tags/Clebsch-Gordan-Coefficients/">Clebsch-Gordan Coefficients</a>
+    
+    <a href="https://ionizing.page/tags/Correspondence-Principle/">Correspondence Principle</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Atom-Model/">Hydrogen Atom Model</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Spectra/">Hydrogen Spectra</a>
+    
+    <a href="https://ionizing.page/tags/Linear-Algebra/">Linear Algebra</a>
+    
+    <a href="https://ionizing.page/tags/NBody/">NBody</a>
+    
+    <a href="https://ionizing.page/tags/Negative-Temperature/">Negative Temperature</a>
+    
+    <a href="https://ionizing.page/tags/OUTCAR/">OUTCAR</a>
+    
+    <a href="https://ionizing.page/tags/PAT/">PAT</a>
+    
+    <a href="https://ionizing.page/tags/Physical-Chemistry/">Physical Chemistry</a>
+    
+    <a href="https://ionizing.page/tags/Rydberg-Constant/">Rydberg Constant</a>
+    
+    <a href="https://ionizing.page/tags/Statistical-Mechanics/">Statistical Mechanics</a>
+    
+    <a href="https://ionizing.page/tags/VASP/">VASP</a>
+    
+    <a href="https://ionizing.page/tags/WAVECAR/">WAVECAR</a>
+    
+    <a href="https://ionizing.page/tags/Wigner-3-j-Symbol/">Wigner 3-j Symbol</a>
+    
+    <a href="https://ionizing.page/tags/cpp/">cpp</a>
+    
+    <a href="https://ionizing.page/tags/macOS/">macOS</a>
+    
+    <a href="https://ionizing.page/tags/travis-ci/">travis-ci</a>
+    
+    <a href="https://ionizing.page/tags/%E5%8C%96%E5%AD%A6/">化学</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8C%AF%E5%8A%A8/">振动</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+    
+    <a href="https://ionizing.page/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">数学基础</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86/">物理</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/">物理化学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%AD%A6/">物理学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%A7%91%E9%87%8C%E5%A5%A5%E5%88%A9%E5%8A%9B/">科里奥利力</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6/">经典力学</a>
+    
+    <a href="https://ionizing.page/tags/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/">量子力学</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://ionizing.page/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://ionizing.page/">伪化生搬砖工地 By Ionizing</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.2.8/raphael.min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/flowchart/1.12.2/flowchart.min.js" crossorigin="anonymous"></script>
+        <script>(function () {
+                if (!window.flowchart) return;
+                const blocks = document.querySelectorAll('pre code.language-flowchart, pre code.language-flow');
+                for (let i = 0; i < blocks.length; i++) {
+                    const block = blocks[i];
+                    const rootElement = block.parentNode;
+                    const container = document.createElement('div');
+                    const id = `js-flowchart-diagrams-${i}`;
+                    container.id = id;
+                    container.className = 'align-center';
+                    container.setAttribute("style", "overFlow-x:auto");
+                    rootElement.parentNode.replaceChild(container, rootElement);
+                    const diagram = flowchart.parse(block.childNodes[0].nodeValue);
+                    diagram.drawSVG(id, window.flowchartDiagramsOptions ? window.flowchartDiagramsOptions : {});
+                }
+            })();
+        </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js" crossorigin="anonymous"></script>
+        <script>window.sequenceDiagramsOptions = {theme: 'simple'};(function () {
+            if (!window.Diagram) return;
+            const blocks = document.querySelectorAll('pre code.language-sequence');
+            for (let i = 0; i < blocks.length; i++) {
+                const block = blocks[i];
+                
+                const rootElement = block.parentNode;
+                const container = document.createElement('div');
+                const id = `js-sequence-diag-${i}`;
+                container.id = id;
+                container.className = 'align-center';
+                container.setAttribute("style", "overFlow-x:auto");
+                rootElement.parentNode.replaceChild(container, rootElement);
+
+                const diagram = Diagram.parse(block.childNodes[0].nodeValue);
+                diagram.drawSVG(id, window.sequenceDiagramsOptions
+                    ? window.sequenceDiagramsOptions
+                    : { theme: 'simple' });
+            }
+        })();
+        </script><script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-101595379-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

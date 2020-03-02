@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PAT题解 B 1035 | 伪化生搬砖工地</title>
+    <meta property="og:title" content="PAT题解 B 1035 - 伪化生搬砖工地">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2017-06-22T13:33:59&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2017-06-22T13:33:59&#43;08:00'>
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="PAT题解 B 1035">
+        
+    <meta name="author" content="Ionizing">
+    <meta property="og:url" content="https://ionizing.page/post/PAT%E9%A2%98%E8%A7%A3-B-1035/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://ionizing.page/">
+                        伪化生搬砖工地
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://ionizing.page/">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">PAT题解 B 1035</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2017年6月22日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://ionizing.page/categories/Algorithm'>Algorithm</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="题解pat-b-1035-插入与归并">题解:PAT-B 1035 插入与归并</h1>
+<p>这是一篇测试用文章，欢迎围观.</p>
+<h2 id="题目全文">题目全文：</h2>
+<p>题目地址在<a href="https://www.patest.cn/contests/pat-b-practise/1035">这里</a></p>
+<blockquote>
+<p>根据维基百科的定义：</p>
+</blockquote>
+<blockquote>
+<p>插入排序是迭代算法，逐一获得输入数据，逐步产生有序的输出序列。每步迭代中，算法从输入序列中取出一元素，将之插入有序序列中正确的位置。如此迭代直到全部元素有序。</p>
+</blockquote>
+<blockquote>
+<p>归并排序进行如下迭代操作：首先将原始序列看成N个只包含1个元素的有序子序列，然后每次迭代归并两个相邻的有序子序列，直到最后只剩下1个有序的序列。</p>
+</blockquote>
+<blockquote>
+<p>现给定原始序列和由某排序算法产生的中间序列，请你判断该算法究竟是哪种排序算法？</p>
+</blockquote>
+<blockquote>
+<p>输入格式：</p>
+</blockquote>
+<blockquote>
+<p>输入在第一行给出正整数N (&lt;=100)；随后一行给出原始序列的N个整数；最后一行给出由某排序算法产生的中间序列。这里假设排序的目标序列是升序。数字间以空格分隔。</p>
+</blockquote>
+<blockquote>
+<p>输出格式：</p>
+</blockquote>
+<blockquote>
+<p>首先在第1行中输出“Insertion Sort”表示插入排序、或“Merge Sort”表示归并排序；然后在第2行中输出用该排序算法再迭代一轮的结果序列。题目保证每组测试的结果是唯一的。数字间以空格分隔，且行末不得有多余空格。</p>
+</blockquote>
+<p>输入样例1：</p>
+<pre><code>10
+3 1 2 8 7 5 9 4 6 0
+1 2 3 7 8 5 9 4 6 0
+</code></pre><p>输出样例1：</p>
+<pre><code>Insertion Sort
+1 2 3 5 7 8 9 4 6 0
+</code></pre><p>输入样例2：</p>
+<pre><code>10
+3 1 2 8 7 5 9 4 0 6
+1 3 2 8 5 7 4 9 0 6
+</code></pre><p>输出样例2：</p>
+<pre><code>Merge Sort
+1 2 3 8 4 5 7 9 0 6
+</code></pre><h2 id="题目解读">题目解读</h2>
+<p>这是我刷乙级题时比较头疼的一道题，前后查阅了很多别人的代码，后又观看了陈越姥姥的<a href="http://www.icourse163.org/learn/ZJU-93001?tid=1002019005#/learn/content?type=detail&amp;id=1002635050">视频</a>总算弄明白了这道题需要注意哪些.</p>
+<ol>
+<li>如何区分简单插入排序和<strong>非递归</strong>的归并排序;</li>
+<li>如何根据测试用例的类型再迭代一次运算;</li>
+<li>如何处理边界测试.</li>
+</ol>
+<p>这里要强调一下本题使用递归的归并排序是<strong>无法AC</strong>的，本渣使用递归的归并排序最多只能得到17分. 关于递归的归并与迭代归并区别请围观<a href="https://en.wikipedia.org/wiki/Merge_sort">这里</a> (中文版省去了很多分析过程，强烈建议读英文原版)，另外，关于插入排序算法的Wiki在<a href="https://en.wikipedia.org/wiki/Insertion_sort">这里</a>.</p>
+<h2 id="解题过程">解题过程</h2>
+<h3 id="如何区分简单插入排序和非递归的归并排序">如何区分简单插入排序和非递归的归并排序</h3>
+<p>只要抓住两个关键点即可：</p>
+<ol>
+<li><strong>使用插入排序序列的开头一部分一定是有序的</strong>;</li>
+<li><strong>无序部分与原文一致</strong>．</li>
+</ol>
+<p>比如下面这个例子:</p>
+<blockquote>
+<p>10<br>
+3 1 2 8 7 <code>5 9 4 6 0</code><br>
+<strong>1 2 3 7 8</strong> <code>5 9 4 6 0</code></p>
+</blockquote>
+<p>我们可以这样来判断:</p>
+<ol>
+<li>首先扫描 <code>1 2 3 7 8</code> 为有序序列，当读取到<code>5</code>时发现 <code>8 &gt; 5</code>暂停，执行步骤2;</li>
+<li>从<code>5</code>开始对后面的序列与原序列进行比较，若发现全部是匹配的，则该序列的排序算法为插入排序,并记录下开始无序的位置;否则为归并排序.</li>
+</ol>
+<p>显然后面的部分与原文一致，因此这个序列排序使用的是插入排序. 注意这里必须满足以上<em><strong>两个</strong></em>条件才能推出插入排序算法．</p>
+<p>这里不得不提到有同学使用从后向前寻找不匹配点的方法来判断排序算法，这个方法是不对的，比如下面这个例子:</p>
+<blockquote>
+<p>3 1 2 8 7 5 9 4 <code>0 6</code><br>
+1 3 2 8 5 7 4 9 <code>0 6</code></p>
+</blockquote>
+<p>虽然这里的后面一部分<code>0　6</code>与原题一致，但它并不满足前置子序列有序，因此它不是插入排序，后面的测试用例就有一个测试点来卡这种情况。</p>
+<p>对于如何判断是否使用归并排序则相对麻烦，考虑到题目中明确指出测试用例是合法的并且只能是归并和插入排序两种之一，所以这里使用排除法来确定归并排序．</p>
+<h3 id="如何根据测试用例的类型再迭代一次运算">如何根据测试用例的类型再迭代一次运算</h3>
+<h4 id="对于插入排序">对于插入排序</h4>
+<p>这个就非常简单了，如果明白了插入排序的算法，直接从上面记录下的点进行再迭代一次即可。</p>
+<h4 id="对于归并排序">对于归并排序</h4>
+<p>这个相对要麻烦一些，其关键步骤是确定归并段的长度。有的同学想到像插入排序一样从头开始寻找最长有序子序列，这是不对的，因为题意中归并排序是迭代一轮后才得到题目序列，即题目序列被分为若干归并段，<strong>每一小段都是有序的</strong>，因此若原文前一段本身已经有序，那么进行归并后得到的序列一定也是整体有序的，那么也就无法通过通过前置子序列的最大有序长度来代表所有归并段的长度。比如下面这个例子:</p>
+<blockquote>
+<p>10<br>
+<code>2 1 8 3</code> <code>7 5</code> <code>9 4</code> <code>0 6</code><br>
+<code>1 2 3 8</code> <code>5 7</code> <code>4 9</code> <code>0 6</code></p>
+</blockquote>
+<p>显然我们无法从<code>1 3 2 8</code>是最长前置有序子列就判断出归并段的长度为<code>4</code>。正确答案应该是<code>2</code>。</p>
+<p>有的同学使用模拟法，即对原序列进行分步归并排序，每迭代一次都与题目序列进行比较，直到发现匹配的情况为止。　这种方法在题目所给的时间限制下也能通过，但本着认真负责的态度，我们应该寻找一种更加<strong>聪明</strong>的办法来确定</p>
+<p>通过陈越姥姥的启发，我们总结出一下步骤判断最大归并段的长度：</p>
+<ol>
+<li>假设每个归并段的长度为<code>l</code>, (<code>l</code>的初始值为<code>2</code>，因为一个元素不存在有序无序的概念);</li>
+<li>对所有相邻两个归并段相连的两个元素进行比较，若该两元素仍有序，则归并段的长度<code>l *= 2</code>; 否则终止循环，<code>l</code>即为要确定的最大归并段长度。</li>
+</ol>
+<p>程序实现起来就是通过<code>for(l=2; l&lt;=N; l*=2)</code>这个大循环内部完成的。</p>
+<p>当确定了最大归并段长度，余下的工作就变得简单了，直接再迭代归并一次即可。
+具体代码可以参考最后的AC代码。</p>
+<h3 id="如何处理边界测试">如何处理边界测试</h3>
+<p>PAT的题目测试不给出测试数据以及测试提示，比较考验同学们的程序测试能力，本渣在通过这道题时前后想了很久，也提交了很多次，还是在看了陈越姥姥的讲解后才知道测试数据的提示，测试数据包含一下几类：</p>
+<ol>
+<li>最小<code>N</code>(<code>N = 4</code>，因为只有当<code>N &gt;= 4</code>时才能区分出归并排序与插入排序中间子列).
+<ul>
+<li>插入排序第<code>1</code>步，什么都没改变;</li>
+<li>归并排序第<code>1</code>步，什么都变了;</li>
+</ul>
+</li>
+<li>尾部子列无变化，但是前面变了(归并).</li>
+<li>最大<code>N</code>.</li>
+</ol>
+<p>有了如上提示，加上前面的讲解，相信读者一定能够独立AC这道题了。</p>
+<h2 id="ac代码">AC代码:</h2>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">94
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#999;font-weight:bold;font-style:italic">#include</span> <span style="color:#999;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span><span style="color:#998;font-style:italic">//#include &lt;fstream&gt;
+</span><span style="color:#998;font-style:italic"></span>
+<span style="color:#000;font-weight:bold">using</span> std<span style="color:#000;font-weight:bold">::</span>cin;
+<span style="color:#000;font-weight:bold">using</span> std<span style="color:#000;font-weight:bold">::</span>cout;
+<span style="color:#000;font-weight:bold">using</span> std<span style="color:#000;font-weight:bold">::</span>endl;
+
+<span style="color:#458;font-weight:bold">int</span> <span style="color:#900;font-weight:bold">main</span>()
+{
+<span style="color:#998;font-style:italic">//    std::ifstream cin(&#34;in.txt&#34;);
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#458;font-weight:bold">int</span> N;
+    cin <span style="color:#000;font-weight:bold">&gt;&gt;</span> N;
+    <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>Orig <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>[N];
+    <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; i<span style="color:#000;font-weight:bold">!=</span>N; <span style="color:#000;font-weight:bold">++</span>i){
+        cin <span style="color:#000;font-weight:bold">&gt;&gt;</span> Orig[i];
+    }
+    <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>tmp <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>[N];
+    <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; i<span style="color:#000;font-weight:bold">!=</span>N; <span style="color:#000;font-weight:bold">++</span>i){
+        cin <span style="color:#000;font-weight:bold">&gt;&gt;</span> tmp[i];
+    }
+    <span style="color:#458;font-weight:bold">int</span> k(<span style="color:#099">0</span>);
+    <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=</span>k; i<span style="color:#000;font-weight:bold">!=</span>N<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>; <span style="color:#000;font-weight:bold">++</span>i){
+        <span style="color:#000;font-weight:bold">if</span>( tmp[i] <span style="color:#000;font-weight:bold">&gt;</span> tmp[i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] ){
+            k <span style="color:#000;font-weight:bold">=</span> i;
+            <span style="color:#000;font-weight:bold">break</span>;
+        }
+    }
+    <span style="color:#458;font-weight:bold">bool</span> IsInsertion(<span style="color:#0086b3">true</span>);
+    <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=++</span>k; i<span style="color:#000;font-weight:bold">!=</span>N; <span style="color:#000;font-weight:bold">++</span>i){
+        <span style="color:#000;font-weight:bold">if</span>( tmp[i] <span style="color:#000;font-weight:bold">!=</span> Orig[i] ){
+            IsInsertion <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">false</span>;
+            <span style="color:#000;font-weight:bold">break</span>;
+        }
+    }
+    <span style="color:#000;font-weight:bold">if</span>( IsInsertion ){
+        cout <span style="color:#000;font-weight:bold">&lt;&lt;</span> <span style="color:#d14">&#34;Insertion Sort&#34;</span> <span style="color:#000;font-weight:bold">&lt;&lt;</span> endl;
+        <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=</span>k; i<span style="color:#000;font-weight:bold">!=</span><span style="color:#099">0</span>; <span style="color:#000;font-weight:bold">--</span>i){
+            <span style="color:#000;font-weight:bold">if</span>( tmp[i] <span style="color:#000;font-weight:bold">&lt;</span> tmp[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] ){
+                <span style="color:#458;font-weight:bold">int</span> t <span style="color:#000;font-weight:bold">=</span> tmp[i];
+                tmp[i] <span style="color:#000;font-weight:bold">=</span> tmp[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>];
+                tmp[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">=</span> t;
+            }<span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">break</span>;
+        }
+        <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; i<span style="color:#000;font-weight:bold">!=</span>N<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>; <span style="color:#000;font-weight:bold">++</span>i){
+            cout <span style="color:#000;font-weight:bold">&lt;&lt;</span> tmp[i] <span style="color:#000;font-weight:bold">&lt;&lt;</span> <span style="color:#d14">&#34; &#34;</span>;
+        }cout <span style="color:#000;font-weight:bold">&lt;&lt;</span> tmp[N<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">&lt;&lt;</span> endl;
+    }<span style="color:#000;font-weight:bold">else</span>{
+        cout <span style="color:#000;font-weight:bold">&lt;&lt;</span> <span style="color:#d14">&#34;Merge Sort&#34;</span> <span style="color:#000;font-weight:bold">&lt;&lt;</span> endl;
+        <span style="color:#458;font-weight:bold">bool</span> Identified <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">false</span>;
+        <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> l<span style="color:#000;font-weight:bold">=</span><span style="color:#099">2</span>; l<span style="color:#000;font-weight:bold">&lt;=</span>N; l<span style="color:#000;font-weight:bold">*=</span><span style="color:#099">2</span>){
+            <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=</span>l; i<span style="color:#000;font-weight:bold">&lt;</span>N; i <span style="color:#000;font-weight:bold">+=</span> <span style="color:#099">2</span><span style="color:#000;font-weight:bold">*</span>l){
+                <span style="color:#000;font-weight:bold">if</span>( tmp[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">&gt;</span> tmp[i] ){
+                    Identified <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">true</span>;
+                    <span style="color:#000;font-weight:bold">break</span>;
+                }
+            }
+            <span style="color:#000;font-weight:bold">if</span>( Identified ){
+                k <span style="color:#000;font-weight:bold">=</span> l;
+                <span style="color:#000;font-weight:bold">break</span>;
+            }
+        }
+<span style="color:#998;font-style:italic">//        cout &lt;&lt; &#34;k = &#34; &lt;&lt; k &lt;&lt; endl;
+</span><span style="color:#998;font-style:italic"></span>        <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; i<span style="color:#000;font-weight:bold">&lt;</span>N; i<span style="color:#000;font-weight:bold">+=</span>k<span style="color:#000;font-weight:bold">*</span><span style="color:#099">2</span>){
+            <span style="color:#458;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">*</span>tmpArr <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> <span style="color:#458;font-weight:bold">int</span>[k<span style="color:#000;font-weight:bold">*</span><span style="color:#099">2</span>];
+            <span style="color:#458;font-weight:bold">int</span> lef <span style="color:#000;font-weight:bold">=</span> i;
+            <span style="color:#000;font-weight:bold">const</span> <span style="color:#458;font-weight:bold">int</span> mid <span style="color:#000;font-weight:bold">=</span> ( lef<span style="color:#000;font-weight:bold">+</span>k <span style="color:#000;font-weight:bold">&lt;</span> N ) <span style="color:#000;font-weight:bold">?</span> lef<span style="color:#000;font-weight:bold">+</span><span style="color:#900;font-weight:bold">k</span> : N;
+            <span style="color:#000;font-weight:bold">const</span> <span style="color:#458;font-weight:bold">int</span> rig <span style="color:#000;font-weight:bold">=</span> ( mid<span style="color:#000;font-weight:bold">+</span>k <span style="color:#000;font-weight:bold">&lt;</span> N ) <span style="color:#000;font-weight:bold">?</span> mid<span style="color:#000;font-weight:bold">+</span><span style="color:#900;font-weight:bold">k</span> : N;
+            <span style="color:#458;font-weight:bold">int</span> cur <span style="color:#000;font-weight:bold">=</span> mid;
+            <span style="color:#458;font-weight:bold">int</span> j<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>;
+            <span style="color:#000;font-weight:bold">while</span>( lef <span style="color:#000;font-weight:bold">&lt;</span> mid and cur <span style="color:#000;font-weight:bold">&lt;</span> rig ){
+                <span style="color:#000;font-weight:bold">if</span>( tmp[lef] <span style="color:#000;font-weight:bold">&lt;</span> tmp[cur] ){
+                    tmpArr[j<span style="color:#000;font-weight:bold">++</span>] <span style="color:#000;font-weight:bold">=</span> tmp[lef<span style="color:#000;font-weight:bold">++</span>];
+                }<span style="color:#000;font-weight:bold">else</span>{
+                    tmpArr[j<span style="color:#000;font-weight:bold">++</span>] <span style="color:#000;font-weight:bold">=</span> tmp[cur<span style="color:#000;font-weight:bold">++</span>];
+                }
+            }
+            <span style="color:#000;font-weight:bold">while</span>( lef <span style="color:#000;font-weight:bold">&lt;</span> mid ){
+                tmpArr[j<span style="color:#000;font-weight:bold">++</span>] <span style="color:#000;font-weight:bold">=</span> tmp[lef<span style="color:#000;font-weight:bold">++</span>];
+            }
+            <span style="color:#000;font-weight:bold">while</span>( cur <span style="color:#000;font-weight:bold">&lt;</span> rig ){
+                tmpArr[j<span style="color:#000;font-weight:bold">++</span>] <span style="color:#000;font-weight:bold">=</span> tmp[cur<span style="color:#000;font-weight:bold">++</span>];
+            }
+            <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> t<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; t<span style="color:#000;font-weight:bold">!=</span>j; <span style="color:#000;font-weight:bold">++</span>t){
+                tmp[i<span style="color:#000;font-weight:bold">+</span>t] <span style="color:#000;font-weight:bold">=</span> tmpArr[t];
+            }
+            <span style="color:#000;font-weight:bold">delete</span>[] tmpArr;
+        }
+        <span style="color:#000;font-weight:bold">for</span>(<span style="color:#458;font-weight:bold">int</span> i<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>; i<span style="color:#000;font-weight:bold">!=</span>N<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>; <span style="color:#000;font-weight:bold">++</span>i){
+            cout <span style="color:#000;font-weight:bold">&lt;&lt;</span> tmp[i] <span style="color:#000;font-weight:bold">&lt;&lt;</span> <span style="color:#d14">&#34; &#34;</span>;
+        }cout <span style="color:#000;font-weight:bold">&lt;&lt;</span> tmp[N<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">&lt;&lt;</span> endl;
+    }
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#099">0</span>;
+}
+
+</code></pre></td></tr></table>
+</div>
+</div>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://ionizing.page/">Ionizing</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://ionizing.page/post/PAT%E9%A2%98%E8%A7%A3-B-1035/">https://ionizing.page/post/PAT%E9%A2%98%E8%A7%A3-B-1035/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://ionizing.page/tags/C&#43;&#43;'>C&#43;&#43;</a></li>
+                
+                <li><a href='https://ionizing.page/tags/PAT'>PAT</a></li>
+                
+                <li><a href='https://ionizing.page/tags/%E6%8E%92%E5%BA%8F'>排序</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ionizing/ionizing.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://ionizing.page/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ionizing.page/post/nbody-with-cuda/" title="使用 CUDA 为 N 体模拟加速">使用 CUDA 为 N 体模拟加速</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/compile-vasp-on-macos/" title="在 macOS 上编译 VASP 5.4.4">在 macOS 上编译 VASP 5.4.4</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-3-22-Ensembles/" title="统计力学笔记——系综的概念">统计力学笔记——系综的概念</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-matrix-B-in-A-times-B-equals-C/" title="如何求解 A * B = C 中的矩阵 B ？">如何求解 A * B = C 中的矩阵 B ？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2019-1-21-how-to-setup-travis-ci/" title="如何为 github 上的 cpp 项目设置 Travis-CI 自动测试">如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/2018-12-31_WAVECAR-parsing/" title="WAVECAR 数据结构的解析">WAVECAR 数据结构的解析</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-struggle-with-vasp/" title="在 VASP(PBE) 计算中如何优雅地踩坑？">在 VASP(PBE) 计算中如何优雅地踩坑？</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/how-to-solve-viberation-1/" title="简谐振动系统浅析（一）">简谐振动系统浅析（一）</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Coriolis-Force/" title="浅谈科里奥利力">浅谈科里奥利力</a>
+    </li>
+    
+    <li>
+        <a href="https://ionizing.page/post/Quantum-Physics-Learning-Log-1/" title="量子力学学习手记（一）">量子力学学习手记（一）</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://ionizing.page/categories/Algorithm/">Algorithm (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/AtomicPhysics/">AtomicPhysics (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/FirstPrinciple/">FirstPrinciple (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/PhysicalChemistry/">PhysicalChemistry (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Physics/">Physics (3)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/Programming/">Programming (2)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/QuantumMechanics/">QuantumMechanics (1)</a></li>
+    
+    <li><a href="https://ionizing.page/categories/VASP/">VASP (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://ionizing.page/tags/Angular-Momentum-Coupling/">Angular Momentum Coupling</a>
+    
+    <a href="https://ionizing.page/tags/Bohr/">Bohr</a>
+    
+    <a href="https://ionizing.page/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://ionizing.page/tags/CUDA/">CUDA</a>
+    
+    <a href="https://ionizing.page/tags/Clebsch-Gordan-Coefficients/">Clebsch-Gordan Coefficients</a>
+    
+    <a href="https://ionizing.page/tags/Correspondence-Principle/">Correspondence Principle</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Atom-Model/">Hydrogen Atom Model</a>
+    
+    <a href="https://ionizing.page/tags/Hydrogen-Spectra/">Hydrogen Spectra</a>
+    
+    <a href="https://ionizing.page/tags/Linear-Algebra/">Linear Algebra</a>
+    
+    <a href="https://ionizing.page/tags/NBody/">NBody</a>
+    
+    <a href="https://ionizing.page/tags/Negative-Temperature/">Negative Temperature</a>
+    
+    <a href="https://ionizing.page/tags/OUTCAR/">OUTCAR</a>
+    
+    <a href="https://ionizing.page/tags/PAT/">PAT</a>
+    
+    <a href="https://ionizing.page/tags/Physical-Chemistry/">Physical Chemistry</a>
+    
+    <a href="https://ionizing.page/tags/Rydberg-Constant/">Rydberg Constant</a>
+    
+    <a href="https://ionizing.page/tags/Statistical-Mechanics/">Statistical Mechanics</a>
+    
+    <a href="https://ionizing.page/tags/VASP/">VASP</a>
+    
+    <a href="https://ionizing.page/tags/WAVECAR/">WAVECAR</a>
+    
+    <a href="https://ionizing.page/tags/Wigner-3-j-Symbol/">Wigner 3-j Symbol</a>
+    
+    <a href="https://ionizing.page/tags/cpp/">cpp</a>
+    
+    <a href="https://ionizing.page/tags/macOS/">macOS</a>
+    
+    <a href="https://ionizing.page/tags/travis-ci/">travis-ci</a>
+    
+    <a href="https://ionizing.page/tags/%E5%8C%96%E5%AD%A6/">化学</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8C%AF%E5%8A%A8/">振动</a>
+    
+    <a href="https://ionizing.page/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+    
+    <a href="https://ionizing.page/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">数学基础</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86/">物理</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/">物理化学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%89%A9%E7%90%86%E5%AD%A6/">物理学</a>
+    
+    <a href="https://ionizing.page/tags/%E7%A7%91%E9%87%8C%E5%A5%A5%E5%88%A9%E5%8A%9B/">科里奥利力</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+    
+    <a href="https://ionizing.page/tags/%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6/">经典力学</a>
+    
+    <a href="https://ionizing.page/tags/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/">量子力学</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://ionizing.page/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://ionizing.page/">伪化生搬砖工地 By Ionizing</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.2.8/raphael.min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/flowchart/1.12.2/flowchart.min.js" crossorigin="anonymous"></script>
+        <script>(function () {
+                if (!window.flowchart) return;
+                const blocks = document.querySelectorAll('pre code.language-flowchart, pre code.language-flow');
+                for (let i = 0; i < blocks.length; i++) {
+                    const block = blocks[i];
+                    const rootElement = block.parentNode;
+                    const container = document.createElement('div');
+                    const id = `js-flowchart-diagrams-${i}`;
+                    container.id = id;
+                    container.className = 'align-center';
+                    container.setAttribute("style", "overFlow-x:auto");
+                    rootElement.parentNode.replaceChild(container, rootElement);
+                    const diagram = flowchart.parse(block.childNodes[0].nodeValue);
+                    diagram.drawSVG(id, window.flowchartDiagramsOptions ? window.flowchartDiagramsOptions : {});
+                }
+            })();
+        </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js" crossorigin="anonymous"></script>
+        <script>window.sequenceDiagramsOptions = {theme: 'simple'};(function () {
+            if (!window.Diagram) return;
+            const blocks = document.querySelectorAll('pre code.language-sequence');
+            for (let i = 0; i < blocks.length; i++) {
+                const block = blocks[i];
+                
+                const rootElement = block.parentNode;
+                const container = document.createElement('div');
+                const id = `js-sequence-diag-${i}`;
+                container.id = id;
+                container.className = 'align-center';
+                container.setAttribute("style", "overFlow-x:auto");
+                rootElement.parentNode.replaceChild(container, rootElement);
+
+                const diagram = Diagram.parse(block.childNodes[0].nodeValue);
+                diagram.drawSVG(id, window.sequenceDiagramsOptions
+                    ? window.sequenceDiagramsOptions
+                    : { theme: 'simple' });
+            }
+        })();
+        </script><script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-101595379-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>
