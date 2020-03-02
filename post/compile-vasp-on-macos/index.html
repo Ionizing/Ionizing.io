@@ -15,7 +15,7 @@
         
     <meta property="article:modified_time" content='2020-03-02T20:58:46&#43;08:00'>
         
-    <meta name="Keywords" content="">
+    <meta name="Keywords" content="Programming,C,Rust,VASP,FirstPrinciple">
     <meta name="description" content="在 macOS 上编译 VASP 5.4.4">
         <meta name="author" content="[Smith Peter]">
         
@@ -44,7 +44,7 @@
                         伪化生搬砖工地
                     </a>
                 
-                
+                <p class="description">Challenge Everything</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
@@ -63,7 +63,116 @@
                 <div class="col-8" id="main">
                     
 <div class="res-cons">
-    
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#准备工作">准备工作</a>
+      <ul>
+        <li><a href="#本机环境">本机环境</a></li>
+        <li><a href="#安装依赖库">安装依赖库</a></li>
+      </ul>
+    </li>
+    <li><a href="#编译-vasp">编译 VASP</a>
+      <ul>
+        <li><a href="#编译-vasp-dot-5-dot-lib">编译 <code>vasp.5.lib</code></a></li>
+        <li><a href="#编译-vasp-dot-5-dot-4-dot-4">编译 <code>vasp.5.4.4</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#测试编译结果">测试编译结果 :</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
     <article class="post">
         <header>
             <h1 class="post-title">在 macOS 上编译 VASP 5.4.4</h1>
@@ -536,6 +645,10 @@ DAV:   2    -0.108230371156E+02   -0.12164E-10   -0.11950E-10  2928   0.918E-05
         
         <li><a href="/post/how-to-struggle-with-vasp/">在 VASP(PBE) 计算中如何优雅地踩坑？</a></li>
         
+        <li><a href="/post/2019-3-22-Ensembles/">统计力学笔记——系综的概念</a></li>
+        
+        <li><a href="/post/2019-1-21-how-to-setup-travis-ci/">如何为 github 上的 cpp 项目设置 Travis-CI 自动测试</a></li>
+        
     </ul>
 </div>
 
@@ -573,7 +686,7 @@ DAV:   2    -0.108230371156E+02   -0.12164E-10   -0.11950E-10  2928   0.918E-05
 
                 <div id="secondary">
     <section class="widget">
-        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+        <form id="search" action='https://ionizing.page/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
       <input type="hidden" name="sitesearch" value="https://ionizing.page/">
