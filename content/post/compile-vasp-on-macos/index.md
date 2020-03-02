@@ -220,8 +220,8 @@ cp arch/makefile.include.linux_gnu ./makefile.include
 编辑 `makefile.include` ，将之前装好的库路径填到里面：
 
 ```diff
---- makefile.include.bak	2020-02-09 15:54:30.000000000 +0800
-+++ makefile.include	2020-02-09 16:33:56.000000000 +0800
+--- makefile.include.bak    2020-02-09 15:54:30.000000000 +0800
++++ makefile.include    2020-02-09 16:33:56.000000000 +0800
 @@ -9,7 +9,7 @@
               -Dtbdyn \
               -Duse_shmem
